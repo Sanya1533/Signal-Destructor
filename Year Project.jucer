@@ -4,6 +4,15 @@
               pluginFormats="buildVST,buildVST3">
   <MAINGROUP id="KNabTP" name="Year Project">
     <GROUP id="{569E8AE0-343D-0DD9-1705-8ACE87E55647}" name="Source">
+      <FILE id="x6dO2p" name="SliderPanel.cpp" compile="1" resource="0" file="Source/SliderPanel.cpp"/>
+      <FILE id="fIMI0Q" name="SliderPanel.h" compile="0" resource="0" file="Source/SliderPanel.h"/>
+      <FILE id="akbELv" name="SliderListener.cpp" compile="1" resource="0"
+            file="Source/SliderListener.cpp"/>
+      <FILE id="s5ezW8" name="SliderListener.h" compile="0" resource="0"
+            file="Source/SliderListener.h"/>
+      <FILE id="bW9qYG" name="LabeledSlider.cpp" compile="1" resource="0"
+            file="Source/LabeledSlider.cpp"/>
+      <FILE id="oWpaoz" name="LabeledSlider.h" compile="0" resource="0" file="Source/LabeledSlider.h"/>
       <FILE id="ktEF8B" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="vfxMYs" name="PluginProcessor.h" compile="0" resource="0"
