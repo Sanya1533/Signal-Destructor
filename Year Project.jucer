@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="RXEf86" name="Year Project" projectType="audioplug" jucerVersion="5.4.7">
+<JUCERPROJECT id="RXEf86" name="Year Project" projectType="audioplug" jucerVersion="5.4.7"
+              pluginFormats="buildVST,buildVST3">
   <MAINGROUP id="KNabTP" name="Year Project">
     <GROUP id="{569E8AE0-343D-0DD9-1705-8ACE87E55647}" name="Source">
       <FILE id="ktEF8B" name="PluginProcessor.cpp" compile="1" resource="0"
