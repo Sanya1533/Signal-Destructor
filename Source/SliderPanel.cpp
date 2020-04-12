@@ -78,7 +78,6 @@ void SliderPanel::addComponent(LabeledSlider* comp)
 	flexBox->items.add(FlexItem(*comp).withMinWidth(50.0f).withMinHeight(50.0f).withFlex(2));
 	addAndMakeVisible(comp);
 	comp->addListener(this);
-	comp->setMaxValue(30);
 }
 
 void SliderPanel::addListener(SliderListener* listener)

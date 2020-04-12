@@ -50,9 +50,13 @@ public:
 
     Label* getLabel();
 
-    void setMaxValue(double newMaxValue, NotificationType notification = dontSendNotification, bool allowNudgingOfOtherValues = true);
+    void setMaxValue(double newMaxValue);
 
-    void setMinValue(double newMinValue, NotificationType notification = dontSendNotification, bool allowNudgingOfOtherValues = true);
+    void setMinValue(double newMinValue);
+
+    void setInterval(double newInterval);
+
+    void setRange(double newMinValue=NULL, double newMaxValue=NULL, double newInterval=NULL);
 
 private:
     Label* label;

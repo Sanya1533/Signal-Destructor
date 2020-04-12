@@ -120,14 +120,30 @@ Label* LabeledSlider::getLabel()
 	return label;
 }
 
-void LabeledSlider::setMaxValue(double newMaxValue, NotificationType notification, bool allowNudgingOfOtherValues)
+void LabeledSlider::setMaxValue(double newMaxValue)
 {
-	slider->setMaxValue(newMaxValue, notification, allowNudgingOfOtherValues);
+	slider->setRange(slider->getMinValue(),newMaxValue, slider->getInterval());
 }
 
-void LabeledSlider::setMinValue(double newMinValue, NotificationType notification, bool allowNudgingOfOtherValues)
+void LabeledSlider::setMinValue(double newMinValue)
 {
-	slider->setMinValue(newMinValue, notification, allowNudgingOfOtherValues);
+	slider->setRange(newMinValue,slider->getMaxValue(),slider->getInterval());
+}
+
+void LabeledSlider::setInterval(double newInterval)
+{
+	slider->setRange(slider->getMinValue(), slider->getMaxValue(), newInterval);
+}
+
+void LabeledSlider::setRange(double newMinValue, double newMaxValue, double newInterval)
+{
+	if (newMinValue == NULL)
+		newMinValue = slider->getMinValue();
+	if (newMaxValue == NULL)
+		newMaxValue = slider->getMaxValue();
+	if (newInterval == NULL)
+		newInterval = slider->getInterval();
+	slider->setRange(newMinValue,newMaxValue,newInterval);
 }
 
 bool LabeledSlider::isSliderRotary()
