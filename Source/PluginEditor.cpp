@@ -32,7 +32,7 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 		interruptsSliderPanel->getActive()
 	));
 
-	interruptsSliderPanel->addListener2(this);
+	interruptsSliderPanel->addListener(this);
 	
 
 	noiseSliderPanel = new SliderPanel();
@@ -58,7 +58,7 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 		noiseSliderPanel->getActive()
 	));
 
-	noiseSliderPanel->addListener2(this);
+	noiseSliderPanel->addListener(this);
 
 
 	snapSliderPanel = new SliderPanel();
@@ -84,7 +84,7 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 		snapSliderPanel->getActive()
 	));
 
-	snapSliderPanel->addListener2(this);
+	snapSliderPanel->addListener(this);
 
 
 	humSliderPanel = new SliderPanel();
@@ -110,7 +110,7 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 		interruptsSliderPanel->getActive()
 	));
 
-	humSliderPanel->addListener2(this);
+	humSliderPanel->addListener(this);
 
 
 	addAndMakeVisible(interruptsSliderPanel);
@@ -137,12 +137,6 @@ void YearprojectAudioProcessorEditor::resized()
 	noiseSliderPanel->setBounds(0, getHeight() / 4, getWidth(), getHeight() / 4);
 	snapSliderPanel->setBounds(0, getHeight() / 2, getWidth(), getHeight() / 4);
 	humSliderPanel->setBounds(0, getHeight() * 3 / 4, getWidth(), getHeight() / 4);
-}
-
-void YearprojectAudioProcessorEditor::sliderValueChanged(Slider* slider, String message)
-{
-	String firstMessage = message.substring(0, message.indexOf("~&#@"));
-	String secondMessage = message.substring(message.indexOf("~&#@") + 4);
 }
 
 void YearprojectAudioProcessorEditor::mouseDoubleClick(SliderPanel* panel, const MouseEvent& event)

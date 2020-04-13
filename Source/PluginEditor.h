@@ -1,13 +1,10 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
-#include "SliderListener.h"
 #include "SliderPanel.h"
 #include "LabeledSlider.h"
 
-//==============================================================================
-/**
-*/
-class YearprojectAudioProcessorEditor  : public AudioProcessorEditor, public SliderListener, public SliderPanel::MouseListener
+
+class YearprojectAudioProcessorEditor  : public AudioProcessorEditor,  public SliderPanel::MouseListener
 {
 public:
     YearprojectAudioProcessorEditor (YearprojectAudioProcessor&);
@@ -16,7 +13,6 @@ public:
     //==============================================================================
     void paint (Graphics&) override;
     void resized() override;
-    void sliderValueChanged(Slider* slider, String message) override;
 
     void mouseDoubleClick(SliderPanel* panel,const MouseEvent& event) override;
 

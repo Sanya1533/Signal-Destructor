@@ -18,7 +18,6 @@ LabeledSlider::LabeledSlider(Slider* slider, Label* label, LabelPosition labelPo
 	this->label = label;
 	this->labelPosition = labelPosition;
 	this->labelPercentage = labelPercentage;
-	this->slider->addListener(this);
 	addAndMakeVisible(this->slider);
 	addAndMakeVisible(this->label);
 }
@@ -63,12 +62,6 @@ void LabeledSlider::resized()
 	}
 }
 
-void LabeledSlider::sliderValueChanged(Slider* slider)
-{
-	for (int i = 0; i < listeners.size(); i++)
-		listeners[i]->sliderValueChanged(slider, label->getText());
-}
-
 void LabeledSlider::setLabelPosition(LabelPosition position)
 {
 	this->labelPosition = position;
@@ -87,7 +80,6 @@ void LabeledSlider::setLabel(Label* label)
 void LabeledSlider::setSlider(Slider* slider)
 {
 	this->slider = slider;
-	this->slider->addListener(this);
 }
 
 Slider* LabeledSlider::getSlider()
@@ -108,11 +100,6 @@ void LabeledSlider::setLabelFont(Font font)
 void LabeledSlider::setSliderStyle(Slider::SliderStyle sliderStyle)
 {
 	this->slider->setSliderStyle(sliderStyle);
-}
-
-void LabeledSlider::addListener(SliderListener* listener)
-{
-	listeners.push_back(listener);
 }
 
 Label* LabeledSlider::getLabel()

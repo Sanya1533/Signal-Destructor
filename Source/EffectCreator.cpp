@@ -14,3 +14,13 @@ void EffectCreator::setActive(Value isActive)
 {
     this->isActive.referTo(isActive);
 }
+
+void EffectCreator::setTime(int newTime)
+{
+    time = newTime;
+}
+
+int EffectCreator::getTime()
+{
+    return time;
+}

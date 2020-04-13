@@ -1,14 +1,12 @@
 #pragma once
 #include <JuceHeader.h>
 #include <vector>
-#include "SliderListener.h"
 #include "LabeledSlider.h"
 
 using namespace std;
 
 class SliderPanel :
 	public Component,
-	public SliderListener,
 	public MouseListener
 {
 public:
@@ -37,10 +35,6 @@ public:
 
 	void addComponent(LabeledSlider* comp);
 
-	void addListener(SliderListener* listener);
-
-	void sliderValueChanged(Slider* slider, String  message) override;
-
 	String getTitle();
 
 	void mouseDoubleClick(const MouseEvent& event) override;
@@ -51,7 +45,7 @@ public:
 		void virtual mouseDoubleClick(SliderPanel* panel, const MouseEvent& event);
 	};
 
-	void addListener2(SliderPanel::MouseListener* listener);
+	void addListener(SliderPanel::MouseListener* listener);
 
 	void setActive(bool active);
 
@@ -62,7 +56,7 @@ public:
 private:
 	Label* title;
 
-	Value active=Value(true);
+	Value active = Value(true);
 
 	Colour background;
 
@@ -74,7 +68,5 @@ private:
 
 	FlexBox* flexBox;
 
-	vector<SliderListener*> listeners = vector<SliderListener*>();
-
-	vector<SliderPanel::MouseListener*> listeners2 = vector<SliderPanel::MouseListener*>();
+	vector<SliderPanel::MouseListener*> listeners = vector<SliderPanel::MouseListener*>();
 };

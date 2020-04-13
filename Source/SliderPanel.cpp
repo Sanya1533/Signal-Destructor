@@ -1,5 +1,4 @@
 #include "SliderPanel.h"
-#include "SliderListener.h"
 #include "LabeledSlider.h"
 
 SliderPanel::SliderPanel()
@@ -92,18 +91,6 @@ void SliderPanel::addComponent(LabeledSlider* comp)
 	comp->addMouseListener(this, true);
 	flexBox->items.add(FlexItem(*comp).withMinWidth(50.0f).withMinHeight(50.0f).withFlex(2));
 	addAndMakeVisible(comp);
-	comp->addListener(this);
-}
-
-void SliderPanel::addListener(SliderListener* listener)
-{
-	listeners.push_back(listener);
-}
-
-void SliderPanel::sliderValueChanged(Slider* slider, String message)
-{
-	for (int i = 0; i < listeners.size(); i++)
-		listeners[i]->sliderValueChanged(slider, title->getText() + L"~&#@" + message);
 }
 
 String SliderPanel::getTitle()
@@ -113,13 +100,13 @@ String SliderPanel::getTitle()
 
 void SliderPanel::mouseDoubleClick(const MouseEvent& event)
 {
-	for (int i = 0; i < listeners2.size(); i++)
-		listeners2[i]->mouseDoubleClick(this, event);
+	for (int i = 0; i < listeners.size(); i++)
+		listeners[i]->mouseDoubleClick(this, event);
 }
 
-void SliderPanel::addListener2(SliderPanel::MouseListener* listener)
+void SliderPanel::addListener(SliderPanel::MouseListener* listener)
 {
-	listeners2.push_back(listener);
+	listeners.push_back(listener);
 }
 
 void SliderPanel::setActive(bool active)

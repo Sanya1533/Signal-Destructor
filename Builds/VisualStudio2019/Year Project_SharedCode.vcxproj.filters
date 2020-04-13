@@ -441,9 +441,6 @@
     <ClCompile Include="..\..\Source\SliderPanel.cpp">
       <Filter>Year Project\Sliders</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\SliderListener.cpp">
-      <Filter>Year Project\Sliders</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\LabeledSlider.cpp">
       <Filter>Year Project\Sliders</Filter>
     </ClCompile>
@@ -2337,9 +2334,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\SliderPanel.h">
-      <Filter>Year Project\Sliders</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\SliderListener.h">
       <Filter>Year Project\Sliders</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\LabeledSlider.h">

@@ -13,6 +13,12 @@ public:
 
     void setActive(Value isActive);
 
+    void setTime(int newTime);
+
+    int getTime();
+
 protected:
+    int time=0;
+
     Value isActive=Value(true);
 };

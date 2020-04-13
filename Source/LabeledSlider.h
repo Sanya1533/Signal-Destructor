@@ -1,13 +1,11 @@
 #pragma once
 #include <JuceHeader.h>
 #include <vector>
-#include "SliderListener.h"
 
 using namespace std;
 
 class LabeledSlider :
-    public Component,
-    public Slider::Listener
+    public Component
 {
 public:
     enum LabelPosition
@@ -28,8 +26,6 @@ public:
     void paint(Graphics&) override;
     void resized() override;
 
-    void sliderValueChanged(Slider* slider) override;
-
     void setLabelPosition(LabelPosition position);
 
     void setLabelPercentage(float percantage);
@@ -45,8 +41,6 @@ public:
     void setLabelFont(Font font);
 
     void setSliderStyle(Slider::SliderStyle sliderStyle);
-
-    void addListener(SliderListener* listener);
 
     Label* getLabel();
 
@@ -66,8 +60,6 @@ private:
     float labelPercentage = 0.15;
 
     LabelPosition labelPosition = LabelPosition::NoLabel;
-
-    vector<SliderListener*> listeners = vector<SliderListener*>(0);
 
     bool isSliderRotary();
 };
