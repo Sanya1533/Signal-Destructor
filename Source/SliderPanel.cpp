@@ -36,36 +36,50 @@ void SliderPanel::resized()
 void SliderPanel::setBackgroundColor(juce::Colour color)
 {
 	background = color;
+	this->repaint();
+	resized();
 }
 
 void SliderPanel::setBorderColour(juce::Colour color)
 {
 	borderColor = color;
+	this->repaint();
+	resized();
 }
 
 void SliderPanel::setBorderWidth(float width)
 {
 	borderWidth = width;
+	this->repaint();
+	resized();
 }
 
 void SliderPanel::setBorderPosition(Point<int> posintion)
 {
 	borderPosintion = posintion;
+	this->repaint();
+	resized();
 }
 
 void SliderPanel::setTitle(Label* label)
 {
 	this->title = label;
+	this->repaint();
+	resized();
 }
 
 void SliderPanel::setTitle(String text)
 {
 	this->title->setText(text, dontSendNotification);
+	this->repaint();
+	resized();
 }
 
 void SliderPanel::setFlexBox(FlexBox* flexBox)
 {
 	this->flexBox = flexBox;
+	this->repaint();
+	resized();
 }
 
 FlexBox* SliderPanel::getFlexBox()
@@ -75,6 +89,7 @@ FlexBox* SliderPanel::getFlexBox()
 
 void SliderPanel::addComponent(LabeledSlider* comp)
 {
+	comp->addMouseListener(this, true);
 	flexBox->items.add(FlexItem(*comp).withMinWidth(50.0f).withMinHeight(50.0f).withFlex(2));
 	addAndMakeVisible(comp);
 	comp->addListener(this);
@@ -94,4 +109,48 @@ void SliderPanel::sliderValueChanged(Slider* slider, String message)
 String SliderPanel::getTitle()
 {
 	return title->getText();
+}
+
+void SliderPanel::mouseDoubleClick(const MouseEvent& event)
+{
+	for (int i = 0; i < listeners2.size(); i++)
+		listeners2[i]->mouseDoubleClick(this, event);
+}
+
+void SliderPanel::addListener2(SliderPanel::MouseListener* listener)
+{
+	listeners2.push_back(listener);
+}
+
+void SliderPanel::setActive(bool active)
+{
+	this->active.setValue(active);
+}
+
+Value SliderPanel::getActive()
+{
+	return active;
+}
+
+LabeledSlider* SliderPanel::getChildWithTitle(String title)
+{
+	Array<Component*> children = this->getChildren();
+	for (int i = 0; i < children.size(); i++)
+	{
+		try
+		{
+			if (children[i] != this->title && ((LabeledSlider*)children[i])->getLabel()->getText() == title)
+			{
+				return (LabeledSlider*)children[i];
+			}
+		}
+		catch (const std::exception&)
+		{
+		}
+	}
+	return nullptr;
+}
+
+void SliderPanel::MouseListener::mouseDoubleClick(SliderPanel* panel, const MouseEvent& event)
+{
 }

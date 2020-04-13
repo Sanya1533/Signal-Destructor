@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="Year Project\Sliders">
+      <UniqueIdentifier>{67C99CBE-929F-A9A0-0C48-D3563D3E7436}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Year Project\EffectsCreators">
+      <UniqueIdentifier>{22B5E54A-59C3-5069-8DC5-0920926B92BA}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Year Project\Source">
       <UniqueIdentifier>{3AA185AD-BF45-6480-5CA2-F9E16FD13A67}</UniqueIdentifier>
     </Filter>
@@ -433,13 +439,28 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\SliderPanel.cpp">
-      <Filter>Year Project\Source</Filter>
+      <Filter>Year Project\Sliders</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\SliderListener.cpp">
-      <Filter>Year Project\Source</Filter>
+      <Filter>Year Project\Sliders</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\LabeledSlider.cpp">
-      <Filter>Year Project\Source</Filter>
+      <Filter>Year Project\Sliders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EffectCreator.cpp">
+      <Filter>Year Project\EffectsCreators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\HumCreator.cpp">
+      <Filter>Year Project\EffectsCreators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\InterruptsCreator.cpp">
+      <Filter>Year Project\EffectsCreators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\NoiseCreator.cpp">
+      <Filter>Year Project\EffectsCreators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SnapCreator.cpp">
+      <Filter>Year Project\EffectsCreators</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
       <Filter>Year Project\Source</Filter>
@@ -2316,13 +2337,28 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\SliderPanel.h">
-      <Filter>Year Project\Source</Filter>
+      <Filter>Year Project\Sliders</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\SliderListener.h">
-      <Filter>Year Project\Source</Filter>
+      <Filter>Year Project\Sliders</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\LabeledSlider.h">
-      <Filter>Year Project\Source</Filter>
+      <Filter>Year Project\Sliders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EffectCreator.h">
+      <Filter>Year Project\EffectsCreators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\HumCreator.h">
+      <Filter>Year Project\EffectsCreators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\InterruptsCreator.h">
+      <Filter>Year Project\EffectsCreators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\NoiseCreator.h">
+      <Filter>Year Project\EffectsCreators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SnapCreator.h">
+      <Filter>Year Project\EffectsCreators</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
       <Filter>Year Project\Source</Filter>

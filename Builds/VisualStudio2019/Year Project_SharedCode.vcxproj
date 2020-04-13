@@ -45,9 +45,6 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Year Project</TargetName>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\VST_SDK_2.4-master;D:\VST_SDK_2.4-master\pluginterfaces;$(IncludePath)</IncludePath>
-  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -135,6 +132,11 @@
     <ClCompile Include="..\..\Source\SliderPanel.cpp" />
     <ClCompile Include="..\..\Source\SliderListener.cpp" />
     <ClCompile Include="..\..\Source\LabeledSlider.cpp" />
+    <ClCompile Include="..\..\Source\EffectCreator.cpp" />
+    <ClCompile Include="..\..\Source\HumCreator.cpp" />
+    <ClCompile Include="..\..\Source\InterruptsCreator.cpp" />
+    <ClCompile Include="..\..\Source\NoiseCreator.cpp" />
+    <ClCompile Include="..\..\Source\SnapCreator.cpp" />
     <ClCompile Include="..\..\Source\PluginProcessor.cpp" />
     <ClCompile Include="..\..\Source\PluginEditor.cpp" />
     <ClCompile Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
@@ -1980,6 +1982,11 @@
     <ClInclude Include="..\..\Source\SliderPanel.h" />
     <ClInclude Include="..\..\Source\SliderListener.h" />
     <ClInclude Include="..\..\Source\LabeledSlider.h" />
+    <ClInclude Include="..\..\Source\EffectCreator.h" />
+    <ClInclude Include="..\..\Source\HumCreator.h" />
+    <ClInclude Include="..\..\Source\InterruptsCreator.h" />
+    <ClInclude Include="..\..\Source\NoiseCreator.h" />
+    <ClInclude Include="..\..\Source\SnapCreator.h" />
     <ClInclude Include="..\..\Source\PluginProcessor.h" />
     <ClInclude Include="..\..\Source\PluginEditor.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h" />

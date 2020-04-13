@@ -3,7 +3,7 @@
 <JUCERPROJECT id="RXEf86" name="Year Project" projectType="audioplug" jucerVersion="5.4.7"
               pluginFormats="buildVST,buildVST3">
   <MAINGROUP id="KNabTP" name="Year Project">
-    <GROUP id="{569E8AE0-343D-0DD9-1705-8ACE87E55647}" name="Source">
+    <GROUP id="{6DDF7C29-4B85-B2FF-5277-A7DE843BD25A}" name="Sliders">
       <FILE id="x6dO2p" name="SliderPanel.cpp" compile="1" resource="0" file="Source/SliderPanel.cpp"/>
       <FILE id="fIMI0Q" name="SliderPanel.h" compile="0" resource="0" file="Source/SliderPanel.h"/>
       <FILE id="akbELv" name="SliderListener.cpp" compile="1" resource="0"
@@ -13,6 +13,28 @@
       <FILE id="bW9qYG" name="LabeledSlider.cpp" compile="1" resource="0"
             file="Source/LabeledSlider.cpp"/>
       <FILE id="oWpaoz" name="LabeledSlider.h" compile="0" resource="0" file="Source/LabeledSlider.h"/>
+    </GROUP>
+    <GROUP id="{9ECAF4FA-C449-0AFC-D335-DB74E0C2472F}" name="EffectsCreators">
+      <FILE id="QVLGde" name="EffectCreator.cpp" compile="1" resource="0"
+            file="Source/EffectCreator.cpp"/>
+      <FILE id="QUmD7L" name="EffectCreator.h" compile="0" resource="0" file="Source/EffectCreator.h"/>
+      <FILE id="efhnvx" name="HumCreator.cpp" compile="1" resource="0" file="Source/HumCreator.cpp"/>
+      <FILE id="Urgpxl" name="HumCreator.h" compile="0" resource="0" file="Source/HumCreator.h"/>
+      <FILE id="NP6MPW" name="InterruptsCreator.cpp" compile="1" resource="0"
+            file="Source/InterruptsCreator.cpp"/>
+      <FILE id="a1fdv5" name="InterruptsCreator.h" compile="0" resource="0"
+            file="Source/InterruptsCreator.h"/>
+      <FILE id="CsMWy8" name="NoiseCreator.cpp" compile="1" resource="0"
+            file="Source/NoiseCreator.cpp"/>
+      <FILE id="QzebWr" name="NoiseCreator.h" compile="0" resource="0" file="Source/NoiseCreator.h"/>
+      <FILE id="OYG7Gn" name="SliderToValueConnector.cpp" compile="1" resource="0"
+            file="Source/SliderToValueConnector.cpp"/>
+      <FILE id="TB7B3D" name="SliderToValueConnector.h" compile="0" resource="0"
+            file="Source/SliderToValueConnector.h"/>
+      <FILE id="eT36bv" name="SnapCreator.cpp" compile="1" resource="0" file="Source/SnapCreator.cpp"/>
+      <FILE id="nLHZCX" name="SnapCreator.h" compile="0" resource="0" file="Source/SnapCreator.h"/>
+    </GROUP>
+    <GROUP id="{569E8AE0-343D-0DD9-1705-8ACE87E55647}" name="Source">
       <FILE id="ktEF8B" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="vfxMYs" name="PluginProcessor.h" compile="0" resource="0"

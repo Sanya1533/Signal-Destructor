@@ -1,5 +1,9 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "InterruptsCreator.h"
+#include "NoiseCreator.h"
+#include "SnapCreator.h"
+#include "HumCreator.h"
 
 //==============================================================================
 YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAudioProcessor& p)
@@ -7,7 +11,7 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 {
 	interruptsSliderPanel = new SliderPanel();
 
-	interruptsSliderPanel->setBackgroundColor(Colours::darkblue);
+	interruptsSliderPanel->setBackgroundColor(Colours::darkslateblue);
 
 	interruptsSliderPanel->setBorderColour(Colours::grey);
 
@@ -15,18 +19,25 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 
 	interruptsSliderPanel->setBorderWidth(3);
 
-	interruptsSliderPanel->setTitle(L"Ïðåðûâàíèÿ");
+	interruptsSliderPanel->setTitle(L"ÐŸÑ€ÐµÑ€Ñ‹Ð²Ð°Ð½Ð¸Ñ");
 
+	interruptsSliderPanel->addComponent(getParametredSlider(L"Ð§Ð°ÑÑ‚Ð¾Ñ‚Ð°"));
+	interruptsSliderPanel->addComponent(getParametredSlider(L"Ð”Ð»Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÑŒ", LabeledSlider::LabelBelow, Slider::TextBoxAbove));
+	interruptsSliderPanel->addComponent(getParametredSlider(L"Ð“ÑƒÑÑ‚Ð¾Ñ‚Ð° Ð¿Ñ€ÐµÑ€Ñ‹Ð²Ð°Ð½Ð¸Ð¹", LabeledSlider::LabelAbove, Slider::TextBoxBelow, 0, 100, 0.01));
+	
+	p.addEffect(new InterruptsCreator(
+		interruptsSliderPanel->getChildWithTitle(L"Ð§Ð°ÑÑ‚Ð¾Ñ‚Ð°")->getSlider()->getValueObject(),
+		interruptsSliderPanel->getChildWithTitle(L"Ð”Ð»Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÑŒ")->getSlider()->getValueObject(),
+		interruptsSliderPanel->getChildWithTitle(L"Ð“ÑƒÑÑ‚Ð¾Ñ‚Ð° Ð¿Ñ€ÐµÑ€Ñ‹Ð²Ð°Ð½Ð¸Ð¹")->getSlider()->getValueObject(),
+		interruptsSliderPanel->getActive()
+	));
 
-	interruptsSliderPanel->addComponent(getParametredSlider(L"×àñòîòà"));
-	interruptsSliderPanel->addComponent(getParametredSlider(L"Äëèòåëüíîñòü", LabeledSlider::LabelBelow, Slider::TextBoxAbove));
-	interruptsSliderPanel->addComponent(getParametredSlider(L"Ãóñòîòà ïðåðûâàíèé", LabeledSlider::LabelAbove, Slider::TextBoxBelow, 0, 100, 0.01));
-	interruptsSliderPanel->addListener(this);
-
+	interruptsSliderPanel->addListener2(this);
+	
 
 	noiseSliderPanel = new SliderPanel();
 
-	noiseSliderPanel->setBackgroundColor(Colours::darkblue);
+	noiseSliderPanel->setBackgroundColor(Colours::darkslateblue);
 
 	noiseSliderPanel->setBorderColour(Colours::grey);
 
@@ -34,18 +45,25 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 
 	noiseSliderPanel->setBorderWidth(3);
 
-	noiseSliderPanel->setTitle(L"Øóì");
+	noiseSliderPanel->setTitle(L"Ð¨ÑƒÐ¼");
 
-	noiseSliderPanel->addComponent(getParametredSlider(L"×àñòîòà", LabeledSlider::LabelBelow, Slider::TextBoxAbove));
-	noiseSliderPanel->addComponent(getParametredSlider(L"Äëèòåëüíîñòü", LabeledSlider::LabelAbove, Slider::NoTextBox));
-	noiseSliderPanel->addComponent(getParametredSlider(L"Ãðîìêîñòü", LabeledSlider::LabelBelow, Slider::NoTextBox, 0, 100, 0.01));
+	noiseSliderPanel->addComponent(getParametredSlider(L"Ð§Ð°ÑÑ‚Ð¾Ñ‚Ð°", LabeledSlider::LabelBelow, Slider::TextBoxAbove));
+	noiseSliderPanel->addComponent(getParametredSlider(L"Ð”Ð»Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÑŒ", LabeledSlider::LabelAbove, Slider::NoTextBox));
+	noiseSliderPanel->addComponent(getParametredSlider(L"Ð“Ñ€Ð¾Ð¼ÐºÐ¾ÑÑ‚ÑŒ", LabeledSlider::LabelBelow, Slider::NoTextBox, 0, 100, 0.01));
 
-	noiseSliderPanel->addListener(this);
+	p.addEffect(new NoiseCreator(
+		noiseSliderPanel->getChildWithTitle(L"Ð§Ð°ÑÑ‚Ð¾Ñ‚Ð°")->getSlider()->getValueObject(),
+		noiseSliderPanel->getChildWithTitle(L"Ð”Ð»Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÑŒ")->getSlider()->getValueObject(),
+		noiseSliderPanel->getChildWithTitle(L"Ð“Ñ€Ð¾Ð¼ÐºÐ¾ÑÑ‚ÑŒ")->getSlider()->getValueObject(),
+		noiseSliderPanel->getActive()
+	));
+
+	noiseSliderPanel->addListener2(this);
 
 
 	snapSliderPanel = new SliderPanel();
 
-	snapSliderPanel->setBackgroundColor(Colours::darkblue);
+	snapSliderPanel->setBackgroundColor(Colours::darkslateblue);
 
 	snapSliderPanel->setBorderColour(Colours::grey);
 
@@ -53,18 +71,25 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 
 	snapSliderPanel->setBorderWidth(3);
 
-	snapSliderPanel->setTitle(L"Òðåñê");
+	snapSliderPanel->setTitle(L"Ð¢Ñ€ÐµÑÐº");
 
-	snapSliderPanel->addComponent(getParametredSlider(L"×àñòîòà", LabeledSlider::LabelBelow, Slider::TextBoxAbove));
-	snapSliderPanel->addComponent(getParametredSlider(L"Äëèòåëüíîñòü"));
-	snapSliderPanel->addComponent(getParametredSlider(L"Ãðîìêîñòü", LabeledSlider::LabelAbove, Slider::TextBoxBelow, 0, 100, 0.01));
+	snapSliderPanel->addComponent(getParametredSlider(L"Ð§Ð°ÑÑ‚Ð¾Ñ‚Ð°", LabeledSlider::LabelBelow, Slider::TextBoxAbove));
+	snapSliderPanel->addComponent(getParametredSlider(L"Ð”Ð»Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÑŒ"));
+	snapSliderPanel->addComponent(getParametredSlider(L"Ð“Ñ€Ð¾Ð¼ÐºÐ¾ÑÑ‚ÑŒ", LabeledSlider::LabelAbove, Slider::TextBoxBelow, 0, 100, 0.01));
 
-	snapSliderPanel->addListener(this);
+	p.addEffect(new SnapCreator(
+		snapSliderPanel->getChildWithTitle(L"Ð§Ð°ÑÑ‚Ð¾Ñ‚Ð°")->getSlider()->getValueObject(),
+		snapSliderPanel->getChildWithTitle(L"Ð”Ð»Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÑŒ")->getSlider()->getValueObject(),
+		snapSliderPanel->getChildWithTitle(L"Ð“Ñ€Ð¾Ð¼ÐºÐ¾ÑÑ‚ÑŒ")->getSlider()->getValueObject(),
+		snapSliderPanel->getActive()
+	));
+
+	snapSliderPanel->addListener2(this);
 
 
 	humSliderPanel = new SliderPanel();
 
-	humSliderPanel->setBackgroundColor(Colours::darkblue);
+	humSliderPanel->setBackgroundColor(Colours::darkslateblue);
 
 	humSliderPanel->setBorderColour(Colours::grey);
 
@@ -72,13 +97,20 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 
 	humSliderPanel->setBorderWidth(3);
 
-	humSliderPanel->setTitle(L"Ãóäåíèå");
+	humSliderPanel->setTitle(L"Ð“ÑƒÐ´ÐµÐ½Ð¸Ðµ");
 
-	humSliderPanel->addComponent(getParametredSlider(L"×àñòîòà", LabeledSlider::LabelAbove, Slider::NoTextBox));
-	humSliderPanel->addComponent(getParametredSlider(L"Äëèòåëüíîñòü", LabeledSlider::LabelAbove, Slider::TextBoxBelow));
-	humSliderPanel->addComponent(getParametredSlider(L"Ãðîìêîñòü", LabeledSlider::LabelAbove, Slider::TextBoxBelow, 0, 100, 0.01));
+	humSliderPanel->addComponent(getParametredSlider(L"Ð§Ð°ÑÑ‚Ð¾Ñ‚Ð°", LabeledSlider::LabelAbove, Slider::NoTextBox));
+	humSliderPanel->addComponent(getParametredSlider(L"Ð”Ð»Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÑŒ", LabeledSlider::LabelAbove, Slider::TextBoxBelow));
+	humSliderPanel->addComponent(getParametredSlider(L"Ð“Ñ€Ð¾Ð¼ÐºÐ¾ÑÑ‚ÑŒ", LabeledSlider::LabelAbove, Slider::TextBoxBelow, 0, 100, 0.01));
 
-	humSliderPanel->addListener(this);
+	p.addEffect(new NoiseCreator(
+		humSliderPanel->getChildWithTitle(L"Ð§Ð°ÑÑ‚Ð¾Ñ‚Ð°")->getSlider()->getValueObject(),
+		humSliderPanel->getChildWithTitle(L"Ð”Ð»Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÑŒ")->getSlider()->getValueObject(),
+		humSliderPanel->getChildWithTitle(L"Ð“Ñ€Ð¾Ð¼ÐºÐ¾ÑÑ‚ÑŒ")->getSlider()->getValueObject(),
+		interruptsSliderPanel->getActive()
+	));
+
+	humSliderPanel->addListener2(this);
 
 
 	addAndMakeVisible(interruptsSliderPanel);
@@ -111,88 +143,21 @@ void YearprojectAudioProcessorEditor::sliderValueChanged(Slider* slider, String 
 {
 	String firstMessage = message.substring(0, message.indexOf("~&#@"));
 	String secondMessage = message.substring(message.indexOf("~&#@") + 4);
+}
 
-	if (firstMessage == interruptsSliderPanel->getTitle())
+void YearprojectAudioProcessorEditor::mouseDoubleClick(SliderPanel* panel, const MouseEvent& event)
+{
+	if ((bool)panel->getActive().getValue())
 	{
-		if (secondMessage == interruptsFrequencySlider->getLabel()->getText())
-		{
-		}
-		else
-		{
-			if (secondMessage == interruptsDurationSlider->getLabel()->getText())
-			{
-			}
-			else
-			{
-				if (secondMessage == countOfInterruptsSlider->getLabel()->getText())
-				{
-				}
-			}
-		}
+		panel->setBackgroundColor(Colours::grey);
+		panel->setBorderColour(Colours::lightgrey);
 	}
 	else
 	{
-		if (firstMessage == noiseSliderPanel->getTitle())
-		{
-			if (secondMessage == noiseFrequencySlider->getLabel()->getText())
-			{
-			}
-			else
-			{
-				if (secondMessage == noiseDurationSlider->getLabel()->getText())
-				{
-				}
-				else
-				{
-					if (secondMessage == noiseVolumeSlider->getLabel()->getText())
-					{
-					}
-				}
-			}
-		}
-		else
-		{
-			if (firstMessage == snapSliderPanel->getTitle())
-			{
-				if (secondMessage == snapFrequencySlider->getLabel()->getText())
-				{
-				}
-				else
-				{
-					if (secondMessage == snapDurationSlider->getLabel()->getText())
-					{
-					}
-					else
-					{
-						if (secondMessage == snapVolumeSlider->getLabel()->getText())
-						{
-						}
-					}
-				}
-			}
-			else
-			{
-				if (firstMessage == humSliderPanel->getTitle())
-				{
-					if (secondMessage == humFrequencySlider->getLabel()->getText())
-					{
-					}
-					else
-					{
-						if (secondMessage == humDurationSlider->getLabel()->getText())
-						{
-						}
-						else
-						{
-							if (secondMessage == humVolumeSlider->getLabel()->getText())
-							{
-							}
-						}
-					}
-				}
-			}
-		}
+		panel->setBackgroundColor(Colours::darkslateblue);
+		panel->setBorderColour(Colours::grey);
 	}
+	panel->setActive(!(bool)panel->getActive().getValue());
 }
 
 LabeledSlider* YearprojectAudioProcessorEditor::getParametredSlider(String text, LabeledSlider::LabelPosition labelPosition, Slider::TextEntryBoxPosition boxPosition, double minValue, double maxValue, double interval, Slider::SliderStyle style, double labelPercentage)

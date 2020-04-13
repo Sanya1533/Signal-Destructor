@@ -8,7 +8,8 @@ using namespace std;
 
 class SliderPanel :
 	public Component,
-	public SliderListener
+	public SliderListener,
+	public MouseListener
 {
 public:
 	SliderPanel();
@@ -42,8 +43,26 @@ public:
 
 	String getTitle();
 
+	void mouseDoubleClick(const MouseEvent& event) override;
+
+	class  MouseListener
+	{
+	public:
+		void virtual mouseDoubleClick(SliderPanel* panel, const MouseEvent& event);
+	};
+
+	void addListener2(SliderPanel::MouseListener* listener);
+
+	void setActive(bool active);
+
+	Value getActive();
+
+	LabeledSlider* getChildWithTitle(String title);
+
 private:
 	Label* title;
+
+	Value active=Value(true);
 
 	Colour background;
 
@@ -56,4 +75,6 @@ private:
 	FlexBox* flexBox;
 
 	vector<SliderListener*> listeners = vector<SliderListener*>();
+
+	vector<SliderPanel::MouseListener*> listeners2 = vector<SliderPanel::MouseListener*>();
 };

@@ -1,16 +1,7 @@
-/*
-  ==============================================================================
-
-    This file was auto-generated!
-
-    It contains the basic framework code for a JUCE plugin processor.
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include <JuceHeader.h>
+#include "EffectCreator.h"
 
 //==============================================================================
 /**
@@ -55,7 +46,14 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+    void addEffect(EffectCreator* newEffect);
+    Array<EffectCreator*> gerEffects();
+
 private:
+    Array<EffectCreator*> effects = Array<EffectCreator*>();
+
+    float makeEffects(float signal);
+
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (YearprojectAudioProcessor)
 };
