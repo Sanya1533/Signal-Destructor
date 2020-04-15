@@ -68,5 +68,5 @@ private:
 
 	FlexBox* flexBox;
 
-	vector<SliderPanel::MouseListener*> listeners = vector<SliderPanel::MouseListener*>();
+	vector<SliderPanel::MouseListener*> listeners;// = vector<SliderPanel::MouseListener*>();
 };

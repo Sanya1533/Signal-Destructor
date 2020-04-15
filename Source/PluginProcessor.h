@@ -50,9 +50,7 @@ public:
     Array<EffectCreator*> gerEffects();
 
 private:
-    Array<EffectCreator*> effects = Array<EffectCreator*>();
-
-    float makeEffects(float signal);
+    Array<EffectCreator*> effects;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (YearprojectAudioProcessor)

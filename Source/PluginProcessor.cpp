@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    This file was auto-generated!
-
-    It contains the basic framework code for a JUCE plugin processor.
-
-  ==============================================================================
-*/
-
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
@@ -142,7 +132,6 @@ void YearprojectAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBu
     {
         for (int sample = 0; sample < totalNumSamples; sample++)
         {
-            buffer.setSample(channel, sample, makeEffects(buffer.getSample(channel, sample)));
         }
     }
 }
@@ -180,13 +169,6 @@ void YearprojectAudioProcessor::addEffect(EffectCreator* newEffect)
 Array<EffectCreator*> YearprojectAudioProcessor::gerEffects()
 {
     return effects;
-}
-
-float YearprojectAudioProcessor::makeEffects(float signal)
-{
-    for (int i = 0; i < effects.size(); i++)
-        signal = effects[i]->createEffect(signal);
-    return signal;
 }
 
 //==============================================================================

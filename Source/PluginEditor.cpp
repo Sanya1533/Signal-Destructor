@@ -25,6 +25,7 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 	interruptsSliderPanel->addComponent(getParametredSlider(L"Длительность", LabeledSlider::LabelBelow, Slider::TextBoxAbove));
 	interruptsSliderPanel->addComponent(getParametredSlider(L"Густота прерываний", LabeledSlider::LabelAbove, Slider::TextBoxBelow, 0, 100, 0.01));
 	
+
 	p.addEffect(new InterruptsCreator(
 		interruptsSliderPanel->getChildWithTitle(L"Частота")->getSlider()->getValueObject(),
 		interruptsSliderPanel->getChildWithTitle(L"Длительность")->getSlider()->getValueObject(),
