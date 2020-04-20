@@ -18,7 +18,33 @@ double SnapCreator::createEffect(double signal)
 {
 	if (!(bool)isActive.getValue())
 		return signal;
-	return signal + ((double)frequency.getValue() + (double)duration.getValue()) * (double)volume.getValue() / 100.0;
+	if (!play)
+	{
+		freqTime++;
+		if (freqTime / 2.0 >= 0.2 / (float)frequency.getValue() * 44100)
+		{
+			freqTime = 0;
+			play = true;
+		}
+		return signal;
+	}
+	else
+	{
+		durationTime++;
+		if (durationTime / 2.0 >= 5 * (float)duration.getValue() * 44100)
+		{
+			durationTime = 0;
+			play = false;
+			return signal;
+		}
+		if (durationTime % 882 != 0)
+			return ((durationTime % 882)/-1764.0 + 0.5)*(float)volume.getValue()/100.0;
+		else
+		{
+			return 1* (float)volume.getValue() / 100.0;
+		}
+	}
+	return signal;
 }
 
 void SnapCreator::setFrequency(Value frequency)

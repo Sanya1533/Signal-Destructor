@@ -20,9 +20,21 @@ public:
 	Value getDensity();
 
 private:
+	Random rnd;
+
 	Value frequency;
 
 	Value duration;
 
 	Value density;
+
+	bool b = true;
+
+	int durationTime=0;
+
+	int freqTime=0;
+
+	int played = 0;
+
+	bool play = false;
 };

@@ -47,10 +47,12 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
     void addEffect(EffectCreator* newEffect);
-    Array<EffectCreator*> gerEffects();
+    Array<EffectCreator*> getEffects();
 
 private:
     Array<EffectCreator*> effects;
+
+    float useEffects(float signal);
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (YearprojectAudioProcessor)

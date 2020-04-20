@@ -17,7 +17,7 @@ void EffectCreator::setActive(Value isActive)
 
 void EffectCreator::setTime(int newTime)
 {
-    time = newTime;
+    time = newTime%(44100*5);
 }
 
 int EffectCreator::getTime()

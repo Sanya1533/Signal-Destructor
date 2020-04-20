@@ -25,4 +25,10 @@ private:
 	Value duration;
 
 	Value volume;
+
+	int durationTime = 0;
+
+	int freqTime = 0;
+
+	bool play = false;
 };

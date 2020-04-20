@@ -20,9 +20,17 @@ public:
 	Value getVolume();
 
 private:
+	Random rnd;
+
 	Value frequency;
 
 	Value duration;
 
 	Value volume;
+
+	int durationTime = 0;
+
+	int freqTime = 0;
+
+	bool play = false;
 };

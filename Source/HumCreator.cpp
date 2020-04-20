@@ -18,7 +18,30 @@ double HumCreator::createEffect(double signal)
 {
 	if (!(bool)isActive.getValue())
 		return signal;
-	return signal + ((double)frequency.getValue()+(double)duration.getValue())*(double)volume.getValue()/100.0;
+	if (!play)
+	{
+		freqTime++;
+		if (freqTime / 2.0 >= 0.2 / (float)frequency.getValue() * 44100)
+		{
+			freqTime = 0;
+			play = true;
+		}
+		return signal;
+	}
+	else
+	{
+		durationTime++;
+		if (durationTime / 2.0 >= 5 * (float)duration.getValue() * 44100)
+		{
+			durationTime = 0;
+			play = false;
+			return signal;
+		}
+		int x1 = (durationTime-1) % 441;
+		float x = x1 / 44100.0;
+		return (80000*x*x-800*x+1)*(float)volume.getValue()/100.0;
+	}
+	return signal;
 }
 
 void HumCreator::setFrequency(Value frequency)

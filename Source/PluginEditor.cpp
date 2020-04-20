@@ -19,17 +19,17 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 
 	interruptsSliderPanel->setBorderWidth(3);
 
-	interruptsSliderPanel->setTitle(L"Прерывания");
+	interruptsSliderPanel->setTitle(L"Interrupts");
 
-	interruptsSliderPanel->addComponent(getParametredSlider(L"Частота"));
-	interruptsSliderPanel->addComponent(getParametredSlider(L"Длительность", LabeledSlider::LabelBelow, Slider::TextBoxAbove));
-	interruptsSliderPanel->addComponent(getParametredSlider(L"Густота прерываний", LabeledSlider::LabelAbove, Slider::TextBoxBelow, 0, 100, 0.01));
+	interruptsSliderPanel->addComponent(getParametredSlider(L"Frequency"));
+	interruptsSliderPanel->addComponent(getParametredSlider(L"Duration", LabeledSlider::LabelBelow, Slider::TextBoxAbove));
+	interruptsSliderPanel->addComponent(getParametredSlider(L"Gustota Prerivaniy", LabeledSlider::LabelAbove, Slider::TextBoxBelow, 0, 100, 0.01));
 	
 
 	p.addEffect(new InterruptsCreator(
-		interruptsSliderPanel->getChildWithTitle(L"Частота")->getSlider()->getValueObject(),
-		interruptsSliderPanel->getChildWithTitle(L"Длительность")->getSlider()->getValueObject(),
-		interruptsSliderPanel->getChildWithTitle(L"Густота прерываний")->getSlider()->getValueObject(),
+		interruptsSliderPanel->getChildWithTitle(L"Frequency")->getSlider()->getValueObject(),
+		interruptsSliderPanel->getChildWithTitle(L"Duration")->getSlider()->getValueObject(),
+		interruptsSliderPanel->getChildWithTitle(L"Gustota Prerivaniy")->getSlider()->getValueObject(),
 		interruptsSliderPanel->getActive()
 	));
 
@@ -46,16 +46,16 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 
 	noiseSliderPanel->setBorderWidth(3);
 
-	noiseSliderPanel->setTitle(L"Шум");
+	noiseSliderPanel->setTitle(L"Noise");
 
-	noiseSliderPanel->addComponent(getParametredSlider(L"Частота", LabeledSlider::LabelBelow, Slider::TextBoxAbove));
-	noiseSliderPanel->addComponent(getParametredSlider(L"Длительность", LabeledSlider::LabelAbove, Slider::NoTextBox));
-	noiseSliderPanel->addComponent(getParametredSlider(L"Громкость", LabeledSlider::LabelBelow, Slider::NoTextBox, 0, 100, 0.01));
+	noiseSliderPanel->addComponent(getParametredSlider(L"Frequency", LabeledSlider::LabelBelow, Slider::TextBoxAbove));
+	noiseSliderPanel->addComponent(getParametredSlider(L"Duration", LabeledSlider::LabelAbove, Slider::NoTextBox));
+	noiseSliderPanel->addComponent(getParametredSlider(L"Volume", LabeledSlider::LabelBelow, Slider::NoTextBox, 0, 100, 0.01));
 
 	p.addEffect(new NoiseCreator(
-		noiseSliderPanel->getChildWithTitle(L"Частота")->getSlider()->getValueObject(),
-		noiseSliderPanel->getChildWithTitle(L"Длительность")->getSlider()->getValueObject(),
-		noiseSliderPanel->getChildWithTitle(L"Громкость")->getSlider()->getValueObject(),
+		noiseSliderPanel->getChildWithTitle(L"Frequency")->getSlider()->getValueObject(),
+		noiseSliderPanel->getChildWithTitle(L"Duration")->getSlider()->getValueObject(),
+		noiseSliderPanel->getChildWithTitle(L"Volume")->getSlider()->getValueObject(),
 		noiseSliderPanel->getActive()
 	));
 
@@ -72,16 +72,16 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 
 	snapSliderPanel->setBorderWidth(3);
 
-	snapSliderPanel->setTitle(L"Треск");
+	snapSliderPanel->setTitle(L"Tresk");
 
-	snapSliderPanel->addComponent(getParametredSlider(L"Частота", LabeledSlider::LabelBelow, Slider::TextBoxAbove));
-	snapSliderPanel->addComponent(getParametredSlider(L"Длительность"));
-	snapSliderPanel->addComponent(getParametredSlider(L"Громкость", LabeledSlider::LabelAbove, Slider::TextBoxBelow, 0, 100, 0.01));
+	snapSliderPanel->addComponent(getParametredSlider(L"Frequency", LabeledSlider::LabelBelow, Slider::TextBoxAbove));
+	snapSliderPanel->addComponent(getParametredSlider(L"Duration"));
+	snapSliderPanel->addComponent(getParametredSlider(L"Volume", LabeledSlider::LabelAbove, Slider::TextBoxBelow, 0, 100, 0.01));
 
 	p.addEffect(new SnapCreator(
-		snapSliderPanel->getChildWithTitle(L"Частота")->getSlider()->getValueObject(),
-		snapSliderPanel->getChildWithTitle(L"Длительность")->getSlider()->getValueObject(),
-		snapSliderPanel->getChildWithTitle(L"Громкость")->getSlider()->getValueObject(),
+		snapSliderPanel->getChildWithTitle(L"Frequency")->getSlider()->getValueObject(),
+		snapSliderPanel->getChildWithTitle(L"Duration")->getSlider()->getValueObject(),
+		snapSliderPanel->getChildWithTitle(L"Volume")->getSlider()->getValueObject(),
 		snapSliderPanel->getActive()
 	));
 
@@ -98,17 +98,17 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 
 	humSliderPanel->setBorderWidth(3);
 
-	humSliderPanel->setTitle(L"Гудение");
+	humSliderPanel->setTitle(L"Gudenie");
 
-	humSliderPanel->addComponent(getParametredSlider(L"Частота", LabeledSlider::LabelAbove, Slider::NoTextBox));
-	humSliderPanel->addComponent(getParametredSlider(L"Длительность", LabeledSlider::LabelAbove, Slider::TextBoxBelow));
-	humSliderPanel->addComponent(getParametredSlider(L"Громкость", LabeledSlider::LabelAbove, Slider::TextBoxBelow, 0, 100, 0.01));
+	humSliderPanel->addComponent(getParametredSlider(L"Frequency", LabeledSlider::LabelAbove, Slider::NoTextBox));
+	humSliderPanel->addComponent(getParametredSlider(L"Duration", LabeledSlider::LabelAbove, Slider::TextBoxBelow));
+	humSliderPanel->addComponent(getParametredSlider(L"Volume", LabeledSlider::LabelAbove, Slider::TextBoxBelow, 0, 100, 0.01));
 
-	p.addEffect(new NoiseCreator(
-		humSliderPanel->getChildWithTitle(L"Частота")->getSlider()->getValueObject(),
-		humSliderPanel->getChildWithTitle(L"Длительность")->getSlider()->getValueObject(),
-		humSliderPanel->getChildWithTitle(L"Громкость")->getSlider()->getValueObject(),
-		interruptsSliderPanel->getActive()
+	p.addEffect(new HumCreator(
+		humSliderPanel->getChildWithTitle(L"Frequency")->getSlider()->getValueObject(),
+		humSliderPanel->getChildWithTitle(L"Duration")->getSlider()->getValueObject(),
+		humSliderPanel->getChildWithTitle(L"Volume")->getSlider()->getValueObject(),
+		humSliderPanel->getActive()
 	));
 
 	humSliderPanel->addListener(this);
