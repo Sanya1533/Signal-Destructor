@@ -8,7 +8,9 @@ public:
 
 	SnapCreator(Value frequency = Value(0.0), Value duration = Value(0.0), Value volume = Value(0.0), Value isActive = Value(true));
 
-	virtual double createEffect(double signal) override;
+	double createEffect(double signal) override;
+
+	void moveTime() override;
 
 	void setFrequency(Value frequency);
 	Value getFrequency();

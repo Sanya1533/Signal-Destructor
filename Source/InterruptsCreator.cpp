@@ -1,68 +1,55 @@
 #include "InterruptsCreator.h"
 
-InterruptsCreator::InterruptsCreator(double frequency, double duration, double density, bool isActive) :EffectCreator(Value(isActive))
+InterruptsCreator::InterruptsCreator(double frequency, double duration, int randomFactor, bool isActive) :EffectCreator(Value(isActive))
 {
 	this->frequency.setValue(frequency);
 	this->duration.setValue(duration);
-	this->density.setValue(density);
+	this->randomFactor.setValue(randomFactor);
 }
 
-InterruptsCreator::InterruptsCreator(Value frequency, Value duration, Value density, Value isActive) :EffectCreator(isActive)
+InterruptsCreator::InterruptsCreator(Value frequency, Value duration, Value randomFactor, Value isActive) :EffectCreator(isActive)
 {
 	this->frequency.referTo(frequency);
 	this->duration.referTo(duration);
-	this->density.referTo(density);
+	this->randomFactor.referTo(randomFactor);
 }
 
 double InterruptsCreator::createEffect(double signal)
 {
-	if (!(bool)isActive.getValue() || (float)frequency.getValue() == 0)
+	if (!(bool)isActive.getValue())
 		return signal;
+	if (play)
+	{
+		return 0;
+	}
+	else
+	{
+		return signal;
+	}
+}
+
+void InterruptsCreator::moveTime()
+{
 	if (!play)
 	{
 		freqTime++;
-		if (freqTime/2.0 >= 0.2 / (float)frequency.getValue() * 44100)
+		if (freqTime >= 0.1/(float)frequency.getValue() * 44100)
 		{
 			freqTime = 0;
 			play = true;
+			durationTime = randomGenerator.nextInt(Range<int>(-(int)randomFactor.getValue(), (int)randomFactor.getValue()+1))*441;
 		}
-		return signal;
 	}
 	else
 	{
 		durationTime++;
-		if (durationTime/2.0 >= 5*(float)duration.getValue() * 44100)
+		if (durationTime >= (float)duration.getValue() * 1 * 44100)
 		{
 			durationTime = 0;
-			played = 0;
 			play = false;
-			return signal;
-		}
-		int samplesToPlay = (float)duration.getValue() * 5 * 44100 / 100 * (float)density.getValue();
-		int rast = (float)duration.getValue() * 5 * 44100 / (samplesToPlay + 1);
-		if (durationTime % rast == 0)
-		{
-			if (played < samplesToPlay)
-			{
-				played++;
-				b = !b;
-				return b?0.1:-0.1;
-			}
-		}
-		else
-		{
-			if (((float)duration.getValue() * 5 * 44100 - durationTime) / rast > played)
-			{
-				if (played < samplesToPlay)
-				{
-					played++;
-					b = !b;
-					return b ? 0.1 : -0.1;
-				}
-			}
+			freqTime = randomGenerator.nextInt(Range<int>(-(int)randomFactor.getValue(), (int)randomFactor.getValue() + 1))*441;
 		}
 	}
-	return signal;
 }
 
 void InterruptsCreator::setFrequency(Value frequency)
@@ -85,12 +72,12 @@ Value InterruptsCreator::getDuration()
 	return duration;
 }
 
-void InterruptsCreator::setDensity(Value density)
+void InterruptsCreator::setRandomFactor(Value randomFactor)
 {
-	this->density.referTo(density);
+	this->randomFactor.referTo(randomFactor);
 }
 
-Value InterruptsCreator::getDensity()
+Value InterruptsCreator::getRandomFactor()
 {
-	return density;
+	return randomFactor;
 }

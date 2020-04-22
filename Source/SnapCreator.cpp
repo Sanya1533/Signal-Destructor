@@ -47,6 +47,10 @@ double SnapCreator::createEffect(double signal)
 	return signal;
 }
 
+void SnapCreator::moveTime()
+{
+}
+
 void SnapCreator::setFrequency(Value frequency)
 {
 	this->frequency.referTo(frequency);

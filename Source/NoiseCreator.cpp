@@ -42,6 +42,10 @@ double NoiseCreator::createEffect(double signal)
 	return signal;
 }
 
+void NoiseCreator::moveTime()
+{
+}
+
 void NoiseCreator::setFrequency(Value frequency)
 {
 	this->frequency.referTo(frequency);

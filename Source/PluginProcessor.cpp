@@ -125,19 +125,19 @@ void YearprojectAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuf
 	int totalNumOutputChannels = getTotalNumOutputChannels();
 	int totalNumSamples = buffer.getNumSamples();
 
-	for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
+	for (auto i = totalNumInputChannels; i < totalNumOutputChannels; i++)
 		buffer.clear(i, 0, buffer.getNumSamples());
 
 
 	for (int sample = 0; sample < totalNumSamples; sample++)
 	{
-		for (int channel = 0; channel < totalNumInputChannels; ++channel)
+		for (int channel = 0; channel < totalNumInputChannels; channel++)
 		{
 			buffer.setSample(channel, sample, useEffects(buffer.getSample(channel,sample)));
 		}
 		for (int i = 0; i < effects.size(); i++)
 		{
-			effects[i]->setTime(effects[i]->getTime() + 1);
+			effects[i]->moveTime();
 		}
 	}
 }

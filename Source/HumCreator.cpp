@@ -44,6 +44,10 @@ double HumCreator::createEffect(double signal)
 	return signal;
 }
 
+void HumCreator::moveTime()
+{
+}
+
 void HumCreator::setFrequency(Value frequency)
 {
 	this->frequency.referTo(frequency);

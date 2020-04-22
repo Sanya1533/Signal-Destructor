@@ -1,5 +1,7 @@
 #include "EffectCreator.h"
 
+Random EffectCreator::randomGenerator = Random();
+
 EffectCreator::EffectCreator(Value isActive)
 {
     this->isActive.referTo(isActive);
@@ -13,14 +15,4 @@ bool EffectCreator::getActive()
 void EffectCreator::setActive(Value isActive)
 {
     this->isActive.referTo(isActive);
-}
-
-void EffectCreator::setTime(int newTime)
-{
-    time = newTime%(44100*5);
-}
-
-int EffectCreator::getTime()
-{
-    return time;
-}
+}   

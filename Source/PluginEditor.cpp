@@ -23,13 +23,13 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 
 	interruptsSliderPanel->addComponent(getParametredSlider(L"Частота"));
 	interruptsSliderPanel->addComponent(getParametredSlider(L"Длительность"));
-	interruptsSliderPanel->addComponent(getParametredSlider(L"Густота прерываний",0, 100, 0.01));
+	interruptsSliderPanel->addComponent(getParametredSlider(L"Случайный коэффициент",0, 100, 1));
 	
 
 	p.addEffect(new InterruptsCreator(
 		interruptsSliderPanel->getChildWithTitle(L"Частота")->getSlider()->getValueObject(),
 		interruptsSliderPanel->getChildWithTitle(L"Длительность")->getSlider()->getValueObject(),
-		interruptsSliderPanel->getChildWithTitle(L"Густота прерываний")->getSlider()->getValueObject(),
+		interruptsSliderPanel->getChildWithTitle(L"Случайный коэффициент")->getSlider()->getValueObject(),
 		interruptsSliderPanel->getActive()
 	));
 
