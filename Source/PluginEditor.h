@@ -27,7 +27,7 @@ private:
 
     SliderPanel* humSliderPanel;
 
-    LabeledSlider* getParametredSlider(String text,LabeledSlider::LabelPosition labelPosition=LabeledSlider::LabelAbove,Slider::TextEntryBoxPosition boxPosition=Slider::TextBoxBelow,  double minValue=0, double maxValue=1, double interval=0.001, Slider::SliderStyle style = Slider::Rotary, double labelPercentage=0.15);
+    LabeledSlider* getParametredSlider(String text, double minValue = 0, double maxValue = 1, double interval = 0.001, LabeledSlider::LabelPosition labelPosition=LabeledSlider::LabelAbove,Slider::TextEntryBoxPosition boxPosition=Slider::TextBoxBelow, Slider::SliderStyle style = Slider::Rotary, double labelPercentage=0.15);
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (YearprojectAudioProcessorEditor)
 };

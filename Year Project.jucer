@@ -27,10 +27,6 @@
       <FILE id="CsMWy8" name="NoiseCreator.cpp" compile="1" resource="0"
             file="Source/NoiseCreator.cpp"/>
       <FILE id="QzebWr" name="NoiseCreator.h" compile="0" resource="0" file="Source/NoiseCreator.h"/>
-      <FILE id="OYG7Gn" name="SliderToValueConnector.cpp" compile="1" resource="0"
-            file="Source/SliderToValueConnector.cpp"/>
-      <FILE id="TB7B3D" name="SliderToValueConnector.h" compile="0" resource="0"
-            file="Source/SliderToValueConnector.h"/>
       <FILE id="eT36bv" name="SnapCreator.cpp" compile="1" resource="0" file="Source/SnapCreator.cpp"/>
       <FILE id="nLHZCX" name="SnapCreator.h" compile="0" resource="0" file="Source/SnapCreator.h"/>
     </GROUP>

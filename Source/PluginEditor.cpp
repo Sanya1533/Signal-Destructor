@@ -19,17 +19,17 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 
 	interruptsSliderPanel->setBorderWidth(3);
 
-	interruptsSliderPanel->setTitle(L"Interrupts");
+	interruptsSliderPanel->setTitle(L"Прерывания");
 
-	interruptsSliderPanel->addComponent(getParametredSlider(L"Frequency"));
-	interruptsSliderPanel->addComponent(getParametredSlider(L"Duration", LabeledSlider::LabelBelow, Slider::TextBoxAbove));
-	interruptsSliderPanel->addComponent(getParametredSlider(L"Gustota Prerivaniy", LabeledSlider::LabelAbove, Slider::TextBoxBelow, 0, 100, 0.01));
+	interruptsSliderPanel->addComponent(getParametredSlider(L"Частота"));
+	interruptsSliderPanel->addComponent(getParametredSlider(L"Длительность"));
+	interruptsSliderPanel->addComponent(getParametredSlider(L"Густота прерываний",0, 100, 0.01));
 	
 
 	p.addEffect(new InterruptsCreator(
-		interruptsSliderPanel->getChildWithTitle(L"Frequency")->getSlider()->getValueObject(),
-		interruptsSliderPanel->getChildWithTitle(L"Duration")->getSlider()->getValueObject(),
-		interruptsSliderPanel->getChildWithTitle(L"Gustota Prerivaniy")->getSlider()->getValueObject(),
+		interruptsSliderPanel->getChildWithTitle(L"Частота")->getSlider()->getValueObject(),
+		interruptsSliderPanel->getChildWithTitle(L"Длительность")->getSlider()->getValueObject(),
+		interruptsSliderPanel->getChildWithTitle(L"Густота прерываний")->getSlider()->getValueObject(),
 		interruptsSliderPanel->getActive()
 	));
 
@@ -46,16 +46,16 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 
 	noiseSliderPanel->setBorderWidth(3);
 
-	noiseSliderPanel->setTitle(L"Noise");
+	noiseSliderPanel->setTitle(L"Шум");
 
-	noiseSliderPanel->addComponent(getParametredSlider(L"Frequency", LabeledSlider::LabelBelow, Slider::TextBoxAbove));
-	noiseSliderPanel->addComponent(getParametredSlider(L"Duration", LabeledSlider::LabelAbove, Slider::NoTextBox));
-	noiseSliderPanel->addComponent(getParametredSlider(L"Volume", LabeledSlider::LabelBelow, Slider::NoTextBox, 0, 100, 0.01));
+	noiseSliderPanel->addComponent(getParametredSlider(L"Частота"));
+	noiseSliderPanel->addComponent(getParametredSlider(L"Длительность"));
+	noiseSliderPanel->addComponent(getParametredSlider(L"Громкость", 0, 100, 0.01));
 
 	p.addEffect(new NoiseCreator(
-		noiseSliderPanel->getChildWithTitle(L"Frequency")->getSlider()->getValueObject(),
-		noiseSliderPanel->getChildWithTitle(L"Duration")->getSlider()->getValueObject(),
-		noiseSliderPanel->getChildWithTitle(L"Volume")->getSlider()->getValueObject(),
+		noiseSliderPanel->getChildWithTitle(L"Частота")->getSlider()->getValueObject(),
+		noiseSliderPanel->getChildWithTitle(L"Длительность")->getSlider()->getValueObject(),
+		noiseSliderPanel->getChildWithTitle(L"Громкость")->getSlider()->getValueObject(),
 		noiseSliderPanel->getActive()
 	));
 
@@ -72,16 +72,16 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 
 	snapSliderPanel->setBorderWidth(3);
 
-	snapSliderPanel->setTitle(L"Tresk");
+	snapSliderPanel->setTitle(L"Треск");
 
-	snapSliderPanel->addComponent(getParametredSlider(L"Frequency", LabeledSlider::LabelBelow, Slider::TextBoxAbove));
-	snapSliderPanel->addComponent(getParametredSlider(L"Duration"));
-	snapSliderPanel->addComponent(getParametredSlider(L"Volume", LabeledSlider::LabelAbove, Slider::TextBoxBelow, 0, 100, 0.01));
+	snapSliderPanel->addComponent(getParametredSlider(L"Частота"));
+	snapSliderPanel->addComponent(getParametredSlider(L"Длительность"));
+	snapSliderPanel->addComponent(getParametredSlider(L"Громкость", 0, 100, 0.01));
 
 	p.addEffect(new SnapCreator(
-		snapSliderPanel->getChildWithTitle(L"Frequency")->getSlider()->getValueObject(),
-		snapSliderPanel->getChildWithTitle(L"Duration")->getSlider()->getValueObject(),
-		snapSliderPanel->getChildWithTitle(L"Volume")->getSlider()->getValueObject(),
+		snapSliderPanel->getChildWithTitle(L"Частота")->getSlider()->getValueObject(),
+		snapSliderPanel->getChildWithTitle(L"Длительность")->getSlider()->getValueObject(),
+		snapSliderPanel->getChildWithTitle(L"Громкость")->getSlider()->getValueObject(),
 		snapSliderPanel->getActive()
 	));
 
@@ -98,16 +98,16 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 
 	humSliderPanel->setBorderWidth(3);
 
-	humSliderPanel->setTitle(L"Gudenie");
+	humSliderPanel->setTitle(L"Гудение");
 
-	humSliderPanel->addComponent(getParametredSlider(L"Frequency", LabeledSlider::LabelAbove, Slider::NoTextBox));
-	humSliderPanel->addComponent(getParametredSlider(L"Duration", LabeledSlider::LabelAbove, Slider::TextBoxBelow));
-	humSliderPanel->addComponent(getParametredSlider(L"Volume", LabeledSlider::LabelAbove, Slider::TextBoxBelow, 0, 100, 0.01));
+	humSliderPanel->addComponent(getParametredSlider(L"Частота"));
+	humSliderPanel->addComponent(getParametredSlider(L"Длительность"));
+	humSliderPanel->addComponent(getParametredSlider(L"Громкость",0,100,0.01));
 
 	p.addEffect(new HumCreator(
-		humSliderPanel->getChildWithTitle(L"Frequency")->getSlider()->getValueObject(),
-		humSliderPanel->getChildWithTitle(L"Duration")->getSlider()->getValueObject(),
-		humSliderPanel->getChildWithTitle(L"Volume")->getSlider()->getValueObject(),
+		humSliderPanel->getChildWithTitle(L"Частота")->getSlider()->getValueObject(),
+		humSliderPanel->getChildWithTitle(L"Длительность")->getSlider()->getValueObject(),
+		humSliderPanel->getChildWithTitle(L"Громкость")->getSlider()->getValueObject(),
 		humSliderPanel->getActive()
 	));
 
@@ -119,7 +119,7 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 	addAndMakeVisible(snapSliderPanel);
 	addAndMakeVisible(humSliderPanel);
 
-	setSize(1000, 600);
+	setSize(700, 700);
 }
 
 YearprojectAudioProcessorEditor::~YearprojectAudioProcessorEditor()
@@ -155,7 +155,7 @@ void YearprojectAudioProcessorEditor::mouseDoubleClick(SliderPanel* panel, const
 	panel->setActive(!(bool)panel->getActive().getValue());
 }
 
-LabeledSlider* YearprojectAudioProcessorEditor::getParametredSlider(String text, LabeledSlider::LabelPosition labelPosition, Slider::TextEntryBoxPosition boxPosition, double minValue, double maxValue, double interval, Slider::SliderStyle style, double labelPercentage)
+LabeledSlider* YearprojectAudioProcessorEditor::getParametredSlider(String text, double minValue , double maxValue, double interval,LabeledSlider::LabelPosition labelPosition, Slider::TextEntryBoxPosition boxPosition, Slider::SliderStyle style, double labelPercentage)
 {
 	LabeledSlider* labeledSlider = new LabeledSlider(new Slider(style, boxPosition), new Label("", text), labelPosition, labelPercentage);
 	labeledSlider->setRange(minValue, maxValue, interval);
