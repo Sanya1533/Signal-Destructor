@@ -1,49 +1,58 @@
 #include "NoiseCreator.h"
 
-NoiseCreator::NoiseCreator(double frequency, double duration, double volume, bool isActive):EffectCreator(Value(isActive))
+NoiseCreator::NoiseCreator(double frequency, double duration, double volume, double randomFactor,bool isActive):EffectCreator(Value(isActive))
 {
 	this->frequency.setValue(frequency);
 	this->duration.setValue(duration);
 	this->volume.setValue(volume);
+	this->randomFactor.setValue(randomFactor);
 }
 
-NoiseCreator::NoiseCreator(Value frequency, Value duration, Value volume, Value isActive):EffectCreator(isActive)
+NoiseCreator::NoiseCreator(Value frequency, Value duration, Value volume, Value randomFactor, Value isActive):EffectCreator(isActive)
 {
 	this->frequency.referTo(frequency);
 	this->duration.referTo(duration);
 	this->volume.referTo(volume);
+	this->randomFactor.referTo(randomFactor);
 }
 
-double NoiseCreator::createEffect(double signal)
+float NoiseCreator::createEffect(float signal)
 {
 	if (!(bool)isActive.getValue())
 		return signal;
-	if (!play)
+	if (play)
 	{
-		freqTime++;
-		if (freqTime / 2.0 >= 0.2 / (float)frequency.getValue() * 44100)
-		{
-			freqTime = 0;
-			play = true;
-		}
-		return signal;
+		return rnd.nextFloat() * (float)volume.getValue() / 100.0;
 	}
 	else
 	{
-		durationTime++;
-		if (durationTime / 2.0 >= 5 * (float)duration.getValue() * 44100)
-		{
-			durationTime = 0;
-			play = false;
-			return signal;
-		}
-		return rnd.nextFloat()*(float)volume.getValue()/100.0;
+		return signal;
 	}
 	return signal;
 }
 
 void NoiseCreator::moveTime()
 {
+	if (play)
+	{
+		durationTime++;
+		if (durationTime >= (float)duration.getValue() * 1 * 44100)
+		{
+			durationTime = 0;
+			play = false;
+			freqTime = randomGenerator.nextInt(Range<int>(-(int)randomFactor.getValue(), (int)randomFactor.getValue() + 1)) * 441;
+		}
+	}
+	else
+	{
+		freqTime++;
+		if (freqTime >= 0.1 / (float)frequency.getValue() * 44100)
+		{
+			freqTime = 0;
+			play = true;
+			durationTime = randomGenerator.nextInt(Range<int>(-(int)randomFactor.getValue(), (int)randomFactor.getValue() + 1)) * 441;
+		}
+	}
 }
 
 void NoiseCreator::setFrequency(Value frequency)
@@ -74,4 +83,14 @@ void NoiseCreator::setVolume(Value volume)
 Value NoiseCreator::getVolume()
 {
 	return volume;
+}
+
+void NoiseCreator::setRandomFactor(Value randomFactor)
+{
+	this->randomFactor.referTo(randomFactor);
+}
+
+Value NoiseCreator::getRandomFactor()
+{
+	return randomFactor;
 }

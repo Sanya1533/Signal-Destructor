@@ -8,7 +8,7 @@ public:
 
 	InterruptsCreator(Value frequency = Value(0.0), Value duration = Value(0.0), Value randomFactor = Value(0.0), Value isActive = Value(true));
 
-	double createEffect(double signal) override;
+	float createEffect(float signal) override;
 
 	void moveTime() override;
 

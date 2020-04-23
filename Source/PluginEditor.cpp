@@ -51,11 +51,13 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 	noiseSliderPanel->addComponent(getParametredSlider(L"Частота"));
 	noiseSliderPanel->addComponent(getParametredSlider(L"Длительность"));
 	noiseSliderPanel->addComponent(getParametredSlider(L"Громкость", 0, 100, 0.01));
+	noiseSliderPanel->addComponent(getParametredSlider(L"Случайный коэффициент", 0, 100, 1));
 
 	p.addEffect(new NoiseCreator(
 		noiseSliderPanel->getChildWithTitle(L"Частота")->getSlider()->getValueObject(),
 		noiseSliderPanel->getChildWithTitle(L"Длительность")->getSlider()->getValueObject(),
 		noiseSliderPanel->getChildWithTitle(L"Громкость")->getSlider()->getValueObject(),
+		noiseSliderPanel->getChildWithTitle(L"Случайный коэффициент")->getSlider()->getValueObject(),
 		noiseSliderPanel->getActive()
 	));
 
@@ -77,11 +79,17 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 	snapSliderPanel->addComponent(getParametredSlider(L"Частота"));
 	snapSliderPanel->addComponent(getParametredSlider(L"Длительность"));
 	snapSliderPanel->addComponent(getParametredSlider(L"Громкость", 0, 100, 0.01));
+	snapSliderPanel->addComponent(getParametredSlider(L"Случайный коэффициент", 0, 100, 1));
+	snapSliderPanel->addComponent(getParametredSlider(L"Густота", 0, 44099, 1));
+	snapSliderPanel->addComponent(getParametredSlider(L"Клиппинг сигнала", 0, 300, 0.1));
 
 	p.addEffect(new SnapCreator(
 		snapSliderPanel->getChildWithTitle(L"Частота")->getSlider()->getValueObject(),
 		snapSliderPanel->getChildWithTitle(L"Длительность")->getSlider()->getValueObject(),
 		snapSliderPanel->getChildWithTitle(L"Громкость")->getSlider()->getValueObject(),
+		snapSliderPanel->getChildWithTitle(L"Случайный коэффициент")->getSlider()->getValueObject(),
+		snapSliderPanel->getChildWithTitle(L"Густота")->getSlider()->getValueObject(),
+		snapSliderPanel->getChildWithTitle(L"Клиппинг сигнала")->getSlider()->getValueObject(),
 		snapSliderPanel->getActive()
 	));
 
@@ -103,11 +111,13 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 	humSliderPanel->addComponent(getParametredSlider(L"Частота"));
 	humSliderPanel->addComponent(getParametredSlider(L"Длительность"));
 	humSliderPanel->addComponent(getParametredSlider(L"Громкость",0,100,0.01));
+	humSliderPanel->addComponent(getParametredSlider(L"Случайный коэффициент", 0, 100, 1));
 
 	p.addEffect(new HumCreator(
 		humSliderPanel->getChildWithTitle(L"Частота")->getSlider()->getValueObject(),
 		humSliderPanel->getChildWithTitle(L"Длительность")->getSlider()->getValueObject(),
 		humSliderPanel->getChildWithTitle(L"Громкость")->getSlider()->getValueObject(),
+		humSliderPanel->getChildWithTitle(L"Случайный коэффициент")->getSlider()->getValueObject(),
 		humSliderPanel->getActive()
 	));
 
@@ -119,7 +129,7 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 	addAndMakeVisible(snapSliderPanel);
 	addAndMakeVisible(humSliderPanel);
 
-	setSize(700, 700);
+	setSize(800, 700);
 }
 
 YearprojectAudioProcessorEditor::~YearprojectAudioProcessorEditor()

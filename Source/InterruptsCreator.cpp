@@ -14,9 +14,9 @@ InterruptsCreator::InterruptsCreator(Value frequency, Value duration, Value rand
 	this->randomFactor.referTo(randomFactor);
 }
 
-double InterruptsCreator::createEffect(double signal)
+float InterruptsCreator::createEffect(float signal)
 {
-	if (!(bool)isActive.getValue())
+	if (!(bool)isActive.getValue()||(float)frequency.getValue()==0||(float)duration.getValue()==0)
 		return signal;
 	if (play)
 	{
@@ -30,24 +30,24 @@ double InterruptsCreator::createEffect(double signal)
 
 void InterruptsCreator::moveTime()
 {
-	if (!play)
-	{
-		freqTime++;
-		if (freqTime >= 0.1/(float)frequency.getValue() * 44100)
-		{
-			freqTime = 0;
-			play = true;
-			durationTime = randomGenerator.nextInt(Range<int>(-(int)randomFactor.getValue(), (int)randomFactor.getValue()+1))*441;
-		}
-	}
-	else
+	if (play)
 	{
 		durationTime++;
 		if (durationTime >= (float)duration.getValue() * 1 * 44100)
 		{
 			durationTime = 0;
 			play = false;
-			freqTime = randomGenerator.nextInt(Range<int>(-(int)randomFactor.getValue(), (int)randomFactor.getValue() + 1))*441;
+			freqTime = randomGenerator.nextInt(Range<int>(-(int)randomFactor.getValue(), (int)randomFactor.getValue() + 1)) * 441;
+		}
+	}
+	else
+	{
+		freqTime++;
+		if (freqTime >= 0.1 / (float)frequency.getValue() * 44100)
+		{
+			freqTime = 0;
+			play = true;
+			durationTime = randomGenerator.nextInt(Range<int>(-(int)randomFactor.getValue(), (int)randomFactor.getValue() + 1)) * 441;
 		}
 	}
 }

@@ -6,7 +6,7 @@ class EffectCreator
 public:
     EffectCreator(Value isActive);
 
-    double virtual createEffect(double signal)=0;
+    float virtual createEffect(float signal)=0;
 
     void virtual moveTime() = 0;
 
