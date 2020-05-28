@@ -1,5 +1,5 @@
-#pragma once
 #include "EffectCreator.h"
+#include "maximilian.h"
 
 class HumCreator : public EffectCreator
 {
@@ -38,4 +38,10 @@ private:
 	int freqTime = 0;
 
 	bool play = false;
+
+	float previous = 0.0f;
+
+	int counter =-1;
+
+	maxiOsc maxiLFO = maxiOsc();
 };

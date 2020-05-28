@@ -1,15 +1,22 @@
-#include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "SliderPanel.h"
+#include "LabeledSlider.h"
+#include "LanguagesManager.h"
 #include "InterruptsCreator.h"
 #include "NoiseCreator.h"
 #include "SnapCreator.h"
 #include "HumCreator.h"
+#include <JuceHeader.h>
+#include <vector>
+#include <fstream>
+#include <map>
 
 //==============================================================================
-YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor (p)
+YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor(YearprojectAudioProcessor& p)
+	: AudioProcessorEditor(&p), processor(p)
 {
-	interruptsSliderPanel = new SliderPanel();
+	SliderPanel* interruptsSliderPanel = new SliderPanel();
+	interruptsSliderPanel->setName(LanguagesManager::Properties::INTERRUPTS);
 
 	interruptsSliderPanel->setBackgroundColor(Colours::darkslateblue);
 
@@ -19,24 +26,27 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 
 	interruptsSliderPanel->setBorderWidth(3);
 
-	interruptsSliderPanel->setTitle(L"Прерывания");
+	interruptsSliderPanel->setTitle(LanguagesManager::Properties::INTERRUPTS);
 
-	interruptsSliderPanel->addComponent(getParametredSlider(L"Частота"));
-	interruptsSliderPanel->addComponent(getParametredSlider(L"Длительность"));
-	interruptsSliderPanel->addComponent(getParametredSlider(L"Случайный коэффициент",0, 100, 1));
-	
+	interruptsSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::FREQUENCY));
+	interruptsSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::DURATION));
+	interruptsSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::RANDOM_FACTOR, nullptr, 0, 100, 1));
+
 
 	p.addEffect(new InterruptsCreator(
-		interruptsSliderPanel->getChildWithTitle(L"Частота")->getSlider()->getValueObject(),
-		interruptsSliderPanel->getChildWithTitle(L"Длительность")->getSlider()->getValueObject(),
-		interruptsSliderPanel->getChildWithTitle(L"Случайный коэффициент")->getSlider()->getValueObject(),
+		interruptsSliderPanel->getChildWithTitle(LanguagesManager::Properties::FREQUENCY)->getSlider()->getValueObject(),
+		interruptsSliderPanel->getChildWithTitle(LanguagesManager::Properties::DURATION)->getSlider()->getValueObject(),
+		interruptsSliderPanel->getChildWithTitle(LanguagesManager::Properties::RANDOM_FACTOR)->getSlider()->getValueObject(),
 		interruptsSliderPanel->getActive()
 	));
 
-	interruptsSliderPanel->addListener(this);
-	
+	//sld = new AudioProcessorValueTreeState::SliderAttachment(processor.parameters, "1", *interruptsSliderPanel->getChildWithTitle(LanguagesManager::Properties::FREQUENCY)->getSlider());
 
-	noiseSliderPanel = new SliderPanel();
+	interruptsSliderPanel->addListener(this);
+
+
+	SliderPanel*  noiseSliderPanel = new SliderPanel();
+	noiseSliderPanel->setName(LanguagesManager::Properties::NOISE);
 
 	noiseSliderPanel->setBackgroundColor(Colours::darkslateblue);
 
@@ -46,25 +56,26 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 
 	noiseSliderPanel->setBorderWidth(3);
 
-	noiseSliderPanel->setTitle(L"Шум");
+	noiseSliderPanel->setTitle(LanguagesManager::Properties::NOISE);
 
-	noiseSliderPanel->addComponent(getParametredSlider(L"Частота"));
-	noiseSliderPanel->addComponent(getParametredSlider(L"Длительность"));
-	noiseSliderPanel->addComponent(getParametredSlider(L"Громкость", 0, 100, 0.01));
-	noiseSliderPanel->addComponent(getParametredSlider(L"Случайный коэффициент", 0, 100, 1));
+	noiseSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::FREQUENCY));
+	noiseSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::DURATION));
+	noiseSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::VOLUME, nullptr,0, 100, 0.01));
+	noiseSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::RANDOM_FACTOR,nullptr, 0, 100, 1));
 
 	p.addEffect(new NoiseCreator(
-		noiseSliderPanel->getChildWithTitle(L"Частота")->getSlider()->getValueObject(),
-		noiseSliderPanel->getChildWithTitle(L"Длительность")->getSlider()->getValueObject(),
-		noiseSliderPanel->getChildWithTitle(L"Громкость")->getSlider()->getValueObject(),
-		noiseSliderPanel->getChildWithTitle(L"Случайный коэффициент")->getSlider()->getValueObject(),
+		noiseSliderPanel->getChildWithTitle(LanguagesManager::Properties::FREQUENCY)->getSlider()->getValueObject(),
+		noiseSliderPanel->getChildWithTitle(LanguagesManager::Properties::DURATION)->getSlider()->getValueObject(),
+		noiseSliderPanel->getChildWithTitle(LanguagesManager::Properties::VOLUME)->getSlider()->getValueObject(),
+		noiseSliderPanel->getChildWithTitle(LanguagesManager::Properties::RANDOM_FACTOR)->getSlider()->getValueObject(),
 		noiseSliderPanel->getActive()
 	));
 
 	noiseSliderPanel->addListener(this);
 
 
-	snapSliderPanel = new SliderPanel();
+	SliderPanel* snapSliderPanel = new SliderPanel();
+	snapSliderPanel->setName(LanguagesManager::Properties::CRACKLING);
 
 	snapSliderPanel->setBackgroundColor(Colours::darkslateblue);
 
@@ -74,29 +85,30 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 
 	snapSliderPanel->setBorderWidth(3);
 
-	snapSliderPanel->setTitle(L"Треск");
+	snapSliderPanel->setTitle(LanguagesManager::Properties::CRACKLING);
 
-	snapSliderPanel->addComponent(getParametredSlider(L"Частота"));
-	snapSliderPanel->addComponent(getParametredSlider(L"Длительность"));
-	snapSliderPanel->addComponent(getParametredSlider(L"Громкость", 0, 100, 0.01));
-	snapSliderPanel->addComponent(getParametredSlider(L"Случайный коэффициент", 0, 100, 1));
-	snapSliderPanel->addComponent(getParametredSlider(L"Густота", 0, 44099, 1));
-	snapSliderPanel->addComponent(getParametredSlider(L"Клиппинг сигнала", 0, 300, 0.1));
+	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::FREQUENCY));
+	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::DURATION));
+	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::VOLUME,nullptr, 0, 100, 0.01));
+	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::RANDOM_FACTOR,nullptr, 0, 100, 1));
+	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::DENSITY, nullptr,0, 44099, 1));
+	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::CLIPPING_FACTOR,nullptr, 0, 300, 0.1));
 
 	p.addEffect(new SnapCreator(
-		snapSliderPanel->getChildWithTitle(L"Частота")->getSlider()->getValueObject(),
-		snapSliderPanel->getChildWithTitle(L"Длительность")->getSlider()->getValueObject(),
-		snapSliderPanel->getChildWithTitle(L"Громкость")->getSlider()->getValueObject(),
-		snapSliderPanel->getChildWithTitle(L"Случайный коэффициент")->getSlider()->getValueObject(),
-		snapSliderPanel->getChildWithTitle(L"Густота")->getSlider()->getValueObject(),
-		snapSliderPanel->getChildWithTitle(L"Клиппинг сигнала")->getSlider()->getValueObject(),
+		snapSliderPanel->getChildWithTitle(LanguagesManager::Properties::FREQUENCY)->getSlider()->getValueObject(),
+		snapSliderPanel->getChildWithTitle(LanguagesManager::Properties::DURATION)->getSlider()->getValueObject(),
+		snapSliderPanel->getChildWithTitle(LanguagesManager::Properties::VOLUME)->getSlider()->getValueObject(),
+		snapSliderPanel->getChildWithTitle(LanguagesManager::Properties::RANDOM_FACTOR)->getSlider()->getValueObject(),
+		snapSliderPanel->getChildWithTitle(LanguagesManager::Properties::DENSITY)->getSlider()->getValueObject(),
+		snapSliderPanel->getChildWithTitle(LanguagesManager::Properties::CLIPPING_FACTOR)->getSlider()->getValueObject(),
 		snapSliderPanel->getActive()
 	));
 
 	snapSliderPanel->addListener(this);
 
 
-	humSliderPanel = new SliderPanel();
+	SliderPanel* humSliderPanel = new SliderPanel();
+	humSliderPanel->setName(LanguagesManager::Properties::BUZZING);
 
 	humSliderPanel->setBackgroundColor(Colours::darkslateblue);
 
@@ -106,30 +118,74 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor (YearprojectAud
 
 	humSliderPanel->setBorderWidth(3);
 
-	humSliderPanel->setTitle(L"Гудение");
+	humSliderPanel->setTitle(LanguagesManager::Properties::BUZZING);
 
-	humSliderPanel->addComponent(getParametredSlider(L"Частота"));
-	humSliderPanel->addComponent(getParametredSlider(L"Длительность"));
-	humSliderPanel->addComponent(getParametredSlider(L"Громкость",0,100,0.01));
-	humSliderPanel->addComponent(getParametredSlider(L"Случайный коэффициент", 0, 100, 1));
+	humSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::FREQUENCY));
+	humSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::DURATION));
+	humSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::VOLUME,nullptr, 0, 100, 0.01));
+	humSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::RANDOM_FACTOR,nullptr, 0, 20, 0.01));
 
 	p.addEffect(new HumCreator(
-		humSliderPanel->getChildWithTitle(L"Частота")->getSlider()->getValueObject(),
-		humSliderPanel->getChildWithTitle(L"Длительность")->getSlider()->getValueObject(),
-		humSliderPanel->getChildWithTitle(L"Громкость")->getSlider()->getValueObject(),
-		humSliderPanel->getChildWithTitle(L"Случайный коэффициент")->getSlider()->getValueObject(),
+		humSliderPanel->getChildWithTitle(LanguagesManager::Properties::FREQUENCY)->getSlider()->getValueObject(),
+		humSliderPanel->getChildWithTitle(LanguagesManager::Properties::DURATION)->getSlider()->getValueObject(),
+		humSliderPanel->getChildWithTitle(LanguagesManager::Properties::VOLUME)->getSlider()->getValueObject(),
+		humSliderPanel->getChildWithTitle(LanguagesManager::Properties::RANDOM_FACTOR)->getSlider()->getValueObject(),
 		humSliderPanel->getActive()
 	));
 
 	humSliderPanel->addListener(this);
-
-
-	addAndMakeVisible(interruptsSliderPanel);
-	addAndMakeVisible(noiseSliderPanel);
-	addAndMakeVisible(snapSliderPanel);
-	addAndMakeVisible(humSliderPanel);
-
-	setSize(800, 700);
+		languages = new ComboBox();
+		vector<wstring> localLangs = LanguagesManager::getProperty(LanguagesManager::Properties::LOCAL_LANG_FIELD, nullptr, true);
+		vector<wstring> langs = LanguagesManager::getProperty(LanguagesManager::Properties::LANGFIELD, nullptr, true);
+		int id = 1;
+		if (langs.size() > 0)
+		{
+			for (int i = 0; i < langs.size(); i++)
+			{
+				//langMap[localLangs[i]]= langs[i];
+				languages->addItem(String(localLangs[i].c_str()), id++);
+				languages->addItem(String(langs[i].c_str()), id++);
+			}
+			//for (wstring lang : localLangs)
+			//{
+			//	languages->addItem(String(lang.c_str()), id++);
+			//}
+		}
+		else
+		{
+			langMap[L"English"]= L"English";
+			languages->addItem("English", id++);
+		}
+		languages->setJustificationType(Justification::centred);
+	    wstring* str = LanguagesManager::getCurrentLanguage();
+		if (str == nullptr)
+		{
+			str = new wstring(L"sss");
+		}
+		languages->addItem(str->c_str(), 8963);
+		//for (int i = 0; i < languages->getNumItems(); i++)
+		//{
+		//	languages->changeItemText(i, String(langMap[languages->getItemText(i).toWideCharPointer()].c_str()));
+		//	//if (*str == langMap[languages->getItemText(i).toWideCharPointer()])
+		//	//{
+		//	//	languages->setSelectedItemIndex(i, dontSendNotification);
+		//	//	comboBoxChanged(languages);
+		//	//	break;
+		//	//}
+		//}
+		languages->addListener(this);
+		addAndMakeVisible(interruptsSliderPanel);
+		addAndMakeVisible(noiseSliderPanel);
+		addAndMakeVisible(snapSliderPanel);
+		addAndMakeVisible(humSliderPanel);
+		addAndMakeVisible(languages);
+		panels.push_back(interruptsSliderPanel);
+		panels.push_back(noiseSliderPanel);
+		panels.push_back(snapSliderPanel);
+		panels.push_back(humSliderPanel);
+	
+	setSize(900, 700);
+	
 }
 
 YearprojectAudioProcessorEditor::~YearprojectAudioProcessorEditor()
@@ -137,17 +193,19 @@ YearprojectAudioProcessorEditor::~YearprojectAudioProcessorEditor()
 }
 
 //==============================================================================
-void YearprojectAudioProcessorEditor::paint (Graphics& g)
+void YearprojectAudioProcessorEditor::paint(Graphics& g)
 {
 	g.fillAll(getLookAndFeel().findColour(ResizableWindow::backgroundColourId));
 }
 
 void YearprojectAudioProcessorEditor::resized()
 {
-	interruptsSliderPanel->setBounds(0, 0, getWidth(), getHeight() / 4);
-	noiseSliderPanel->setBounds(0, getHeight() / 4, getWidth(), getHeight() / 4);
-	snapSliderPanel->setBounds(0, getHeight() / 2, getWidth(), getHeight() / 4);
-	humSliderPanel->setBounds(0, getHeight() * 3 / 4, getWidth(), getHeight() / 4);
+	int heihgt = getHeight() * 24 / 25;
+	languages->setBounds(0, 0, getWidth(), getHeight() / 25);
+	for (int i = 0; i < panels.size(); i++)
+	{
+		panels[i]->setBounds(0, getHeight() / 25 + heihgt / panels.size() * i, getWidth(), heihgt / panels.size());
+	}
 }
 
 void YearprojectAudioProcessorEditor::mouseDoubleClick(SliderPanel* panel, const MouseEvent& event)
@@ -165,9 +223,32 @@ void YearprojectAudioProcessorEditor::mouseDoubleClick(SliderPanel* panel, const
 	panel->setActive(!(bool)panel->getActive().getValue());
 }
 
-LabeledSlider* YearprojectAudioProcessorEditor::getParametredSlider(String text, double minValue , double maxValue, double interval,LabeledSlider::LabelPosition labelPosition, Slider::TextEntryBoxPosition boxPosition, Slider::SliderStyle style, double labelPercentage)
+void YearprojectAudioProcessorEditor::comboBoxChanged(ComboBox* changedComboBox)
 {
-	LabeledSlider* labeledSlider = new LabeledSlider(new Slider(style, boxPosition), new Label("", text), labelPosition, labelPercentage);
+	//if (changedComboBox == languages)
+	//{
+	//	String lang;
+	//	if ((languages->getText()) != "")
+	//	{
+	//		wstring localLang = languages->getText().toWideCharPointer();
+	//		LanguagesManager::setCurrentLanguage(localLang);
+	//		vector<wstring> vec;
+	//		for (SliderPanel* panel : panels)
+	//		{
+	//			vec = LanguagesManager::getProperty(panel->getName().toStdString(), &localLang);
+	//			if (vec.size() > 0)
+	//			{
+	//				panel->setTitle(vec[0].c_str());
+	//			}
+	//		}
+	//	}
+	//}
+}
+
+LabeledSlider* YearprojectAudioProcessorEditor::getParametredSlider(String text,String* name, double minValue, double maxValue, double interval, LabeledSlider::LabelPosition labelPosition, Slider::TextEntryBoxPosition boxPosition, Slider::SliderStyle style, double labelPercentage)
+{
+	LabeledSlider* labeledSlider = new LabeledSlider(new Slider(style, boxPosition), new Label(text, text), labelPosition, labelPercentage);
 	labeledSlider->setRange(minValue, maxValue, interval);
+	labeledSlider->setName(name!=nullptr?*name:text);
 	return labeledSlider;
 }

@@ -1,4 +1,5 @@
 #include "HumCreator.h"
+#include "maximilian.h"
 
 HumCreator::HumCreator(double frequency, double duration, double volume, double randomFactor, bool isActive) :EffectCreator(Value(isActive))
 {
@@ -22,8 +23,47 @@ float HumCreator::createEffect(float signal)
 		return signal;
 	if (play)
 	{
-		float x =((durationTime - 1) % 441) / 44100.0;
-		return (80000 * x * x - 800 * x + 1) * (float)volume.getValue() / 100.0;
+		try
+		{
+			float x = (durationTime - 1) / 44100.0;
+			previous = std::sin(x * 280);
+			float ans = (std::sin(x * 280 * 120) * 0.4 + previous)*2.5f;
+			if (ans > 1)
+				ans = 1.0f;
+			if (ans < -1)
+				ans = -1.0f;
+			return ans /2.5f* (float)volume.getValue() / 100.0;
+			//float x = (durationTime - 1) / 44100.0;
+			//previous = std::sin(x * 280) ;
+			//float ans = std::sin(x * 280 * 120) * 0.4 + previous;
+			//if (ans > 1)
+			//	ans= 1.0f;
+			//if (ans < 1)
+			//	ans= -1.0f;
+			//return ans*(float)volume.getValue()/100.0;
+		}
+		catch (const std::exception&)
+		{
+			return 1.0f;
+		}
+		//float cur = std::sin(x * 280) * (float)volume.getValue() / 100.0;
+		//float noise = 0;
+		//if (cur * previous <= 0&&counter<0)
+		//{
+		//	counter = 0;
+		//}
+		//if (counter >= 0 && counter < 44100 / 2)
+		//{
+		//	noise = (cur < 0 ? -1 : 1) * randomGenerator.nextFloat();
+		//}
+		//previous = cur;
+		//float ans = cur + noise;
+		//if (abs(ans) > 1)
+		//	ans = 1;
+		//return ans*(float)volume.getValue() / 100.0;
+		//return std::sin(x*280+maxiLFO.sinewave((float)randomFactor.getValue())*8) * (float)volume.getValue() / 100.0+ (float)volume.getValue() / 50000.0*((randomGenerator.nextInt()%2==0)? ((randomGenerator.nextBool()?-1:1)* randomGenerator.nextFloat()):0);
+		// AM - return std::sin(x * 200+maxiLFO.sinebuf(0.2f))* (float)volume.getValue() / 100.0;
+		//return (80000 * x * x - 800 * x + 1) * (float)volume.getValue() / 100.0;
 	}
 	else
 	{
@@ -37,11 +77,15 @@ void HumCreator::moveTime()
 	if (play)
 	{
 		durationTime++;
+		if (counter >= 0)
+			counter++;
+		if (counter >= 44100 / 2)
+			counter = -1;
 		if (durationTime >= (float)duration.getValue() * 1 * 44100)
 		{
 			durationTime = 0;
 			play = false;
-			freqTime = randomGenerator.nextInt(Range<int>(-(int)randomFactor.getValue(), (int)randomFactor.getValue() + 1)) * 441;
+			freqTime =0 /*randomGenerator.nextInt(Range<int>(-(int)randomFactor.getValue(), (int)randomFactor.getValue() + 1)) * 441*/;
 		}
 	}
 	else
@@ -51,7 +95,7 @@ void HumCreator::moveTime()
 		{
 			freqTime = 0;
 			play = true;
-			durationTime = randomGenerator.nextInt(Range<int>(-(int)randomFactor.getValue(), (int)randomFactor.getValue() + 1)) * 441;
+			durationTime = 0/*randomGenerator.nextInt(Range<int>(-(int)randomFactor.getValue(), (int)randomFactor.getValue() + 1)) * 441*/;
 		}
 	}
 }

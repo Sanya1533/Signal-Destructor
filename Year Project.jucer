@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="RXEf86" name="Year Project" projectType="audioplug" jucerVersion="5.4.7"
-              pluginFormats="buildVST,buildVST3">
+              pluginFormats="buildVST">
   <MAINGROUP id="KNabTP" name="Year Project">
+    <GROUP id="{8B6A05A5-DAE8-F43F-9D18-FC032E73812B}" name="Languages">
+      <FILE id="u8p0zE" name="LanguagesManager.cpp" compile="1" resource="0"
+            file="Source/LanguagesManager.cpp"/>
+      <FILE id="iMksJL" name="LanguagesManager.h" compile="0" resource="0"
+            file="Source/LanguagesManager.h"/>
+    </GROUP>
     <GROUP id="{6DDF7C29-4B85-B2FF-5277-A7DE843BD25A}" name="Sliders">
       <FILE id="x6dO2p" name="SliderPanel.cpp" compile="1" resource="0" file="Source/SliderPanel.cpp"/>
       <FILE id="fIMI0Q" name="SliderPanel.h" compile="0" resource="0" file="Source/SliderPanel.h"/>
-      <FILE id="akbELv" name="SliderListener.cpp" compile="1" resource="0"
-            file="Source/SliderListener.cpp"/>
-      <FILE id="s5ezW8" name="SliderListener.h" compile="0" resource="0"
-            file="Source/SliderListener.h"/>
       <FILE id="bW9qYG" name="LabeledSlider.cpp" compile="1" resource="0"
             file="Source/LabeledSlider.cpp"/>
       <FILE id="oWpaoz" name="LabeledSlider.h" compile="0" resource="0" file="Source/LabeledSlider.h"/>
@@ -31,6 +33,9 @@
       <FILE id="nLHZCX" name="SnapCreator.h" compile="0" resource="0" file="Source/SnapCreator.h"/>
     </GROUP>
     <GROUP id="{569E8AE0-343D-0DD9-1705-8ACE87E55647}" name="Source">
+      <FILE id="njUQ9J" name="Text.txt" compile="1" resource="0" file="Builds/VisualStudio2019/Text.txt"/>
+      <FILE id="XO0PVH" name="maxi.cpp" compile="1" resource="0" file="Source/maxi.cpp"/>
+      <FILE id="bwbfuI" name="maxi.h" compile="0" resource="0" file="Source/maxi.h"/>
       <FILE id="ktEF8B" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="vfxMYs" name="PluginProcessor.h" compile="0" resource="0"
@@ -39,11 +44,12 @@
             file="Source/PluginEditor.cpp"/>
       <FILE id="UVKGkP" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
+    <FILE id="LPm55f" name="sqlite3.c" compile="1" resource="0" file="../../../../../Program Files (x86)/SQLite3/sqlite3.c"/>
   </MAINGROUP>
   <EXPORTFORMATS>
     <VS2019 targetFolder="Builds/VisualStudio2019">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug"/>
+        <CONFIGURATION isDebug="1" name="Debug" headerPath="C:\Program Files (x86)\Maximilian etc\libs"/>
         <CONFIGURATION isDebug="0" name="Release"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
@@ -61,6 +67,7 @@
         <MODULEPATH id="juce_gui_basics" path="../../../../../Program Files (x86)/JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../../../../Program Files (x86)/JUCE/modules"/>
         <MODULEPATH id="juce_opengl" path="../../../../../Program Files (x86)/JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../../../../Program Files (x86)/JUCE/modules"/>
       </MODULEPATHS>
     </VS2019>
   </EXPORTFORMATS>
@@ -75,6 +82,7 @@
     <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>

@@ -1,3 +1,13 @@
+/*
+  ==============================================================================
+
+	This file was auto-generated!
+
+	It contains the basic framework code for a JUCE plugin processor.
+
+  ==============================================================================
+*/
+
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
@@ -13,7 +23,10 @@ YearprojectAudioProcessor::YearprojectAudioProcessor()
 #endif
 	)
 #endif
+	, parameters(*this, nullptr)
 {
+	parameters.createAndAddParameter("1", "1", "1", juce::NormalisableRange<float>(0.0f, 1.0f), 0, nullptr, nullptr);
+	parameters.state = ValueTree("savedParams");
 }
 
 YearprojectAudioProcessor::~YearprojectAudioProcessor()
@@ -133,7 +146,7 @@ void YearprojectAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuf
 	{
 		for (int channel = 0; channel < totalNumInputChannels; channel++)
 		{
-			buffer.setSample(channel, sample, useEffects(buffer.getSample(channel,sample)));
+			buffer.setSample(channel, sample, useEffects(buffer.getSample(channel, sample)));
 		}
 		for (int i = 0; i < effects.size(); i++)
 		{
@@ -159,12 +172,25 @@ void YearprojectAudioProcessor::getStateInformation(MemoryBlock& destData)
 	// You should use this method to store your parameters in the memory block.
 	// You could do that either as raw data, or use the XML or ValueTree classes
 	// as intermediaries to make it easy to save and load complex data.
+
+	ScopedPointer<XmlElement> xml(parameters.state.createXml().release());
+	copyXmlToBinary(*xml, destData);
 }
 
 void YearprojectAudioProcessor::setStateInformation(const void* data, int sizeInBytes)
 {
 	// You should use this method to restore your parameters from this memory block,
 	// whose contents will have been created by the getStateInformation() call.
+
+	ScopedPointer<XmlElement> theParams(getXmlFromBinary(data, sizeInBytes).release());
+
+	if (theParams != nullptr)
+	{
+		if (theParams->hasTagName(parameters.state.getType()))
+		{
+			parameters.state = ValueTree::fromXml(*theParams);
+		}
+	}
 }
 
 void YearprojectAudioProcessor::addEffect(EffectCreator* newEffect)
