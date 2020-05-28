@@ -87,12 +87,12 @@ Slider* LabeledSlider::getSlider()
 	return slider;
 }
 
-void LabeledSlider::setLabelText(String text)
+void LabeledSlider::setText(String text)
 {
 	this->label->setText(text, dontSendNotification);
 }
 
-void LabeledSlider::setLabelFont(Font font)
+void LabeledSlider::setFont(Font font)
 {
 	this->label->setFont(font);
 }

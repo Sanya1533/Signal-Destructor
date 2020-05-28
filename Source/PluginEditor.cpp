@@ -34,9 +34,9 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor(YearprojectAudi
 
 
 	p.addEffect(new InterruptsCreator(
-		interruptsSliderPanel->getChildWithTitle(LanguagesManager::Properties::FREQUENCY)->getSlider()->getValueObject(),
-		interruptsSliderPanel->getChildWithTitle(LanguagesManager::Properties::DURATION)->getSlider()->getValueObject(),
-		interruptsSliderPanel->getChildWithTitle(LanguagesManager::Properties::RANDOM_FACTOR)->getSlider()->getValueObject(),
+		((LabeledSlider*)interruptsSliderPanel->getChildWithName(LanguagesManager::Properties::FREQUENCY))->getSlider()->getValueObject(),
+		((LabeledSlider*)interruptsSliderPanel->getChildWithName(LanguagesManager::Properties::DURATION))->getSlider()->getValueObject(),
+		((LabeledSlider*)interruptsSliderPanel->getChildWithName(LanguagesManager::Properties::RANDOM_FACTOR))->getSlider()->getValueObject(),
 		interruptsSliderPanel->getActive()
 	));
 
@@ -45,7 +45,7 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor(YearprojectAudi
 	interruptsSliderPanel->addListener(this);
 
 
-	SliderPanel*  noiseSliderPanel = new SliderPanel();
+	SliderPanel* noiseSliderPanel = new SliderPanel();
 	noiseSliderPanel->setName(LanguagesManager::Properties::NOISE);
 
 	noiseSliderPanel->setBackgroundColor(Colours::darkslateblue);
@@ -60,14 +60,14 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor(YearprojectAudi
 
 	noiseSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::FREQUENCY));
 	noiseSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::DURATION));
-	noiseSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::VOLUME, nullptr,0, 100, 0.01));
-	noiseSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::RANDOM_FACTOR,nullptr, 0, 100, 1));
+	noiseSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::VOLUME, nullptr, 0, 100, 0.01));
+	noiseSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::RANDOM_FACTOR, nullptr, 0, 100, 1));
 
 	p.addEffect(new NoiseCreator(
-		noiseSliderPanel->getChildWithTitle(LanguagesManager::Properties::FREQUENCY)->getSlider()->getValueObject(),
-		noiseSliderPanel->getChildWithTitle(LanguagesManager::Properties::DURATION)->getSlider()->getValueObject(),
-		noiseSliderPanel->getChildWithTitle(LanguagesManager::Properties::VOLUME)->getSlider()->getValueObject(),
-		noiseSliderPanel->getChildWithTitle(LanguagesManager::Properties::RANDOM_FACTOR)->getSlider()->getValueObject(),
+		((LabeledSlider*)noiseSliderPanel->getChildWithName(LanguagesManager::Properties::FREQUENCY))->getSlider()->getValueObject(),
+		((LabeledSlider*)noiseSliderPanel->getChildWithName(LanguagesManager::Properties::DURATION))->getSlider()->getValueObject(),
+		((LabeledSlider*)noiseSliderPanel->getChildWithName(LanguagesManager::Properties::VOLUME))->getSlider()->getValueObject(),
+		((LabeledSlider*)noiseSliderPanel->getChildWithName(LanguagesManager::Properties::RANDOM_FACTOR))->getSlider()->getValueObject(),
 		noiseSliderPanel->getActive()
 	));
 
@@ -89,23 +89,22 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor(YearprojectAudi
 
 	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::FREQUENCY));
 	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::DURATION));
-	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::VOLUME,nullptr, 0, 100, 0.01));
-	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::RANDOM_FACTOR,nullptr, 0, 100, 1));
-	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::DENSITY, nullptr,0, 44099, 1));
-	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::CLIPPING_FACTOR,nullptr, 0, 300, 0.1));
+	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::VOLUME, nullptr, 0, 100, 0.01));
+	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::RANDOM_FACTOR, nullptr, 0, 100, 1));
+	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::DENSITY, nullptr, 0, 44099, 1));
+	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::CLIPPING_FACTOR, nullptr, 0, 300, 0.1));
 
 	p.addEffect(new SnapCreator(
-		snapSliderPanel->getChildWithTitle(LanguagesManager::Properties::FREQUENCY)->getSlider()->getValueObject(),
-		snapSliderPanel->getChildWithTitle(LanguagesManager::Properties::DURATION)->getSlider()->getValueObject(),
-		snapSliderPanel->getChildWithTitle(LanguagesManager::Properties::VOLUME)->getSlider()->getValueObject(),
-		snapSliderPanel->getChildWithTitle(LanguagesManager::Properties::RANDOM_FACTOR)->getSlider()->getValueObject(),
-		snapSliderPanel->getChildWithTitle(LanguagesManager::Properties::DENSITY)->getSlider()->getValueObject(),
-		snapSliderPanel->getChildWithTitle(LanguagesManager::Properties::CLIPPING_FACTOR)->getSlider()->getValueObject(),
+		((LabeledSlider*)snapSliderPanel->getChildWithName(LanguagesManager::Properties::FREQUENCY))->getSlider()->getValueObject(),
+		((LabeledSlider*)snapSliderPanel->getChildWithName(LanguagesManager::Properties::DURATION))->getSlider()->getValueObject(),
+		((LabeledSlider*)snapSliderPanel->getChildWithName(LanguagesManager::Properties::VOLUME))->getSlider()->getValueObject(),
+		((LabeledSlider*)snapSliderPanel->getChildWithName(LanguagesManager::Properties::RANDOM_FACTOR))->getSlider()->getValueObject(),
+		((LabeledSlider*)snapSliderPanel->getChildWithName(LanguagesManager::Properties::DENSITY))->getSlider()->getValueObject(),
+		((LabeledSlider*)snapSliderPanel->getChildWithName(LanguagesManager::Properties::CLIPPING_FACTOR))->getSlider()->getValueObject(),
 		snapSliderPanel->getActive()
 	));
 
 	snapSliderPanel->addListener(this);
-
 
 	SliderPanel* humSliderPanel = new SliderPanel();
 	humSliderPanel->setName(LanguagesManager::Properties::BUZZING);
@@ -122,70 +121,57 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor(YearprojectAudi
 
 	humSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::FREQUENCY));
 	humSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::DURATION));
-	humSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::VOLUME,nullptr, 0, 100, 0.01));
-	humSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::RANDOM_FACTOR,nullptr, 0, 20, 0.01));
+	humSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::VOLUME, nullptr, 0, 100, 0.01));
+	humSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::RANDOM_FACTOR, nullptr, 0, 20, 0.01));
 
 	p.addEffect(new HumCreator(
-		humSliderPanel->getChildWithTitle(LanguagesManager::Properties::FREQUENCY)->getSlider()->getValueObject(),
-		humSliderPanel->getChildWithTitle(LanguagesManager::Properties::DURATION)->getSlider()->getValueObject(),
-		humSliderPanel->getChildWithTitle(LanguagesManager::Properties::VOLUME)->getSlider()->getValueObject(),
-		humSliderPanel->getChildWithTitle(LanguagesManager::Properties::RANDOM_FACTOR)->getSlider()->getValueObject(),
-		humSliderPanel->getActive()
+		((LabeledSlider*)humSliderPanel->getChildWithName(LanguagesManager::Properties::FREQUENCY))->getSlider()->getValueObject(),
+		((LabeledSlider*)humSliderPanel->getChildWithName(LanguagesManager::Properties::DURATION))->getSlider()->getValueObject(),
+		((LabeledSlider*)humSliderPanel->getChildWithName(LanguagesManager::Properties::VOLUME))->getSlider()->getValueObject(),
+		((LabeledSlider*)humSliderPanel->getChildWithName(LanguagesManager::Properties::RANDOM_FACTOR))->getSlider()->getValueObject(),
+	    humSliderPanel->getActive()
 	));
 
 	humSliderPanel->addListener(this);
-		languages = new ComboBox();
-		vector<wstring> localLangs = LanguagesManager::getProperty(LanguagesManager::Properties::LOCAL_LANG_FIELD, nullptr, true);
-		vector<wstring> langs = LanguagesManager::getProperty(LanguagesManager::Properties::LANGFIELD, nullptr, true);
-		int id = 1;
-		if (langs.size() > 0)
+	panels.push_back(interruptsSliderPanel);
+	panels.push_back(noiseSliderPanel);
+	panels.push_back(snapSliderPanel);
+	panels.push_back(humSliderPanel);
+
+	languages = new ComboBox();
+	vector<wstring> localLangs = LanguagesManager::getProperty(LanguagesManager::Properties::LOCAL_LANG_FIELD, nullptr, true);
+	int id = 1;
+	if (localLangs.size() > 0)
+	{
+		for (wstring lang : localLangs)
 		{
-			for (int i = 0; i < langs.size(); i++)
-			{
-				//langMap[localLangs[i]]= langs[i];
-				languages->addItem(String(localLangs[i].c_str()), id++);
-				languages->addItem(String(langs[i].c_str()), id++);
-			}
-			//for (wstring lang : localLangs)
-			//{
-			//	languages->addItem(String(lang.c_str()), id++);
-			//}
+			languages->addItem(String(lang.c_str()), id++);
 		}
-		else
+	}
+	else
+	{
+		languages->addItem("English", id++);
+	}
+	languages->setJustificationType(Justification::centred);
+	wstring* str = LanguagesManager::getCurrentLanguage();
+	for (int i = 0; i < languages->getNumItems(); i++)
+	{
+		if (*str == languages->getItemText(i).toWideCharPointer())
 		{
-			langMap[L"English"]= L"English";
-			languages->addItem("English", id++);
+			languages->setSelectedItemIndex(i, dontSendNotification);
+			comboBoxChanged(languages);
+			break;
 		}
-		languages->setJustificationType(Justification::centred);
-	    wstring* str = LanguagesManager::getCurrentLanguage();
-		if (str == nullptr)
-		{
-			str = new wstring(L"sss");
-		}
-		languages->addItem(str->c_str(), 8963);
-		//for (int i = 0; i < languages->getNumItems(); i++)
-		//{
-		//	languages->changeItemText(i, String(langMap[languages->getItemText(i).toWideCharPointer()].c_str()));
-		//	//if (*str == langMap[languages->getItemText(i).toWideCharPointer()])
-		//	//{
-		//	//	languages->setSelectedItemIndex(i, dontSendNotification);
-		//	//	comboBoxChanged(languages);
-		//	//	break;
-		//	//}
-		//}
-		languages->addListener(this);
-		addAndMakeVisible(interruptsSliderPanel);
-		addAndMakeVisible(noiseSliderPanel);
-		addAndMakeVisible(snapSliderPanel);
-		addAndMakeVisible(humSliderPanel);
-		addAndMakeVisible(languages);
-		panels.push_back(interruptsSliderPanel);
-		panels.push_back(noiseSliderPanel);
-		panels.push_back(snapSliderPanel);
-		panels.push_back(humSliderPanel);
-	
+	}
+	languages->addListener(this);
+	addAndMakeVisible(interruptsSliderPanel);
+	addAndMakeVisible(noiseSliderPanel);
+	addAndMakeVisible(snapSliderPanel);
+	addAndMakeVisible(humSliderPanel);
+	addAndMakeVisible(languages);
+
 	setSize(900, 700);
-	
+
 }
 
 YearprojectAudioProcessorEditor::~YearprojectAudioProcessorEditor()
@@ -225,30 +211,53 @@ void YearprojectAudioProcessorEditor::mouseDoubleClick(SliderPanel* panel, const
 
 void YearprojectAudioProcessorEditor::comboBoxChanged(ComboBox* changedComboBox)
 {
-	//if (changedComboBox == languages)
-	//{
-	//	String lang;
-	//	if ((languages->getText()) != "")
-	//	{
-	//		wstring localLang = languages->getText().toWideCharPointer();
-	//		LanguagesManager::setCurrentLanguage(localLang);
-	//		vector<wstring> vec;
-	//		for (SliderPanel* panel : panels)
-	//		{
-	//			vec = LanguagesManager::getProperty(panel->getName().toStdString(), &localLang);
-	//			if (vec.size() > 0)
-	//			{
-	//				panel->setTitle(vec[0].c_str());
-	//			}
-	//		}
-	//	}
-	//}
+	if (changedComboBox == languages)
+	{
+		String lang;
+		if ((languages->getText()) != "")
+		{
+			wstring localLang = languages->getText().toWideCharPointer();
+			LanguagesManager::setCurrentLanguage(localLang);
+			vector<wstring> vec;
+			for (SliderPanel* panel : panels)
+			{
+				vec = LanguagesManager::getProperty(panel->getName().toStdString(), &localLang);
+				if (vec.size() > 0)
+				{
+					panel->setTitle(vec[0].c_str());
+					for (Component *child : panel->getChildren())
+					{
+						if (auto particularChild = dynamic_cast<LabeledSlider*>(child))
+						{
+							vec = LanguagesManager::getProperty(particularChild->getName().toStdString(), &localLang);
+							if (vec.size() > 0)
+							{
+								particularChild->setText(vec[0].c_str());
+							}
+						}
+						else
+						{
+							if (auto particularChild = dynamic_cast<Button*>(child))
+							{
+								vec = LanguagesManager::getProperty(particularChild->getName().toStdString(), &localLang);
+								if (vec.size() > 0)
+								{
+									particularChild->setButtonText(vec[0].c_str());
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
-LabeledSlider* YearprojectAudioProcessorEditor::getParametredSlider(String text,String* name, double minValue, double maxValue, double interval, LabeledSlider::LabelPosition labelPosition, Slider::TextEntryBoxPosition boxPosition, Slider::SliderStyle style, double labelPercentage)
+LabeledSlider* YearprojectAudioProcessorEditor::getParametredSlider(String text, String* name, double minValue, double maxValue, double interval, LabeledSlider::LabelPosition labelPosition, Slider::TextEntryBoxPosition boxPosition, Slider::SliderStyle style, double labelPercentage)
 {
 	LabeledSlider* labeledSlider = new LabeledSlider(new Slider(style, boxPosition), new Label(text, text), labelPosition, labelPercentage);
 	labeledSlider->setRange(minValue, maxValue, interval);
-	labeledSlider->setName(name!=nullptr?*name:text);
+
+	labeledSlider->setName(name != nullptr ? *name : text);
 	return labeledSlider;
 }

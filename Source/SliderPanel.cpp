@@ -119,16 +119,16 @@ Value SliderPanel::getActive()
 	return active;
 }
 
-LabeledSlider* SliderPanel::getChildWithTitle(String title)
+Component* SliderPanel::getChildWithName(String title)
 {
 	Array<Component*> children = this->getChildren();
-	for (int i = 0; i < children.size(); i++)
+	for (auto child:children)
 	{
 		try
 		{
-			if (children[i] != this->title && ((LabeledSlider*)children[i])->getLabel()->getText() == title)
+			if (child->getName() == title)
 			{
-				return (LabeledSlider*)children[i];
+				return child;
 			}
 		}
 		catch (const std::exception&)

@@ -8,8 +8,8 @@ wstring LanguagesManager::DBname = L"";
 
 const string LanguagesManager::LangsTableName = "Languages";
 const string LanguagesManager::CurrentLangTable = "CurrentLanguage";
-const string LanguagesManager::CurLangField = "Language";
-const string LanguagesManager::Properties::LANGFIELD = "Language";
+const string LanguagesManager::CurLangField = "Id";
+const string LanguagesManager::LangField = "Language";
 
 const string LanguagesManager::Properties::INTERRUPTS = "Interrupts";
 const string LanguagesManager::Properties::NOISE = "Noise";
@@ -23,7 +23,7 @@ const string LanguagesManager::Properties::CLIPPING_FACTOR = "Clipping";
 const string LanguagesManager::Properties::DENSITY = "Density";
 const string LanguagesManager::Properties::LOCAL_LANG_FIELD = "LocalLanguage";
 
-vector<wstring> LanguagesManager::getProperty(string property, string *language, bool order)
+vector<wstring> LanguagesManager::getProperty(string property, wstring *localLanguage, bool order)
 {
 	vector<wstring> answer = vector<wstring>(0);
 	ifstream f(DBname);
@@ -35,10 +35,10 @@ vector<wstring> LanguagesManager::getProperty(string property, string *language,
 		}
 	}
 	string* sql = new string("SELECT "+property +" FROM " + LangsTableName);
-	if (language != nullptr)
-		*sql += " WHERE " +Properties::LANGFIELD + "=\""+ *language +"\"";
+	if (localLanguage != nullptr)
+		*sql += " WHERE " + LanguagesManager::Properties::LOCAL_LANG_FIELD + "=\""+ convertToString(*localLanguage) +"\"";
 	if (order)
-		*sql += " ORDER BY " + Properties::LANGFIELD + " ASC";
+		*sql += " ORDER BY " + LangField + " ASC";
 	sqlite3* DB = 0;
 	if (sqlite3_open16(DBname.c_str(), &DB))
 	{
@@ -74,7 +74,11 @@ void LanguagesManager::setCurrentLanguage(wstring localLanguage)
 			return;
 		}
 	}
-	string sql = "UPDATE " + CurrentLangTable + " SET " + CurLangField + "=\""+convertToString(localLanguage)+"\"WHERE Id=0;";
+	vector<wstring> vec= getProperty("Id", &localLanguage);
+	if (vec.size() <= 0)
+		return;
+	int id = String(vec[0].c_str()).getIntValue();
+	string sql = "UPDATE " + CurrentLangTable + " SET " + CurLangField + "="+to_string(id)+";";
 	sqlite3* DB = 0;
 	if (!sqlite3_open16(DBname.c_str(), &DB))
 	{
@@ -101,7 +105,7 @@ wstring* LanguagesManager::getCurrentLanguage()
 			return nullptr;
 		}
 	}
-	const string sql = string("SELECT * FROM " + CurrentLangTable);
+	const string sql = string("SELECT " + Properties::LOCAL_LANG_FIELD + " FROM " + LangsTableName + " INNER JOIN "+ CurrentLangTable +" ON "+ LangsTableName+".[Id]="+ CurrentLangTable+".["+CurLangField+"];");
 	sqlite3* DB = 0;
 	if (sqlite3_open16(DBname.c_str(), &DB))
 	{
@@ -115,8 +119,8 @@ wstring* LanguagesManager::getCurrentLanguage()
 			if (sqlite3_step(stmt) == SQLITE_ROW)
 			{
 				const unsigned char* lang = sqlite3_column_text(stmt, 0);
-				String langStr = reinterpret_cast<char*>(const_cast<unsigned char*>(lang));
-				answer=new wstring(langStr.toWideCharPointer());
+				String langStr = string(reinterpret_cast<char*>(const_cast<unsigned char*>(lang)));
+				answer= new wstring(langStr.toWideCharPointer());
 				sqlite3_finalize(stmt);
 			}
 		}

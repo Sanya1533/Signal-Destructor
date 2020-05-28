@@ -36,9 +36,9 @@ public:
 
     Slider* getSlider();
 
-    void setLabelText(String text);
+    void setText(String text);
 
-    void setLabelFont(Font font);
+    void setFont(Font font);
 
     void setSliderStyle(Slider::SliderStyle sliderStyle);
 

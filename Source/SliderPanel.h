@@ -51,7 +51,7 @@ public:
 
 	Value getActive();
 
-	LabeledSlider* getChildWithTitle(String title);
+	Component* getChildWithName(String title);
 
 private:
 	Label* title;
