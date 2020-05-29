@@ -9,7 +9,7 @@ HumCreator::HumCreator(double frequency, double duration, double volume, double 
 	this->randomFactor.setValue(randomFactor);
 }
 
-HumCreator::HumCreator(Value frequency, Value duration, Value volume, Value randomFactor, Value isActive) :EffectCreator(isActive)
+HumCreator::HumCreator(Value frequency, Value duration, Value volume, Value randomFactor, Value isActive):EffectCreator(isActive)
 {
 	this->frequency.referTo(frequency);
 	this->duration.referTo(duration);

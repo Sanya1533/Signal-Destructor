@@ -1,15 +1,6 @@
-/*
-  ==============================================================================
-
-	This file was auto-generated!
-
-	It contains the basic framework code for a JUCE plugin processor.
-
-  ==============================================================================
-*/
-
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "LanguagesManager.h"
 
 //==============================================================================
 YearprojectAudioProcessor::YearprojectAudioProcessor()
@@ -24,8 +15,25 @@ YearprojectAudioProcessor::YearprojectAudioProcessor()
 	)
 #endif
 	, parameters(*this, nullptr)
-{
-	parameters.createAndAddParameter("1", "1", "1", juce::NormalisableRange<float>(0.0f, 1.0f), 0, nullptr, nullptr);
+{ 
+	using Prop= LanguagesManager::Properties;
+	addParameter(Prop::INTERRUPTS + "->" + Prop::FREQUENCY, 0, 1, 0.001, 0);
+	addParameter(Prop::INTERRUPTS + "->" + Prop::DURATION, 0, 1, 0.001, 0);
+	addParameter(Prop::INTERRUPTS + "->" + Prop::RANDOM_FACTOR, 0, 100, 1, 0);
+	addParameter(Prop::NOISE + "->" + Prop::FREQUENCY, 0, 1, 0.001, 0);
+	addParameter(Prop::NOISE+ "->" + Prop::DURATION, 0, 1, 0.001, 0);
+	addParameter(Prop::NOISE + "->" + Prop::VOLUME, 0, 100, 0.01, 0);
+	addParameter(Prop::NOISE + "->" + Prop::RANDOM_FACTOR, 0, 100, 1, 0);
+	addParameter(Prop::CRACKLING + "->" + Prop::FREQUENCY, 0, 1, 0.001, 0);
+	addParameter(Prop::CRACKLING + "->" + Prop::DURATION, 0, 1, 0.001, 0);
+	addParameter(Prop::CRACKLING + "->" + Prop::VOLUME, 0, 100, 0.01, 0);
+	addParameter(Prop::CRACKLING + "->" + Prop::RANDOM_FACTOR, 0, 100, 1, 0);
+	addParameter(Prop::CRACKLING + "->" + Prop::DENSITY, 0, 44099, 1, 0);
+	addParameter(Prop::CRACKLING + "->" + Prop::CLIPPING_FACTOR, 0, 300, 0.1, 0);
+	addParameter(Prop::BUZZING + "->" + Prop::FREQUENCY, 0, 1, 0.001, 0);
+	addParameter(Prop::BUZZING + "->" + Prop::DURATION, 0, 1, 0.001, 0);
+	addParameter(Prop::BUZZING + "->" + Prop::VOLUME, 0, 100, 0.01, 0);
+	addParameter(Prop::BUZZING + "->" + Prop::RANDOM_FACTOR, 0, 100, 1, 0);
 	parameters.state = ValueTree("savedParams");
 }
 
@@ -148,9 +156,9 @@ void YearprojectAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuf
 		{
 			buffer.setSample(channel, sample, useEffects(buffer.getSample(channel, sample)));
 		}
-		for (int i = 0; i < effects.size(); i++)
+		for (EffectCreator* effect:effects)
 		{
-			effects[i]->moveTime();
+			effect->moveTime();
 		}
 	}
 }
@@ -203,11 +211,28 @@ Array<EffectCreator*> YearprojectAudioProcessor::getEffects()
 	return effects;
 }
 
+void YearprojectAudioProcessor::addParameter(String id, String name, String label, Slider* sourceSlider)
+{
+	slidersConnections.add(new AudioProcessorValueTreeState::SliderAttachment(parameters,id,*sourceSlider));
+}
+
+void YearprojectAudioProcessor::addParameter(String id, String name, String label, TextButton* sourceButton)
+{
+	NormalisableRange<float> range(0,1,1);
+	parameters.createAndAddParameter(id, name, label, range, sourceButton->getToggleState(), nullptr, nullptr, false, true, false, AudioProcessorParameter::genericParameter, true);
+	buttonsConnections.add(new AudioProcessorValueTreeState::ButtonAttachment(parameters, id, *sourceButton));
+}
+
+void YearprojectAudioProcessor::addParameter(String name, float minValue, float maxValue, float interval, float curValue)
+{
+	parameters.createAndAddParameter(name, name, name, NormalisableRange<float>(minValue,maxValue,interval),1, nullptr, nullptr);
+}
+
 float YearprojectAudioProcessor::useEffects(float signal)
 {
-	for (int i = 0; i < effects.size(); i++)
+	for (EffectCreator *effect:effects)
 	{
-		signal = effects[i]->createEffect(signal);
+		signal = effect->createEffect(signal);
 	}
 	return signal;
 }
@@ -216,5 +241,5 @@ float YearprojectAudioProcessor::useEffects(float signal)
 // This creates new instances of the plugin..
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-	return new YearprojectAudioProcessor();
+	return new YearprojectAudioProcessor();;
 }

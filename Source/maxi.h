@@ -39,11 +39,6 @@ public:
     static int sampleRate;
     static int channels;
     static int bufferSize;
-    static void setup(int initSampleRate, int initChannels, int initBufferSize) {
-        maxiSettings::sampleRate = initSampleRate;
-        maxiSettings::channels = initChannels;
-        maxiSettings::bufferSize = initBufferSize;
-    }
 };
 
 
