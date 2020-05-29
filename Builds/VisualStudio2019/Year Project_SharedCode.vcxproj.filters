@@ -187,6 +187,12 @@
     <Filter Include="JUCE Modules\juce_audio_processors\format_types">
       <UniqueIdentifier>{6B7BE34D-1BC1-C7B9-111F-C55CA8250943}</UniqueIdentifier>
     </Filter>
+    <Filter Include="JUCE Modules\juce_audio_processors\processors\Новая папка">
+      <UniqueIdentifier>{AEC6E121-544B-CC77-56FE-70670CF015C4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_audio_processors\processors\Новая папка (2)">
+      <UniqueIdentifier>{DA45485A-26DF-05BB-4CDF-65803902C89D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="JUCE Modules\juce_audio_processors\processors">
       <UniqueIdentifier>{9B6B6D54-D378-80C2-8CC9-D1D8FB44C2A8}</UniqueIdentifier>
     </Filter>
@@ -518,6 +524,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\SnapCreator.cpp">
       <Filter>Year Project\EffectsCreators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\maxi.cpp">
+      <Filter>Year Project\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
       <Filter>Year Project\Source</Filter>
@@ -2458,7 +2467,6 @@
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\..\Program Files (x86)\SQLite3\sqlite3.c" />
-    <ClCompile Include="..\..\Source\maxi.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\LanguagesManager.h">
@@ -2484,6 +2492,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\SnapCreator.h">
       <Filter>Year Project\EffectsCreators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\maxi.h">
+      <Filter>Year Project\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
       <Filter>Year Project\Source</Filter>
@@ -3309,6 +3320,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\format_types\juce_VSTPluginFormat.h">
       <Filter>JUCE Modules\juce_audio_processors\format_types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\processors\Новая папка\juce_AudioProcessorEditor.h">
+      <Filter>JUCE Modules\juce_audio_processors\processors\Новая папка</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\processors\Новая папка (2)\juce_AudioProcessor.h">
+      <Filter>JUCE Modules\juce_audio_processors\processors\Новая папка (2)</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\processors\juce_AudioPluginInstance.h">
       <Filter>JUCE Modules\juce_audio_processors\processors</Filter>
@@ -4825,7 +4842,6 @@
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h">
       <Filter>JUCE Library Code</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\maxi.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt">

@@ -1,4 +1,3 @@
-#pragma once
 #include "EffectCreator.h"
 #include "maximilian.h"
 
@@ -7,7 +6,7 @@ class HumCreator : public EffectCreator
 public:
 	HumCreator(double frequency = 0.0, double duration = 0.0, double volume = 0.0, double randomFactor=0.0, bool isActive = true);
 
-	HumCreator(Value frequency = Value(0.0), Value duration = Value(0.0), Value volume = Value(0.0), Value randomFactor = Value(0.0), Value isActive = Value(true));
+	HumCreator(Value frequency = Value(0.0), Value duration = Value(0.0), Value volume = Value(0.0), Value randomFactor=Value(0.0), Value isActive = Value(true));
 
 	float createEffect(float signal) override;
 
@@ -42,7 +41,7 @@ private:
 
 	float previous = 0.0f;
 
-	int counter = -1;
+	int counter =-1;
 
 	maxiOsc maxiLFO = maxiOsc();
 };

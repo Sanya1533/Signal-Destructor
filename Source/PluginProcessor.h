@@ -1,7 +1,21 @@
+/*
+  ==============================================================================
+
+    This file was auto-generated!
+
+    It contains the basic framework code for a JUCE plugin processor.
+
+  ==============================================================================
+*/
+
 #pragma once
+
 #include <JuceHeader.h>
 #include "EffectCreator.h"
 
+//==============================================================================
+/**
+*/
 class YearprojectAudioProcessor : public AudioProcessor
 {
 public:
@@ -45,17 +59,10 @@ public:
     void addEffect(EffectCreator* newEffect);
     Array<EffectCreator*> getEffects();
 
-    void addParameter(String id, String name, String label, Slider* sourceSlider);
-    void addParameter(String id, String name, String label, TextButton* sourceButton);
-private:
     AudioProcessorValueTreeState parameters;
 
-    Array<ScopedPointer<AudioProcessorValueTreeState::SliderAttachment>> slidersConnections;
-    Array<ScopedPointer<AudioProcessorValueTreeState::ButtonAttachment>> buttonsConnections;
-
+private:
     Array<EffectCreator*> effects;
-
-    void addParameter(String name, float minValue, float maxValue, float interval, float curValue);
 
     float useEffects(float signal);
     //==============================================================================
