@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\..\..\Program Files (x86)\SQLite3\sqlite3.c" />
     <ClCompile Include="..\..\Source\LanguagesManager.cpp" />
+    <ClCompile Include="..\..\Source\maxi.cpp" />
     <ClCompile Include="..\..\Source\SliderPanel.cpp" />
     <ClCompile Include="..\..\Source\LabeledSlider.cpp" />
     <ClCompile Include="..\..\Source\EffectCreator.cpp" />
@@ -138,7 +139,6 @@
     <ClCompile Include="..\..\Source\InterruptsCreator.cpp" />
     <ClCompile Include="..\..\Source\NoiseCreator.cpp" />
     <ClCompile Include="..\..\Source\SnapCreator.cpp" />
-    <ClCompile Include="..\..\Source\maxi.cpp" />
     <ClCompile Include="..\..\Source\PluginProcessor.cpp" />
     <ClCompile Include="..\..\Source\PluginEditor.cpp" />
     <ClCompile Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
@@ -2046,6 +2046,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\LanguagesManager.h" />
+    <ClInclude Include="..\..\Source\maxi.h" />
     <ClInclude Include="..\..\Source\SliderPanel.h" />
     <ClInclude Include="..\..\Source\LabeledSlider.h" />
     <ClInclude Include="..\..\Source\EffectCreator.h" />
@@ -2053,7 +2054,6 @@
     <ClInclude Include="..\..\Source\InterruptsCreator.h" />
     <ClInclude Include="..\..\Source\NoiseCreator.h" />
     <ClInclude Include="..\..\Source\SnapCreator.h" />
-    <ClInclude Include="..\..\Source\maxi.h" />
     <ClInclude Include="..\..\Source\PluginProcessor.h" />
     <ClInclude Include="..\..\Source\PluginEditor.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h" />
@@ -2329,8 +2329,6 @@
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\format_types\juce_VSTCommon.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\format_types\juce_VSTMidiEventList.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\format_types\juce_VSTPluginFormat.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\processors\Новая папка\juce_AudioProcessorEditor.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\processors\Новая папка (2)\juce_AudioProcessor.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\processors\juce_AudioPluginInstance.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\processors\juce_AudioProcessor.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\processors\juce_AudioProcessorEditor.h" />

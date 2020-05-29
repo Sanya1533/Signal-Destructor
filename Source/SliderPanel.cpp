@@ -119,7 +119,7 @@ Value SliderPanel::getActive()
 	return active;
 }
 
-Component* SliderPanel::getChildWithName(String title)
+Component* SliderPanel::getChildByName(String title)
 {
 	Array<Component*> children = this->getChildren();
 	for (auto child:children)

@@ -51,7 +51,7 @@ public:
 
 	Value getActive();
 
-	Component* getChildWithName(String title);
+	Component* getChildByName(String title);
 
 private:
 	Label* title;
