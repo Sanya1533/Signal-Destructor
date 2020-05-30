@@ -8,7 +8,7 @@
 using namespace juce;
 
 class YearprojectAudioProcessorEditor : public AudioProcessorEditor, 
-    public SliderPanel::MouseListener,public ComboBox::Listener, public TextEditor::Listener
+    public SliderPanel::MouseListener,public ComboBox::Listener, public KeyListener
 {
 public:
     YearprojectAudioProcessorEditor(YearprojectAudioProcessor& p);
@@ -22,7 +22,7 @@ public:
 
     void comboBoxChanged(ComboBox* changedComboBox) override;
 
-    void textEditorTextChanged(TextEditor& editor) override;
+    bool keyPressed(const KeyPress& key, Component* originatingComponent) override;
 private:
     vector<SliderPanel*> panels;
 
@@ -31,6 +31,8 @@ private:
     ComboBox* languages;
 
     LabeledSlider* getParametredSlider(String text,String* name=nullptr, double minValue = 0, double maxValue = 1, double interval = 0.001, LabeledSlider::LabelPosition labelPosition = LabeledSlider::LabelAbove, Slider::TextEntryBoxPosition boxPosition = Slider::TextBoxBelow, Slider::SliderStyle style = Slider::Rotary, double labelPercentage = 0.15);
+
+    String modifyText(string text);
 
     void setListenersToTextEditors();
 

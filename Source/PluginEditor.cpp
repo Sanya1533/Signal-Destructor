@@ -295,7 +295,7 @@ void YearprojectAudioProcessorEditor::setListenersToTextEditors()
 						{
 							if (label->getCurrentTextEditor() != nullptr)
 							{
-								label->getCurrentTextEditor()->addListener(this);
+								label->getCurrentTextEditor()->addKeyListener(this);
 							}
 						};
 					}
@@ -305,10 +305,65 @@ void YearprojectAudioProcessorEditor::setListenersToTextEditors()
 	}
 }
 
-void YearprojectAudioProcessorEditor::textEditorTextChanged(TextEditor& editor)
+bool YearprojectAudioProcessorEditor::keyPressed(const KeyPress& key, Component* originatingComponent)
 {
-	String text = editor.getText();
-	String newText;
+	if (auto editor=dynamic_cast<TextEditor*>(originatingComponent))
+	{ 
+		if (key.getTextDescription()=="ctrl + V")
+		{
+			if (OpenClipboard(0))
+			{
+				HANDLE hData = GetClipboardData(CF_TEXT);
+				String chBuffer = (char*)GlobalLock(hData);
+				GlobalUnlock(hData);
+				CloseClipboard();
+				String text = editor->getText().replaceSection(editor->getHighlightedRegion().getStart(), editor->getHighlightedRegion().getEnd(), chBuffer);
+				text = modifyText(text.toStdString());
+				if (text.length() > 0)
+				{
+					if (editor->getHighlightedText().length() > 0)
+						editor->deleteBackwards(false);
+					int index = editor->getCaretPosition();
+					editor->setText(text);
+					editor->moveCaretRight(false, false);
+				}
+			}
+			return true;
+		}
+		if (key.getModifiers().isAnyModifierKeyDown()||key.isKeyCode(KeyPress::insertKey))
+			return false;
+		if (key.isKeyCode(13))//Enter
+			return false;
+		if (key.isKeyCode(KeyPress::leftKey) || key.isKeyCode(KeyPress::rightKey) || key.isKeyCode(KeyPress::upKey) || key.isKeyCode(KeyPress::downKey))
+			return false;
+		if (key.isKeyCode(KeyPress::deleteKey) || key.isKeyCode(KeyPress::backspaceKey))
+			return false;
+		if (key.getTextCharacter() >= '0' && key.getTextCharacter() <= '9')
+		{
+			return false;
+		} 
+		if (key.getTextCharacter() == '.' || key.getTextCharacter() == ',')
+		{
+			String text = editor->getText().replaceSection(editor->getHighlightedRegion().getStart(), editor->getHighlightedRegion().getEnd(),".");
+			text = modifyText(text.toStdString());
+			if (text.length()>0)
+			{
+				if (editor->getHighlightedText().length() > 0)
+					editor->deleteBackwards(false);
+				int index = editor->getCaretPosition();
+				editor->setText(text);
+				editor->moveCaretRight(false, false);
+			}
+			return true;
+		}
+		return true;
+	}
+	return false;
+}
+
+String YearprojectAudioProcessorEditor::modifyText(string text)
+{
+	string newText;
 	bool separator = false;
 	for (int i = 0; i < text.length(); i++)
 	{
@@ -324,9 +379,19 @@ void YearprojectAudioProcessorEditor::textEditorTextChanged(TextEditor& editor)
 			}
 			else
 			{
-				newText += text[i];
+				if (separator|| newText.length() == 0|| newText[0] != '0')
+				{
+					newText += text[i];
+				}
+				else
+				{
+					if (text[i] != '0')
+					{
+						newText = text[i];
+					}
+				}
 			}
 		}
 	}
-	editor.setText(newText,false);
+	return newText;
 }
