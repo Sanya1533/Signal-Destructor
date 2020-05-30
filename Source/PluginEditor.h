@@ -8,7 +8,7 @@
 using namespace juce;
 
 class YearprojectAudioProcessorEditor : public AudioProcessorEditor, 
-    public SliderPanel::MouseListener,public ComboBox::Listener,public KeyListener
+    public SliderPanel::MouseListener,public ComboBox::Listener, public TextEditor::Listener
 {
 public:
     YearprojectAudioProcessorEditor(YearprojectAudioProcessor& p);
@@ -22,16 +22,17 @@ public:
 
     void comboBoxChanged(ComboBox* changedComboBox) override;
 
-    bool keyPressed(const KeyPress& key, Component* originatingComponent) override;
-
+    void textEditorTextChanged(TextEditor& editor) override;
 private:
+    vector<SliderPanel*> panels;
+
     YearprojectAudioProcessor& processor;
 
     ComboBox* languages;
 
-    vector<SliderPanel*> panels;
-
     LabeledSlider* getParametredSlider(String text,String* name=nullptr, double minValue = 0, double maxValue = 1, double interval = 0.001, LabeledSlider::LabelPosition labelPosition = LabeledSlider::LabelAbove, Slider::TextEntryBoxPosition boxPosition = Slider::TextBoxBelow, Slider::SliderStyle style = Slider::Rotary, double labelPercentage = 0.15);
+
+    void setListenersToTextEditors();
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(YearprojectAudioProcessorEditor)
 };

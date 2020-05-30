@@ -9,6 +9,7 @@
 #include <JuceHeader.h>
 #include <vector>
 #include <fstream>
+#include <typeinfo>
 
 //==============================================================================
 YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor(YearprojectAudioProcessor& p)
@@ -30,7 +31,6 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor(YearprojectAudi
 	interruptsSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::FREQUENCY));
 	interruptsSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::DURATION));
 	interruptsSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::RANDOM_FACTOR, nullptr, 0, 100, 1));
-
 
 	p.addEffect(new InterruptsCreator(
 		((LabeledSlider*)interruptsSliderPanel->getChildByName(LanguagesManager::Properties::FREQUENCY))->getSlider()->getValueObject(),
@@ -134,6 +134,9 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor(YearprojectAudi
 	panels.push_back(noiseSliderPanel);
 	panels.push_back(snapSliderPanel);
 	panels.push_back(humSliderPanel);
+
+	setListenersToTextEditors();
+
 	for (const SliderPanel* panel : panels)
 	{
 		for (Component* comp : panel->getChildren())
@@ -185,8 +188,7 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor(YearprojectAudi
 	addAndMakeVisible(humSliderPanel);
 	addAndMakeVisible(languages);
 
-	setSize(900, 600);
-
+	setSize(900, 600);	
 }
 
 YearprojectAudioProcessorEditor::~YearprojectAudioProcessorEditor()
@@ -277,7 +279,54 @@ LabeledSlider* YearprojectAudioProcessorEditor::getParametredSlider(String text,
 	return labeledSlider;
 }
 
-bool YearprojectAudioProcessorEditor::keyPressed(const KeyPress& key, Component* originatingComponent)
+void YearprojectAudioProcessorEditor::setListenersToTextEditors()
 {
-	return false;
+	for (auto panel : panels)
+	{
+		for (auto child : panel->getChildren())
+		{
+			if (auto sliderPanel = dynamic_cast<LabeledSlider*>(child))
+			{
+				for (auto sliderChild : sliderPanel->getSlider()->getChildren())
+				{
+					if (auto label = dynamic_cast<Label*>(sliderChild))
+					{
+						label->onEditorShow = [this, label]()
+						{
+							if (label->getCurrentTextEditor() != nullptr)
+							{
+								label->getCurrentTextEditor()->addListener(this);
+							}
+						};
+					}
+				}
+			}
+		}
+	}
+}
+
+void YearprojectAudioProcessorEditor::textEditorTextChanged(TextEditor& editor)
+{
+	String text = editor.getText();
+	String newText;
+	bool separator = false;
+	for (int i = 0; i < text.length(); i++)
+	{
+		if (text[i] >= '0' && text[i] <= '9' || text[i] == '.' || text[i] == ',')
+		{
+			if (text[i] == '.' || text[i] == ',')
+			{
+				if (!separator &&newText.length() > 0)
+				{
+					newText += '.';
+					separator = true;
+				}
+			}
+			else
+			{
+				newText += text[i];
+			}
+		}
+	}
+	editor.setText(newText,false);
 }
