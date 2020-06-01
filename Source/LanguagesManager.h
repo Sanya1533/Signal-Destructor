@@ -24,6 +24,13 @@ public:
 		static const string CLIPPING_FACTOR;
 		static const string DENSITY;
 		static const string LOCAL_LANG_FIELD;
+		static const string MUTE;
+		static const string UNMUTE;
+		static const string DEFAULT;
+		static const string ACTIVE;
+		static const string TURN_OFF;
+		static const string TURN_ON;
+		static const string ZEROIZE;
 	};
 
 	static vector<wstring> getProperty(string property, wstring* localLanguage = nullptr , bool order = false);

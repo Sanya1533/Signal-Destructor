@@ -19,7 +19,7 @@ NoiseCreator::NoiseCreator(Value frequency, Value duration, Value volume, Value 
 float NoiseCreator::createEffect(float signal)
 {
 	if (!(bool)isActive.getValue())
-		return signal;
+		return 0.0f;
 	if (play)
 	{
 		return rnd.nextFloat() * (float)volume.getValue() / 100.0;

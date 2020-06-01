@@ -129,9 +129,8 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\..\Program Files (x86)\SQLite3\sqlite3.c" />
+    <ClCompile Include="..\..\Source\TextValueButton.cpp" />
     <ClCompile Include="..\..\Source\LanguagesManager.cpp" />
-    <ClCompile Include="..\..\Source\maxi.cpp" />
     <ClCompile Include="..\..\Source\SliderPanel.cpp" />
     <ClCompile Include="..\..\Source\LabeledSlider.cpp" />
     <ClCompile Include="..\..\Source\EffectCreator.cpp" />
@@ -141,6 +140,7 @@
     <ClCompile Include="..\..\Source\SnapCreator.cpp" />
     <ClCompile Include="..\..\Source\PluginProcessor.cpp" />
     <ClCompile Include="..\..\Source\PluginEditor.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\..\Program Files (x86)\SQLite3\sqlite3.c" />
     <ClCompile Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -2045,8 +2045,8 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_opengl.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\TextValueButton.h" />
     <ClInclude Include="..\..\Source\LanguagesManager.h" />
-    <ClInclude Include="..\..\Source\maxi.h" />
     <ClInclude Include="..\..\Source\SliderPanel.h" />
     <ClInclude Include="..\..\Source\LabeledSlider.h" />
     <ClInclude Include="..\..\Source\EffectCreator.h" />
@@ -2329,6 +2329,8 @@
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\format_types\juce_VSTCommon.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\format_types\juce_VSTMidiEventList.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\format_types\juce_VSTPluginFormat.h" />
+    <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\processors\Новая папка\juce_AudioProcessorEditor.h" />
+    <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\processors\Новая папка (2)\juce_AudioProcessor.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\processors\juce_AudioPluginInstance.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\processors\juce_AudioProcessor.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\processors\juce_AudioProcessorEditor.h" />
@@ -2580,6 +2582,7 @@
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_graphics\colour\juce_Colours.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_graphics\colour\juce_FillType.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_graphics\colour\juce_PixelFormats.h" />
+    <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_graphics\contexts\Новая папка\juce_GraphicsContext.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_graphics\contexts\juce_GraphicsContext.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_graphics\contexts\juce_LowLevelGraphicsContext.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_graphics\contexts\juce_LowLevelGraphicsPostScriptRenderer.h" />
@@ -2587,6 +2590,7 @@
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_graphics\effects\juce_DropShadowEffect.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_graphics\effects\juce_GlowEffect.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_graphics\effects\juce_ImageEffectFilter.h" />
+    <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_graphics\fonts\Новая папка\juce_Font.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_graphics\fonts\juce_AttributedString.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_graphics\fonts\juce_CustomTypeface.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_graphics\fonts\juce_Font.h" />
@@ -2649,6 +2653,7 @@
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\commands\juce_ApplicationCommandManager.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\commands\juce_ApplicationCommandTarget.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\commands\juce_KeyPressMappingSet.h" />
+    <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\components\Новая папка\juce_Component.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\components\juce_CachedComponentImage.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\components\juce_Component.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\components\juce_ComponentListener.h" />
@@ -2683,6 +2688,7 @@
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\keyboard\juce_SystemClipboard.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\keyboard\juce_TextEditorKeyMapper.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\keyboard\juce_TextInputTarget.h" />
+    <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\layout\Новая папка\juce_FlexBox.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\layout\juce_AnimatedPosition.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\layout\juce_AnimatedPositionBehaviours.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\layout\juce_ComponentAnimator.h" />
@@ -2719,6 +2725,8 @@
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\misc\juce_BubbleComponent.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\misc\juce_DropShadower.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\misc\juce_JUCESplashScreen.h" />
+    <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\mouse\Новая папка\juce_MouseEvent.h" />
+    <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\mouse\Новая папка (2)\juce_MouseListener.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\mouse\juce_ComponentDragger.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\mouse\juce_DragAndDropContainer.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_gui_basics\mouse\juce_DragAndDropTarget.h" />
@@ -2828,7 +2836,6 @@
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt" />
     <None Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_formats\codecs\oggvorbis\Ogg Vorbis Licence.txt" />
     <None Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_processors\format_types\VST3_SDK\base\LICENSE.txt" />
@@ -2842,9 +2849,7 @@
     <None Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_core\native\java\README.txt" />
     <None Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_graphics\image_formats\jpglib\changes to libjpeg for JUCE.txt" />
     <None Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_graphics\image_formats\pnglib\libpng_readme.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="text.txt" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

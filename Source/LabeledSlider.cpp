@@ -122,15 +122,15 @@ void LabeledSlider::setInterval(double newInterval)
 	slider->setRange(slider->getMinValue(), slider->getMaxValue(), newInterval);
 }
 
-void LabeledSlider::setRange(double newMinValue, double newMaxValue, double newInterval)
+void LabeledSlider::setRange(double* newMinValue, double* newMaxValue, double* newInterval)
 {
-	if (newMinValue == NULL)
-		newMinValue = slider->getMinValue();
-	if (newMaxValue == NULL)
-		newMaxValue = slider->getMaxValue();
-	if (newInterval == NULL)
-		newInterval = slider->getInterval();
-	slider->setRange(newMinValue,newMaxValue,newInterval);
+	if (newMinValue == nullptr)
+		newMinValue = new double(slider->getMinValue());
+	if (newMaxValue == nullptr)
+		newMaxValue = new double(slider->getMaxValue());
+	if (newInterval == nullptr)
+		newInterval = new double(slider->getInterval());
+	slider->setRange(*newMinValue,*newMaxValue,*newInterval);
 }
 
 bool LabeledSlider::isSliderRotary()

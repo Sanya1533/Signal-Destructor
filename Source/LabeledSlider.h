@@ -50,7 +50,7 @@ public:
 
     void setInterval(double newInterval);
 
-    void setRange(double newMinValue=NULL, double newMaxValue=NULL, double newInterval=NULL);
+    void setRange(double* newMinValue=nullptr, double* newMaxValue=nullptr, double* newInterval=nullptr);
 
 private:
     Label* label;

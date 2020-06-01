@@ -7,11 +7,20 @@ using namespace std;
 
 class SliderPanel :
 	public Component,
-	public MouseListener
+	public Value::Listener
 {
 public:
 	SliderPanel();
 	~SliderPanel();
+
+	enum ChildPosition
+	{
+		inFlexBox,
+		upperLeftCorner,
+		upperRightCorner,
+		lowerLeftCorner,
+		lowerRightCorner
+	};
 
 	void paint(Graphics&) override;
 
@@ -33,25 +42,17 @@ public:
 
 	FlexBox* getFlexBox();
 
-	void addComponent(LabeledSlider* comp);
+	void addComponent(Component* comp, ChildPosition position=ChildPosition::inFlexBox);
 
 	String getTitle();
 
-	void mouseDoubleClick(const MouseEvent& event) override;
-
-	class  MouseListener
-	{
-	public:
-		void virtual mouseDoubleClick(SliderPanel* panel, const MouseEvent& event);
-	};
-
-	void addListener(SliderPanel::MouseListener* listener);
-
-	void setActive(bool active);
-
-	Value getActive();
-
 	Component* getChildByName(String title);
+
+	float getCornerHeightFactor();
+
+	void setCornerHeightFactor(float newFactor);
+
+	void setActive(Value active);
 
 private:
 	Label* title;
@@ -68,5 +69,10 @@ private:
 
 	FlexBox* flexBox;
 
-	vector<SliderPanel::MouseListener*> listeners;// = vector<SliderPanel::MouseListener*>();
+	vector<pair<Component*, ChildPosition>> cornersComponents;
+	
+	float cornersHeightFactor = -1;
+
+	// Óíàñëåäîâàíî ÷åðåç Listener
+	virtual void valueChanged(Value& value) override;
 };
