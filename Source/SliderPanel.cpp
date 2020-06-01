@@ -3,6 +3,8 @@
 
 SliderPanel::SliderPanel()
 {
+	active.addListener(this);
+
 	title = new Label();
 	title->setBounds(title->getX(), title->getY(), 1000, 15);
 	this->title->setBorderSize(BorderSize<int>(0));
@@ -29,6 +31,56 @@ void SliderPanel::paint(Graphics& g)
 void SliderPanel::resized()
 {
 	this->title->setBounds(borderPosintion.getX() + borderWidth + 3, borderPosintion.getY() + borderWidth + 3, title->getWidth(), title->getHeight());
+	for (pair<Component*, ChildPosition> comp : cornersComponents)
+	{
+		if (auto button = dynamic_cast<TextButton*>(comp.first))
+		{
+			button->changeWidthToFitText();
+		}
+		float width = 0;
+		for (pair<Component*, ChildPosition> comp2 : cornersComponents)
+		{
+			if (comp == comp2)
+				break;
+			if (comp.second == comp2.second)
+			{
+				switch (comp.second)
+				{
+				case ChildPosition::lowerLeftCorner:
+					width = comp2.first->getWidth() + 3;
+					break;
+				case ChildPosition::lowerRightCorner:
+					width = -comp2.first->getWidth() - 3;
+					break;
+				case ChildPosition::upperLeftCorner:
+					width = comp2.first->getWidth() + 3;
+					break;
+				case ChildPosition::upperRightCorner:
+					width = -comp2.first->getWidth() - 3;
+					break;
+				}
+			}
+		}
+		float height = cornersHeightFactor >= 0 ? getHeight() * cornersHeightFactor : comp.first->getHeight();
+		switch (comp.second)
+		{
+		case ChildPosition::lowerLeftCorner:
+			comp.first->setBounds(borderPosintion.getX() + borderWidth + 3+width, getHeight()-borderPosintion.getY() - borderWidth - 3 - height, comp.first->getWidth(), height);
+			break;
+		case ChildPosition::lowerRightCorner:
+			comp.first->setBounds(getWidth()-borderPosintion.getX() - borderWidth - 3-comp.first->getWidth() + width, getHeight() - borderPosintion.getY() - borderWidth - 3 - height, comp.first->getWidth(), height);
+			break;
+		case ChildPosition::upperLeftCorner:
+			comp.first->setBounds(borderPosintion.getX() + borderWidth + 3 + width, borderPosintion.getY() + borderWidth + 3, comp.first->getWidth(), height);
+			break;
+		case ChildPosition::upperRightCorner:
+			comp.first->setBounds(getWidth()- borderPosintion.getX() - borderWidth - 3-comp.first->getWidth() + width, borderPosintion.getY() +borderWidth + 3, comp.first->getWidth(), height);
+			break;
+		default:
+			comp.first->setBounds(-comp.first->getWidth() - 1, -comp.first->getHeight() - 1, comp.first->getWidth(), comp.first->getHeight());
+			break;
+		}
+	}
 	this->flexBox->performLayout(Rectangle<int>(Point<int>(this->title->getX(), this->title->getBottom() + 3), Point<int>(getWidth() - borderPosintion.getX(), getHeight() - borderPosintion.getY() - 3 - borderWidth)));
 }
 
@@ -86,37 +138,23 @@ FlexBox* SliderPanel::getFlexBox()
 	return flexBox;
 }
 
-void SliderPanel::addComponent(LabeledSlider* comp)
+void SliderPanel::addComponent(Component* comp, ChildPosition position)
 {
-	comp->addMouseListener(this, true);
-	flexBox->items.add(FlexItem(*comp).withMinWidth(50.0f).withMinHeight(50.0f).withFlex(2));
+	if (position == ChildPosition::inFlexBox)
+	{
+		comp->addMouseListener(this, true);
+		flexBox->items.add(FlexItem(*comp).withMinWidth(50.0f).withMinHeight(50.0f).withFlex(2));
+	}
+	else
+	{
+		cornersComponents.push_back(make_pair(comp, position));
+	}
 	addAndMakeVisible(comp);
 }
 
 String SliderPanel::getTitle()
 {
 	return title->getText();
-}
-
-void SliderPanel::mouseDoubleClick(const MouseEvent& event)
-{
-	for (int i = 0; i < listeners.size(); i++)
-		listeners[i]->mouseDoubleClick(this, event);
-}
-
-void SliderPanel::addListener(SliderPanel::MouseListener* listener)
-{
-	listeners.push_back(listener);
-}
-
-void SliderPanel::setActive(bool active)
-{
-	this->active.setValue(active);
-}
-
-Value SliderPanel::getActive()
-{
-	return active;
 }
 
 Component* SliderPanel::getChildByName(String title)
@@ -138,6 +176,31 @@ Component* SliderPanel::getChildByName(String title)
 	return nullptr;
 }
 
-void SliderPanel::MouseListener::mouseDoubleClick(SliderPanel* panel, const MouseEvent& event)
+float SliderPanel::getCornerHeightFactor()
 {
+	return cornersHeightFactor;
+}
+
+void SliderPanel::setCornerHeightFactor(float newFactor)
+{
+	cornersHeightFactor = newFactor;
+}
+
+void SliderPanel::setActive(Value active)
+{
+	this->active.referTo(active);
+}
+
+void SliderPanel::valueChanged(Value& value)
+{
+	if ((bool)this->active.getValue())
+	{
+		this->setBackgroundColor(Colours::darkslateblue);
+		this->setBorderColour(Colours::grey);
+	}
+	else
+	{
+		this->setBackgroundColor(Colours::grey);
+		this->setBorderColour(Colours::lightgrey);
+	}
 }

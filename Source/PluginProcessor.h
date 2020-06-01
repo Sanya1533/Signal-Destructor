@@ -1,6 +1,7 @@
 #pragma once
 #include <JuceHeader.h>
 #include "EffectCreator.h"
+#include "TextValueButton.h"
 
 class YearprojectAudioProcessor : public AudioProcessor
 {
@@ -45,8 +46,8 @@ public:
     void addEffect(EffectCreator* newEffect);
     Array<EffectCreator*> getEffects();
 
-    void addParameter(String id, String name, String label, Slider* sourceSlider);
-    void addParameter(String id, String name, String label, TextButton* sourceButton);
+    void addParameter(String id, Slider* sourceSlider);
+    void addParameter(String id, TextValueButton* sourceButton);
 private:
     AudioProcessorValueTreeState parameters;
 

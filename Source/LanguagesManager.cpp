@@ -22,6 +22,13 @@ const string LanguagesManager::Properties::VOLUME = "Volume";
 const string LanguagesManager::Properties::CLIPPING_FACTOR = "Clipping";
 const string LanguagesManager::Properties::DENSITY = "Density";
 const string LanguagesManager::Properties::LOCAL_LANG_FIELD = "LocalLanguage";
+const string LanguagesManager::Properties::MUTE = "Mute";
+const string LanguagesManager::Properties::UNMUTE = "Unmute";
+const string LanguagesManager::Properties::TURN_OFF = "Turn off";
+const string LanguagesManager::Properties::TURN_ON = "Turn on";
+const string LanguagesManager::Properties::DEFAULT = "DefaultValue";
+const string LanguagesManager::Properties::ACTIVE = "Active";
+const string LanguagesManager::Properties::ZEROIZE = "Zeroize";
 
 vector<wstring> LanguagesManager::getProperty(string property, wstring *localLanguage, bool order)
 {

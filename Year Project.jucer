@@ -3,6 +3,12 @@
 <JUCERPROJECT id="RXEf86" name="Year Project" projectType="audioplug" jucerVersion="5.4.7"
               pluginFormats="buildVST">
   <MAINGROUP id="KNabTP" name="Year Project">
+    <GROUP id="{2421B96E-FE53-3D46-DA04-646407005106}" name="Buttons">
+      <FILE id="fe0Ay8" name="TextValueButton.cpp" compile="1" resource="0"
+            file="Source/TextValueButton.cpp"/>
+      <FILE id="WSKtRp" name="TextValueButton.h" compile="0" resource="0"
+            file="Source/TextValueButton.h"/>
+    </GROUP>
     <GROUP id="{8B6A05A5-DAE8-F43F-9D18-FC032E73812B}" name="Languages">
       <FILE id="u8p0zE" name="LanguagesManager.cpp" compile="1" resource="0"
             file="Source/LanguagesManager.cpp"/>
@@ -33,9 +39,6 @@
       <FILE id="nLHZCX" name="SnapCreator.h" compile="0" resource="0" file="Source/SnapCreator.h"/>
     </GROUP>
     <GROUP id="{569E8AE0-343D-0DD9-1705-8ACE87E55647}" name="Source">
-      <FILE id="njUQ9J" name="Text.txt" compile="1" resource="0" file="Builds/VisualStudio2019/Text.txt"/>
-      <FILE id="XO0PVH" name="maxi.cpp" compile="1" resource="0" file="Source/maxi.cpp"/>
-      <FILE id="bwbfuI" name="maxi.h" compile="0" resource="0" file="Source/maxi.h"/>
       <FILE id="ktEF8B" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="vfxMYs" name="PluginProcessor.h" compile="0" resource="0"

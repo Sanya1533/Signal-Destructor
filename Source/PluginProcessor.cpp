@@ -17,7 +17,7 @@ YearprojectAudioProcessor::YearprojectAudioProcessor()
 	, parameters(*this, nullptr)
 { 
 	using Prop= LanguagesManager::Properties;
-	addParameter(Prop::INTERRUPTS + "->" + Prop::FREQUENCY, 0, 1, 0.001, 0);
+	addParameter(Prop::INTERRUPTS + "->" + Prop::FREQUENCY, 0, 1, 0.001, -1);
 	addParameter(Prop::INTERRUPTS + "->" + Prop::DURATION, 0, 1, 0.001, 0);
 	addParameter(Prop::INTERRUPTS + "->" + Prop::RANDOM_FACTOR, 0, 100, 1, 0);
 	addParameter(Prop::NOISE + "->" + Prop::FREQUENCY, 0, 1, 0.001, 0);
@@ -34,6 +34,10 @@ YearprojectAudioProcessor::YearprojectAudioProcessor()
 	addParameter(Prop::BUZZING + "->" + Prop::DURATION, 0, 1, 0.001, 0);
 	addParameter(Prop::BUZZING + "->" + Prop::VOLUME, 0, 100, 0.01, 0);
 	addParameter(Prop::BUZZING + "->" + Prop::RANDOM_FACTOR, 0, 100, 1, 0);
+	addParameter(Prop::INTERRUPTS + "->" + Prop::ACTIVE, 0, 1, 1, 1);
+	addParameter(Prop::NOISE + "->" + Prop::ACTIVE, 0, 1, 1, 1);
+	addParameter(Prop::CRACKLING + "->" + Prop::ACTIVE, 0, 1, 1, 1);
+	addParameter(Prop::BUZZING + "->" + Prop::ACTIVE, 0, 1, 1, 1);
 	parameters.state = ValueTree("savedParams");
 }
 
@@ -211,21 +215,19 @@ Array<EffectCreator*> YearprojectAudioProcessor::getEffects()
 	return effects;
 }
 
-void YearprojectAudioProcessor::addParameter(String id, String name, String label, Slider* sourceSlider)
+void YearprojectAudioProcessor::addParameter(String id, Slider* sourceSlider)
 {
 	slidersConnections.add(new AudioProcessorValueTreeState::SliderAttachment(parameters,id,*sourceSlider));
 }
 
-void YearprojectAudioProcessor::addParameter(String id, String name, String label, TextButton* sourceButton)
+void YearprojectAudioProcessor::addParameter(String id, TextValueButton* sourceButton)
 {
-	NormalisableRange<float> range(0,1,1);
-	parameters.createAndAddParameter(id, name, label, range, sourceButton->getToggleState(), nullptr, nullptr, false, true, false, AudioProcessorParameter::genericParameter, true);
 	buttonsConnections.add(new AudioProcessorValueTreeState::ButtonAttachment(parameters, id, *sourceButton));
 }
 
 void YearprojectAudioProcessor::addParameter(String name, float minValue, float maxValue, float interval, float curValue)
 {
-	parameters.createAndAddParameter(name, name, name, NormalisableRange<float>(minValue,maxValue,interval),1, nullptr, nullptr);
+	parameters.createAndAddParameter(name, name, name, NormalisableRange<float>(minValue,maxValue,interval),curValue, nullptr, nullptr);
 }
 
 float YearprojectAudioProcessor::useEffects(float signal)
