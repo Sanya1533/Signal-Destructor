@@ -47,7 +47,7 @@ private:
 
 	int freqTime = 0;
 
-    int played = 0;
+   	int played = 0; 
 
 	bool play = false;
 

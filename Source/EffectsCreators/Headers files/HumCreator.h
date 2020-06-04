@@ -1,12 +1,13 @@
 #pragma once
 #include "EffectCreator.h"
+#include "maximilian.h"
 
-class NoiseCreator : public EffectCreator
+class HumCreator : public EffectCreator
 {
 public:
-	NoiseCreator(double frequency=0.0, double duration=0.0, double volume=0.0, double randomFactor=0.0,bool isActive=true);
+	HumCreator(double frequency = 0.0, double duration = 0.0, double volume = 0.0, double randomFactor=0.0, bool isActive = true);
 
-	NoiseCreator(Value frequency = Value(0.0), Value duration = Value(0.0), Value volume = Value(0.0), Value randomFactor = Value(0.0), Value isrActive = Value(true));
+	HumCreator(Value frequency = Value(0.0), Value duration = Value(0.0), Value volume = Value(0.0), Value randomFactor = Value(0.0), Value isActive = Value(true));
 
 	float createEffect(float signal) override;
 
@@ -25,8 +26,6 @@ public:
 	Value getRandomFactor();
 
 private:
-	Random rnd;
-
 	Value frequency;
 
 	Value duration;
@@ -40,4 +39,6 @@ private:
 	int freqTime = 0;
 
 	bool play = false;
+
+	//maxiOsc maxiLFO = maxiOsc();
 };

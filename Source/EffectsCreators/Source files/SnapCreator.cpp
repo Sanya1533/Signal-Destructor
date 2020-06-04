@@ -1,4 +1,5 @@
 #include "SnapCreator.h"
+#include "Configuration.h"
 
 SnapCreator::SnapCreator(double frequency, double duration, double volume, int randomFactor, double snapDensity, double signalClipping, bool isActive) :EffectCreator(Value(isActive))
 {
@@ -26,7 +27,7 @@ float SnapCreator::createEffect(float signal)
 		return signal;
 	if (play)
 	{
-		int snapDist = (int)((float)duration.getValue() * 1 * 44100 / ((float)snapDensity.getValue() + 1));
+		int snapDist = (int)((float)duration.getValue() * Configuration::getSampleRate() / ((float)snapDensity.getValue() + 1));
 		if (played < (float)snapDensity.getValue() && durationTime >= snapDist + played * snapDist)
 		{
 			if (direction)
@@ -52,29 +53,29 @@ void SnapCreator::moveTime()
 	if (play)
 	{
 		durationTime++;
-		int snapDist = (int)((float)duration.getValue() * 1 * 44100 / ((float)snapDensity.getValue() + 1));
+		int snapDist = (int)((float)duration.getValue() * Configuration::getSampleRate() / ((float)snapDensity.getValue() + 1));
 		if ((durationTime - 1) >= snapDist + played * snapDist)
 		{
 			direction = !direction;
 			played++;
 		}
-		if (durationTime >= (float)duration.getValue() * 1 * 44100)
+		if (durationTime >= (float)duration.getValue() * Configuration::getSampleRate())
 		{
 			durationTime = 0;
 			played = 0;
 			play = false;
-			freqTime = randomGenerator.nextInt(Range<int>(-(int)randomFactor.getValue(), (int)randomFactor.getValue() + 1)) * 441;
+			freqTime = randomGenerator.nextInt(Range<int>(-(int)randomFactor.getValue(), (int)randomFactor.getValue() + 1)) * Configuration::getSampleRate()/100.0;
 		}
 	}
 	else
 	{
 		freqTime++;
-		if (freqTime >= 0.1 / (float)frequency.getValue() * 44100)
+		if (freqTime >= 0.1 / (float)frequency.getValue() * Configuration::getSampleRate())
 		{
 			freqTime = 0;
 			play = true;
 			played = 0;
-			durationTime = randomGenerator.nextInt(Range<int>(-(int)randomFactor.getValue(), (int)randomFactor.getValue() + 1)) * 441;
+			durationTime = randomGenerator.nextInt(Range<int>(-(int)randomFactor.getValue(), (int)randomFactor.getValue() + 1)) * Configuration::getSampleRate()/100.0;
 		}
 	}
 }

@@ -1,3 +1,4 @@
+#pragma once
 #include <JuceHeader.h>
 
 #include "PluginProcessor.h"
@@ -9,12 +10,12 @@
 
 using namespace juce;
 
-class YearprojectAudioProcessorEditor : public AudioProcessorEditor, 
+class SignalDestructorAudioProcessorEditor : public AudioProcessorEditor, 
     public ComboBox::Listener, public KeyListener, public TextButton::Listener
 {
 public:
-    YearprojectAudioProcessorEditor(YearprojectAudioProcessor& p);
-    ~YearprojectAudioProcessorEditor();
+    SignalDestructorAudioProcessorEditor(SignalDestructorAudioProcessor& p);
+    ~SignalDestructorAudioProcessorEditor();
 
     //==============================================================================
     void paint(Graphics&) override;
@@ -28,7 +29,7 @@ public:
 private:
     vector<SliderPanel*> panels;
 
-    YearprojectAudioProcessor& processor;
+    SignalDestructorAudioProcessor& processor;
 
     ComboBox* languages;
 
@@ -41,5 +42,5 @@ private:
 
     void setListenersToTextEditors();
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(YearprojectAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SignalDestructorAudioProcessorEditor)
 };

@@ -45,12 +45,12 @@
     <TargetExt>.dll</TargetExt>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(Platform)\$(Configuration)\VST\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\VST\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Year Project</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Signal Destructor</TargetName>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(LibraryPath);$(SolutionDir)$(Platform)\$(Configuration)\Shared Code</LibraryPath>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(Platform)\$(Configuration)\VST\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\VST\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Year Project</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Signal Destructor</TargetName>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(LibraryPath);$(SolutionDir)$(Platform)\$(Configuration)\Shared Code</LibraryPath>
   </PropertyGroup>
@@ -65,7 +65,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\JUCE\modules\juce_audio_processors\format_types\VST3_SDK;D:\VST_SDK_2.4-master;..\..\JuceLibraryCode;C:\Program Files (x86)\JUCE\modules;C:\Program Files (x86)\Maximilian etc\libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\JUCE\modules\juce_audio_processors\format_types\VST3_SDK;D:\VST_SDK_2.4-master;..\..\JuceLibraryCode;C:\Program Files (x86)\JUCE\modules;C:\Program Files (x86)\Maximilian etc\libs;C:\Users\alexl\source\repos\Year-Project2\Source\Buttons\Headers files;C:\Users\alexl\source\repos\Year-Project2\Source\EffectsCreators\Headers files;C:\Users\alexl\source\repos\Year-Project2\Source\Languages\Headers files;C:\Users\alexl\source\repos\Year-Project2\Source\Plugin\Headers files;C:\Users\alexl\source\repos\Year-Project2\Source\Sliders\Headers files;C:\Users\alexl\source\repos\Year-Project2\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;JUCER_VS2019_78A5026=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=1;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -82,21 +82,21 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <OutputFile>$(OutDir)\Year Project.dll</OutputFile>
+      <OutputFile>$(OutDir)\Signal Destructor.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>libcmt.lib; msvcrt.lib;;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(IntDir)\Year Project.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(IntDir)\Signal Destructor.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <LargeAddressAware>true</LargeAddressAware>
-      <AdditionalDependencies>Year Project.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Signal Destructor.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(IntDir)\Year Project.bsc</OutputFile>
+      <OutputFile>$(IntDir)\Signal Destructor.bsc</OutputFile>
     </Bscmake>
     <Lib>
-      <AdditionalDependencies>Year Project.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Signal Destructor.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -109,7 +109,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Full</Optimization>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\JUCE\modules\juce_audio_processors\format_types\VST3_SDK;D:\VST_SDK_2.4-master;..\..\JuceLibraryCode;C:\Program Files (x86)\JUCE\modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\JUCE\modules\juce_audio_processors\format_types\VST3_SDK;D:\VST_SDK_2.4-master;..\..\JuceLibraryCode;C:\Program Files (x86)\JUCE\modules;C:\Program Files (x86)\Maximilian etc\libs;C:\Users\alexl\source\repos\Year-Project2\Source\Buttons\Headers files;C:\Users\alexl\source\repos\Year-Project2\Source\EffectsCreators\Headers files;C:\Users\alexl\source\repos\Year-Project2\Source\Languages\Headers files;C:\Users\alexl\source\repos\Year-Project2\Source\Plugin\Headers files;C:\Users\alexl\source\repos\Year-Project2\Source\Sliders\Headers files;C:\Users\alexl\source\repos\Year-Project2\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;JUCER_VS2019_78A5026=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=1;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -126,23 +126,23 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <OutputFile>$(OutDir)\Year Project.dll</OutputFile>
+      <OutputFile>$(OutDir)\Signal Destructor.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(IntDir)\Year Project.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(IntDir)\Signal Destructor.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LargeAddressAware>true</LargeAddressAware>
-      <AdditionalDependencies>Year Project.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Signal Destructor.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(IntDir)\Year Project.bsc</OutputFile>
+      <OutputFile>$(IntDir)\Signal Destructor.bsc</OutputFile>
     </Bscmake>
     <Lib>
-      <AdditionalDependencies>Year Project.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Signal Destructor.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>

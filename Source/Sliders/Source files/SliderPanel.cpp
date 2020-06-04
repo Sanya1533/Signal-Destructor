@@ -18,8 +18,7 @@ SliderPanel::SliderPanel()
 }
 
 SliderPanel::~SliderPanel()
-{
-}
+{}
 
 void SliderPanel::paint(Graphics& g)
 {

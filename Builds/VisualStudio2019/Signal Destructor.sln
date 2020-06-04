@@ -1,12 +1,17 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2019
 
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Year Project - VST", "Year Project_VST.vcxproj", "{E07B3108-91A7-C1B9-35CE-2A1109405988}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Signal Destructor - VST", "Signal Destructor_VST.vcxproj", "{E07B3108-91A7-C1B9-35CE-2A1109405988}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3C4FE6FD-5141-8829-EA6F-8699490C4F60} = {3C4FE6FD-5141-8829-EA6F-8699490C4F60}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Year Project - Shared Code", "Year Project_SharedCode.vcxproj", "{3C4FE6FD-5141-8829-EA6F-8699490C4F60}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Signal Destructor - VST3", "Signal Destructor_VST3.vcxproj", "{B7B7B970-3996-EF3D-638B-01DD7B36F05F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3C4FE6FD-5141-8829-EA6F-8699490C4F60} = {3C4FE6FD-5141-8829-EA6F-8699490C4F60}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Signal Destructor - Shared Code", "Signal Destructor_SharedCode.vcxproj", "{3C4FE6FD-5141-8829-EA6F-8699490C4F60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +23,10 @@ Global
 		{E07B3108-91A7-C1B9-35CE-2A1109405988}.Debug|x64.Build.0 = Debug|x64
 		{E07B3108-91A7-C1B9-35CE-2A1109405988}.Release|x64.ActiveCfg = Release|x64
 		{E07B3108-91A7-C1B9-35CE-2A1109405988}.Release|x64.Build.0 = Release|x64
+		{B7B7B970-3996-EF3D-638B-01DD7B36F05F}.Debug|x64.ActiveCfg = Debug|x64
+		{B7B7B970-3996-EF3D-638B-01DD7B36F05F}.Debug|x64.Build.0 = Debug|x64
+		{B7B7B970-3996-EF3D-638B-01DD7B36F05F}.Release|x64.ActiveCfg = Release|x64
+		{B7B7B970-3996-EF3D-638B-01DD7B36F05F}.Release|x64.Build.0 = Release|x64
 		{3C4FE6FD-5141-8829-EA6F-8699490C4F60}.Debug|x64.ActiveCfg = Debug|x64
 		{3C4FE6FD-5141-8829-EA6F-8699490C4F60}.Debug|x64.Build.0 = Debug|x64
 		{3C4FE6FD-5141-8829-EA6F-8699490C4F60}.Release|x64.ActiveCfg = Release|x64

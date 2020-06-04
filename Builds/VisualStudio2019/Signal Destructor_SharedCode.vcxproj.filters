@@ -1,23 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Year Project\Buttons">
-      <UniqueIdentifier>{6C893CCD-4AA1-0A87-1B30-0E68BCE88BEF}</UniqueIdentifier>
+    <Filter Include="Signal Destructor\Plugin\Source files">
+      <UniqueIdentifier>{711D2CFE-73BD-AC64-A76A-21DE20479FFB}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Year Project\Languages">
-      <UniqueIdentifier>{06BE3B54-1F42-6C0A-2F5E-51D3C55B571F}</UniqueIdentifier>
+    <Filter Include="Signal Destructor\Plugin\Headers files">
+      <UniqueIdentifier>{3328C2E1-2ED7-18B2-EA64-BD205EA3D7E3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Year Project\Sliders">
-      <UniqueIdentifier>{67C99CBE-929F-A9A0-0C48-D3563D3E7436}</UniqueIdentifier>
+    <Filter Include="Signal Destructor\Plugin">
+      <UniqueIdentifier>{1C8F5FAE-DEEB-C283-B1A2-7E135B215352}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Year Project\EffectsCreators">
-      <UniqueIdentifier>{22B5E54A-59C3-5069-8DC5-0920926B92BA}</UniqueIdentifier>
+    <Filter Include="Signal Destructor\Buttons\Source files">
+      <UniqueIdentifier>{0F774C1A-FF1F-F9BC-66B3-07DD97B487A5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Year Project\Source">
-      <UniqueIdentifier>{3AA185AD-BF45-6480-5CA2-F9E16FD13A67}</UniqueIdentifier>
+    <Filter Include="Signal Destructor\Buttons\Headers files">
+      <UniqueIdentifier>{0E8F0E8E-7393-23B9-B5A3-9C5E1BB2154E}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Year Project">
-      <UniqueIdentifier>{D27772C8-FDB0-CD59-9CD5-EEC5DA7541E5}</UniqueIdentifier>
+    <Filter Include="Signal Destructor\Buttons">
+      <UniqueIdentifier>{CA2936A7-A6B4-BDF2-CBC0-3A27E445CFC1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Signal Destructor\Languages\Source files">
+      <UniqueIdentifier>{646B6E2D-6CBE-E3F2-A154-3057B33CCFC4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Signal Destructor\Languages\Headers files">
+      <UniqueIdentifier>{CB11883C-DB81-9C6F-E8B9-0099058D2349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Signal Destructor\Languages">
+      <UniqueIdentifier>{8833FFC3-3E95-4F22-E06A-0EE862BAADD2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Signal Destructor\Sliders\Source files">
+      <UniqueIdentifier>{A5C3F04E-5D33-BC7C-F444-30412E27A449}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Signal Destructor\Sliders\Headers files">
+      <UniqueIdentifier>{994B986F-BAD8-E713-2E85-E9060E2640D9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Signal Destructor\Sliders">
+      <UniqueIdentifier>{23BA4A33-7A54-2175-813E-2D628883C044}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Signal Destructor\EffectsCreators\Source files">
+      <UniqueIdentifier>{97EA5075-516B-5175-8A95-11CAC8F94EC3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Signal Destructor\EffectsCreators\Headers files">
+      <UniqueIdentifier>{82B3F7A8-74C8-E15A-AD2A-65619B6836BE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Signal Destructor\EffectsCreators">
+      <UniqueIdentifier>{0F6F7F6E-22B0-954B-875F-63AE69877BFA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Signal Destructor">
+      <UniqueIdentifier>{72DC08F5-C99D-4AAE-DB58-EE364D80FC88}</UniqueIdentifier>
     </Filter>
     <Filter Include="JUCE Modules\juce_audio_basics\audio_play_head">
       <UniqueIdentifier>{EB58F05A-A968-CEBE-40C4-107CDD8F240F}</UniqueIdentifier>
@@ -498,41 +528,41 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\TextValueButton.cpp">
-      <Filter>Year Project\Buttons</Filter>
+    <ClCompile Include="..\..\Source\Plugin\Source files\PluginEditor.cpp">
+      <Filter>Signal Destructor\Plugin\Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\LanguagesManager.cpp">
-      <Filter>Year Project\Languages</Filter>
+    <ClCompile Include="..\..\Source\Plugin\Source files\PluginProcessor.cpp">
+      <Filter>Signal Destructor\Plugin\Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\SliderPanel.cpp">
-      <Filter>Year Project\Sliders</Filter>
+    <ClCompile Include="..\..\Source\Buttons\Source files\TextValueButton.cpp">
+      <Filter>Signal Destructor\Buttons\Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\LabeledSlider.cpp">
-      <Filter>Year Project\Sliders</Filter>
+    <ClCompile Include="..\..\Source\Languages\Source files\LanguagesManager.cpp">
+      <Filter>Signal Destructor\Languages\Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\EffectCreator.cpp">
-      <Filter>Year Project\EffectsCreators</Filter>
+    <ClCompile Include="..\..\Source\Sliders\Source files\SliderPanel.cpp">
+      <Filter>Signal Destructor\Sliders\Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\HumCreator.cpp">
-      <Filter>Year Project\EffectsCreators</Filter>
+    <ClCompile Include="..\..\Source\Sliders\Source files\LabeledSlider.cpp">
+      <Filter>Signal Destructor\Sliders\Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\InterruptsCreator.cpp">
-      <Filter>Year Project\EffectsCreators</Filter>
+    <ClCompile Include="..\..\Source\EffectsCreators\Source files\InterruptsCreator.cpp">
+      <Filter>Signal Destructor\EffectsCreators\Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\NoiseCreator.cpp">
-      <Filter>Year Project\EffectsCreators</Filter>
+    <ClCompile Include="..\..\Source\EffectsCreators\Source files\NoiseCreator.cpp">
+      <Filter>Signal Destructor\EffectsCreators\Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\SnapCreator.cpp">
-      <Filter>Year Project\EffectsCreators</Filter>
+    <ClCompile Include="..\..\Source\EffectsCreators\Source files\SnapCreator.cpp">
+      <Filter>Signal Destructor\EffectsCreators\Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\PluginProcessor.cpp">
-      <Filter>Year Project\Source</Filter>
+    <ClCompile Include="..\..\Source\EffectsCreators\Source files\EffectCreator.cpp">
+      <Filter>Signal Destructor\EffectsCreators\Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\PluginEditor.cpp">
-      <Filter>Year Project\Source</Filter>
+    <ClCompile Include="..\..\Source\EffectsCreators\Source files\HumCreator.cpp">
+      <Filter>Signal Destructor\EffectsCreators\Source files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\..\Program Files (x86)\SQLite3\sqlite3.c">
-      <Filter>Year Project</Filter>
+      <Filter>Signal Destructor</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <Filter>JUCE Modules\juce_audio_basics\buffers</Filter>
@@ -2466,40 +2496,46 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_opengl.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Configuration.cpp">
+      <Filter>Signal Destructor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\TextValueButton.h">
-      <Filter>Year Project\Buttons</Filter>
+    <ClInclude Include="..\..\Source\Configuration.h">
+      <Filter>Signal Destructor</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\LanguagesManager.h">
-      <Filter>Year Project\Languages</Filter>
+    <ClInclude Include="..\..\Source\Plugin\Headers files\PluginEditor.h">
+      <Filter>Signal Destructor\Plugin\Headers files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\SliderPanel.h">
-      <Filter>Year Project\Sliders</Filter>
+    <ClInclude Include="..\..\Source\Plugin\Headers files\PluginProcessor.h">
+      <Filter>Signal Destructor\Plugin\Headers files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\LabeledSlider.h">
-      <Filter>Year Project\Sliders</Filter>
+    <ClInclude Include="..\..\Source\Buttons\Headers files\TextValueButton.h">
+      <Filter>Signal Destructor\Buttons\Headers files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\EffectCreator.h">
-      <Filter>Year Project\EffectsCreators</Filter>
+    <ClInclude Include="..\..\Source\Languages\Headers files\LanguagesManager.h">
+      <Filter>Signal Destructor\Languages\Headers files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\HumCreator.h">
-      <Filter>Year Project\EffectsCreators</Filter>
+    <ClInclude Include="..\..\Source\Sliders\Headers files\LabeledSlider.h">
+      <Filter>Signal Destructor\Sliders\Headers files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\InterruptsCreator.h">
-      <Filter>Year Project\EffectsCreators</Filter>
+    <ClInclude Include="..\..\Source\Sliders\Headers files\SliderPanel.h">
+      <Filter>Signal Destructor\Sliders\Headers files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\NoiseCreator.h">
-      <Filter>Year Project\EffectsCreators</Filter>
+    <ClInclude Include="..\..\Source\EffectsCreators\Headers files\HumCreator.h">
+      <Filter>Signal Destructor\EffectsCreators\Headers files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\SnapCreator.h">
-      <Filter>Year Project\EffectsCreators</Filter>
+    <ClInclude Include="..\..\Source\EffectsCreators\Headers files\InterruptsCreator.h">
+      <Filter>Signal Destructor\EffectsCreators\Headers files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\PluginProcessor.h">
-      <Filter>Year Project\Source</Filter>
+    <ClInclude Include="..\..\Source\EffectsCreators\Headers files\NoiseCreator.h">
+      <Filter>Signal Destructor\EffectsCreators\Headers files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\PluginEditor.h">
-      <Filter>Year Project\Source</Filter>
+    <ClInclude Include="..\..\Source\EffectsCreators\Headers files\SnapCreator.h">
+      <Filter>Signal Destructor\EffectsCreators\Headers files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EffectsCreators\Headers files\EffectCreator.h">
+      <Filter>Signal Destructor\EffectsCreators\Headers files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h">
       <Filter>JUCE Modules\juce_audio_basics\audio_play_head</Filter>
@@ -4876,6 +4912,5 @@
     <None Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_graphics\image_formats\pnglib\libpng_readme.txt">
       <Filter>JUCE Modules\juce_graphics\image_formats\pnglib</Filter>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
 </Project>

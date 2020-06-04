@@ -1,4 +1,5 @@
 #include "InterruptsCreator.h"
+#include "Configuration.h"
 
 InterruptsCreator::InterruptsCreator(double frequency, double duration, int randomFactor, bool isActive) :EffectCreator(Value(isActive))
 {
@@ -33,21 +34,21 @@ void InterruptsCreator::moveTime()
 	if (play)
 	{
 		durationTime++;
-		if (durationTime >= (float)duration.getValue() * 1 * 44100)
+		if (durationTime >= (float)duration.getValue() * Configuration::getSampleRate())
 		{
 			durationTime = 0;
 			play = false;
-			freqTime = randomGenerator.nextInt(Range<int>(-(int)randomFactor.getValue(), (int)randomFactor.getValue() + 1)) * 441;
+			freqTime = randomGenerator.nextInt(Range<int>(-(int)randomFactor.getValue(), (int)randomFactor.getValue() + 1)) * Configuration::getSampleRate()/100.0;
 		}
 	}
 	else
 	{
 		freqTime++;
-		if (freqTime >= 0.1 / (float)frequency.getValue() * 44100)
+		if (freqTime >= 0.1 / (float)frequency.getValue() * Configuration::getSampleRate())
 		{
 			freqTime = 0;
 			play = true;
-			durationTime = randomGenerator.nextInt(Range<int>(-(int)randomFactor.getValue(), (int)randomFactor.getValue() + 1)) * 441;
+			durationTime = randomGenerator.nextInt(Range<int>(-(int)randomFactor.getValue(), (int)randomFactor.getValue() + 1)) * Configuration::getSampleRate()/100.0;
 		}
 	}
 }

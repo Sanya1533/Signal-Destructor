@@ -1,9 +1,10 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 #include "LanguagesManager.h"
+#include "Configuration.h"
 
 //==============================================================================
-YearprojectAudioProcessor::YearprojectAudioProcessor()
+SignalDestructorAudioProcessor::SignalDestructorAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
 	: AudioProcessor(BusesProperties()
 #if ! JucePlugin_IsMidiEffect
@@ -41,17 +42,17 @@ YearprojectAudioProcessor::YearprojectAudioProcessor()
 	parameters.state = ValueTree("savedParams");
 }
 
-YearprojectAudioProcessor::~YearprojectAudioProcessor()
+SignalDestructorAudioProcessor::~SignalDestructorAudioProcessor()
 {
 }
 
 //==============================================================================
-const String YearprojectAudioProcessor::getName() const
+const String SignalDestructorAudioProcessor::getName() const
 {
 	return JucePlugin_Name;
 }
 
-bool YearprojectAudioProcessor::acceptsMidi() const
+bool SignalDestructorAudioProcessor::acceptsMidi() const
 {
 #if JucePlugin_WantsMidiInput
 	return true;
@@ -60,7 +61,7 @@ bool YearprojectAudioProcessor::acceptsMidi() const
 #endif
 }
 
-bool YearprojectAudioProcessor::producesMidi() const
+bool SignalDestructorAudioProcessor::producesMidi() const
 {
 #if JucePlugin_ProducesMidiOutput
 	return true;
@@ -69,7 +70,7 @@ bool YearprojectAudioProcessor::producesMidi() const
 #endif
 }
 
-bool YearprojectAudioProcessor::isMidiEffect() const
+bool SignalDestructorAudioProcessor::isMidiEffect() const
 {
 #if JucePlugin_IsMidiEffect
 	return true;
@@ -78,50 +79,46 @@ bool YearprojectAudioProcessor::isMidiEffect() const
 #endif
 }
 
-double YearprojectAudioProcessor::getTailLengthSeconds() const
+double SignalDestructorAudioProcessor::getTailLengthSeconds() const
 {
 	return 0.0;
 }
 
-int YearprojectAudioProcessor::getNumPrograms()
+int SignalDestructorAudioProcessor::getNumPrograms()
 {
-	return 1;   // NB: some hosts don't cope very well if you tell them there are 0 programs,
-				// so this should be at least 1, even if you're not really implementing programs.
+	return 1;
 }
 
-int YearprojectAudioProcessor::getCurrentProgram()
+int SignalDestructorAudioProcessor::getCurrentProgram()
 {
 	return 0;
 }
 
-void YearprojectAudioProcessor::setCurrentProgram(int index)
+void SignalDestructorAudioProcessor::setCurrentProgram(int index)
 {
 }
 
-const String YearprojectAudioProcessor::getProgramName(int index)
+const String SignalDestructorAudioProcessor::getProgramName(int index)
 {
 	return {};
 }
 
-void YearprojectAudioProcessor::changeProgramName(int index, const String& newName)
+void SignalDestructorAudioProcessor::changeProgramName(int index, const String& newName)
 {
 }
 
 //==============================================================================
-void YearprojectAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
+void SignalDestructorAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
 {
-	// Use this method as the place to do any pre-playback
-	// initialisation that you need..
+	Configuration::setSampleRate(sampleRate);
 }
 
-void YearprojectAudioProcessor::releaseResources()
+void SignalDestructorAudioProcessor::releaseResources()
 {
-	// When playback stops, you can use this as an opportunity to free up any
-	// spare memory, etc.
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations
-bool YearprojectAudioProcessor::isBusesLayoutSupported(const BusesLayout& layouts) const
+bool SignalDestructorAudioProcessor::isBusesLayoutSupported(const BusesLayout& layouts) const
 {
 #if JucePlugin_IsMidiEffect
 	ignoreUnused(layouts);
@@ -144,7 +141,7 @@ bool YearprojectAudioProcessor::isBusesLayoutSupported(const BusesLayout& layout
 }
 #endif
 
-void YearprojectAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
+void SignalDestructorAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
 {
 	int totalNumInputChannels = getTotalNumInputChannels();
 	int totalNumOutputChannels = getTotalNumOutputChannels();
@@ -168,18 +165,18 @@ void YearprojectAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuf
 }
 
 //==============================================================================
-bool YearprojectAudioProcessor::hasEditor() const
+bool SignalDestructorAudioProcessor::hasEditor() const
 {
 	return true; // (change this to false if you choose to not supply an editor)
 }
 
-AudioProcessorEditor* YearprojectAudioProcessor::createEditor()
+AudioProcessorEditor* SignalDestructorAudioProcessor::createEditor()
 {
-	return new YearprojectAudioProcessorEditor(*this);
+	return new SignalDestructorAudioProcessorEditor(*this);
 }
 
 //==============================================================================
-void YearprojectAudioProcessor::getStateInformation(MemoryBlock& destData)
+void SignalDestructorAudioProcessor::getStateInformation(MemoryBlock& destData)
 {
 	// You should use this method to store your parameters in the memory block.
 	// You could do that either as raw data, or use the XML or ValueTree classes
@@ -189,7 +186,7 @@ void YearprojectAudioProcessor::getStateInformation(MemoryBlock& destData)
 	copyXmlToBinary(*xml, destData);
 }
 
-void YearprojectAudioProcessor::setStateInformation(const void* data, int sizeInBytes)
+void SignalDestructorAudioProcessor::setStateInformation(const void* data, int sizeInBytes)
 {
 	// You should use this method to restore your parameters from this memory block,
 	// whose contents will have been created by the getStateInformation() call.
@@ -205,32 +202,32 @@ void YearprojectAudioProcessor::setStateInformation(const void* data, int sizeIn
 	}
 }
 
-void YearprojectAudioProcessor::addEffect(EffectCreator* newEffect)
+void SignalDestructorAudioProcessor::addEffect(EffectCreator* newEffect)
 {
 	effects.add(newEffect);
 }
 
-Array<EffectCreator*> YearprojectAudioProcessor::getEffects()
+Array<EffectCreator*> SignalDestructorAudioProcessor::getEffects()
 {
 	return effects;
 }
 
-void YearprojectAudioProcessor::addParameter(String id, Slider* sourceSlider)
+void SignalDestructorAudioProcessor::addParameter(String id, Slider* sourceSlider)
 {
 	slidersConnections.add(new AudioProcessorValueTreeState::SliderAttachment(parameters,id,*sourceSlider));
 }
 
-void YearprojectAudioProcessor::addParameter(String id, TextValueButton* sourceButton)
+void SignalDestructorAudioProcessor::addParameter(String id, TextValueButton* sourceButton)
 {
 	buttonsConnections.add(new AudioProcessorValueTreeState::ButtonAttachment(parameters, id, *sourceButton));
 }
 
-void YearprojectAudioProcessor::addParameter(String name, float minValue, float maxValue, float interval, float curValue)
+void SignalDestructorAudioProcessor::addParameter(String name, float minValue, float maxValue, float interval, float curValue)
 {
 	parameters.createAndAddParameter(name, name, name, NormalisableRange<float>(minValue,maxValue,interval),curValue, nullptr, nullptr);
 }
 
-float YearprojectAudioProcessor::useEffects(float signal)
+float SignalDestructorAudioProcessor::useEffects(float signal)
 {
 	for (EffectCreator *effect:effects)
 	{
@@ -243,5 +240,5 @@ float YearprojectAudioProcessor::useEffects(float signal)
 // This creates new instances of the plugin..
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-	return new YearprojectAudioProcessor();;
+	return new SignalDestructorAudioProcessor();;
 }

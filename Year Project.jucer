@@ -1,58 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="RXEf86" name="Year Project" projectType="audioplug" jucerVersion="5.4.7"
-              pluginFormats="buildVST">
-  <MAINGROUP id="KNabTP" name="Year Project">
+<JUCERPROJECT id="RXEf86" name="Signal Destructor" projectType="audioplug"
+              jucerVersion="5.4.7" pluginFormats="buildVST,buildVST3" version="1.0.0"
+              headerPath="C:\Program Files (x86)\Maximilian etc\libs&#10;C:\Users\alexl\source\repos\Year-Project2\Source\Buttons\Headers files&#10;C:\Users\alexl\source\repos\Year-Project2\Source\EffectsCreators\Headers files&#10;C:\Users\alexl\source\repos\Year-Project2\Source\Languages\Headers files&#10;C:\Users\alexl\source\repos\Year-Project2\Source\Plugin\Headers files&#10;C:\Users\alexl\source\repos\Year-Project2\Source\Sliders\Headers files&#10;C:\Users\alexl\source\repos\Year-Project2\Source">
+  <MAINGROUP id="KNabTP" name="Signal Destructor">
+    <FILE id="OmbpoI" name="Configuration.h" compile="0" resource="0" file="Source/Configuration.h"/>
+    <GROUP id="{F635CDF5-9324-D3C1-B5FA-583CD4C4905C}" name="Plugin">
+      <GROUP id="{04678002-2C40-DCFC-BB6C-9B6960980BF9}" name="Source files">
+        <FILE id="ZeN4P2" name="PluginEditor.cpp" compile="1" resource="0"
+              file="Source/Plugin/Source files/PluginEditor.cpp"/>
+        <FILE id="QW8jzm" name="PluginProcessor.cpp" compile="1" resource="0"
+              file="Source/Plugin/Source files/PluginProcessor.cpp"/>
+      </GROUP>
+      <GROUP id="{BF1FB306-A3C2-BFFD-0D69-FB19BAC2BA8F}" name="Headers files">
+        <FILE id="ayb5k9" name="PluginEditor.h" compile="0" resource="0" file="Source/Plugin/Headers files/PluginEditor.h"/>
+        <FILE id="qXsIZF" name="PluginProcessor.h" compile="0" resource="0"
+              file="Source/Plugin/Headers files/PluginProcessor.h"/>
+      </GROUP>
+    </GROUP>
     <GROUP id="{2421B96E-FE53-3D46-DA04-646407005106}" name="Buttons">
-      <FILE id="fe0Ay8" name="TextValueButton.cpp" compile="1" resource="0"
-            file="Source/TextValueButton.cpp"/>
-      <FILE id="WSKtRp" name="TextValueButton.h" compile="0" resource="0"
-            file="Source/TextValueButton.h"/>
+      <GROUP id="{43315499-78C6-ADFF-B4CD-F9C6279136A8}" name="Source files">
+        <FILE id="Ixm3bd" name="TextValueButton.cpp" compile="1" resource="0"
+              file="Source/Buttons/Source files/TextValueButton.cpp"/>
+      </GROUP>
+      <GROUP id="{945B0BB6-D928-2A76-7FD0-65F8D63CE16A}" name="Headers files">
+        <FILE id="oqgNIy" name="TextValueButton.h" compile="0" resource="0"
+              file="Source/Buttons/Headers files/TextValueButton.h"/>
+      </GROUP>
     </GROUP>
     <GROUP id="{8B6A05A5-DAE8-F43F-9D18-FC032E73812B}" name="Languages">
-      <FILE id="u8p0zE" name="LanguagesManager.cpp" compile="1" resource="0"
-            file="Source/LanguagesManager.cpp"/>
-      <FILE id="iMksJL" name="LanguagesManager.h" compile="0" resource="0"
-            file="Source/LanguagesManager.h"/>
+      <GROUP id="{FE7B4670-4620-6763-588C-135E13552DB7}" name="Source files">
+        <FILE id="gxh3qn" name="LanguagesManager.cpp" compile="1" resource="0"
+              file="Source/Languages/Source files/LanguagesManager.cpp"/>
+      </GROUP>
+      <GROUP id="{3BE66749-7E9D-EE44-7C8F-31C0FCD816D6}" name="Headers files">
+        <FILE id="Etr0vZ" name="LanguagesManager.h" compile="0" resource="0"
+              file="Source/Languages/Headers files/LanguagesManager.h"/>
+      </GROUP>
     </GROUP>
     <GROUP id="{6DDF7C29-4B85-B2FF-5277-A7DE843BD25A}" name="Sliders">
-      <FILE id="x6dO2p" name="SliderPanel.cpp" compile="1" resource="0" file="Source/SliderPanel.cpp"/>
-      <FILE id="fIMI0Q" name="SliderPanel.h" compile="0" resource="0" file="Source/SliderPanel.h"/>
-      <FILE id="bW9qYG" name="LabeledSlider.cpp" compile="1" resource="0"
-            file="Source/LabeledSlider.cpp"/>
-      <FILE id="oWpaoz" name="LabeledSlider.h" compile="0" resource="0" file="Source/LabeledSlider.h"/>
+      <GROUP id="{022B4238-DEF7-5869-114F-2ACC76388A8A}" name="Source files">
+        <FILE id="bXepW0" name="SliderPanel.cpp" compile="1" resource="0" file="Source/Sliders/Source files/SliderPanel.cpp"/>
+        <FILE id="IqRnfd" name="LabeledSlider.cpp" compile="1" resource="0"
+              file="Source/Sliders/Source files/LabeledSlider.cpp"/>
+      </GROUP>
+      <GROUP id="{F6DEFB1D-27F2-9D5C-229E-C170472AE67C}" name="Headers files">
+        <FILE id="nsAirg" name="LabeledSlider.h" compile="0" resource="0" file="Source/Sliders/Headers files/LabeledSlider.h"/>
+        <FILE id="lyTriM" name="SliderPanel.h" compile="0" resource="0" file="Source/Sliders/Headers files/SliderPanel.h"/>
+      </GROUP>
     </GROUP>
     <GROUP id="{9ECAF4FA-C449-0AFC-D335-DB74E0C2472F}" name="EffectsCreators">
-      <FILE id="QVLGde" name="EffectCreator.cpp" compile="1" resource="0"
-            file="Source/EffectCreator.cpp"/>
-      <FILE id="QUmD7L" name="EffectCreator.h" compile="0" resource="0" file="Source/EffectCreator.h"/>
-      <FILE id="efhnvx" name="HumCreator.cpp" compile="1" resource="0" file="Source/HumCreator.cpp"/>
-      <FILE id="Urgpxl" name="HumCreator.h" compile="0" resource="0" file="Source/HumCreator.h"/>
-      <FILE id="NP6MPW" name="InterruptsCreator.cpp" compile="1" resource="0"
-            file="Source/InterruptsCreator.cpp"/>
-      <FILE id="a1fdv5" name="InterruptsCreator.h" compile="0" resource="0"
-            file="Source/InterruptsCreator.h"/>
-      <FILE id="CsMWy8" name="NoiseCreator.cpp" compile="1" resource="0"
-            file="Source/NoiseCreator.cpp"/>
-      <FILE id="QzebWr" name="NoiseCreator.h" compile="0" resource="0" file="Source/NoiseCreator.h"/>
-      <FILE id="eT36bv" name="SnapCreator.cpp" compile="1" resource="0" file="Source/SnapCreator.cpp"/>
-      <FILE id="nLHZCX" name="SnapCreator.h" compile="0" resource="0" file="Source/SnapCreator.h"/>
-    </GROUP>
-    <GROUP id="{569E8AE0-343D-0DD9-1705-8ACE87E55647}" name="Source">
-      <FILE id="ktEF8B" name="PluginProcessor.cpp" compile="1" resource="0"
-            file="Source/PluginProcessor.cpp"/>
-      <FILE id="vfxMYs" name="PluginProcessor.h" compile="0" resource="0"
-            file="Source/PluginProcessor.h"/>
-      <FILE id="IxNbu8" name="PluginEditor.cpp" compile="1" resource="0"
-            file="Source/PluginEditor.cpp"/>
-      <FILE id="UVKGkP" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <GROUP id="{FFB3B48C-2FC9-4D8F-BE8F-233BD26615D5}" name="Source files">
+        <FILE id="pNSomX" name="InterruptsCreator.cpp" compile="1" resource="0"
+              file="Source/EffectsCreators/Source files/InterruptsCreator.cpp"/>
+        <FILE id="rUH5i8" name="NoiseCreator.cpp" compile="1" resource="0"
+              file="Source/EffectsCreators/Source files/NoiseCreator.cpp"/>
+        <FILE id="j4ndTb" name="SnapCreator.cpp" compile="1" resource="0" file="Source/EffectsCreators/Source files/SnapCreator.cpp"/>
+        <FILE id="rxWm6S" name="EffectCreator.cpp" compile="1" resource="0"
+              file="Source/EffectsCreators/Source files/EffectCreator.cpp"/>
+        <FILE id="FdcrZD" name="HumCreator.cpp" compile="1" resource="0" file="Source/EffectsCreators/Source files/HumCreator.cpp"/>
+      </GROUP>
+      <GROUP id="{157EE3F5-19C6-6E0B-DA7E-8A8DEDBD1F6B}" name="Headers files">
+        <FILE id="Q7pzho" name="HumCreator.h" compile="0" resource="0" file="Source/EffectsCreators/Headers files/HumCreator.h"/>
+        <FILE id="n8cH0S" name="InterruptsCreator.h" compile="0" resource="0"
+              file="Source/EffectsCreators/Headers files/InterruptsCreator.h"/>
+        <FILE id="oJPZrn" name="NoiseCreator.h" compile="0" resource="0" file="Source/EffectsCreators/Headers files/NoiseCreator.h"/>
+        <FILE id="aTJQqG" name="SnapCreator.h" compile="0" resource="0" file="Source/EffectsCreators/Headers files/SnapCreator.h"/>
+        <FILE id="xhaFtj" name="EffectCreator.h" compile="0" resource="0" file="Source/EffectsCreators/Headers files/EffectCreator.h"/>
+      </GROUP>
     </GROUP>
     <FILE id="LPm55f" name="sqlite3.c" compile="1" resource="0" file="../../../../../Program Files (x86)/SQLite3/sqlite3.c"/>
   </MAINGROUP>
   <EXPORTFORMATS>
     <VS2019 targetFolder="Builds/VisualStudio2019">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" headerPath="C:\Program Files (x86)\Maximilian etc\libs"/>
+        <CONFIGURATION isDebug="1" name="Debug"/>
         <CONFIGURATION isDebug="0" name="Release"/>
       </CONFIGURATIONS>
       <MODULEPATHS>

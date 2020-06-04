@@ -67,7 +67,6 @@ vector<wstring> LanguagesManager::getProperty(string property, wstring *localLan
 	}
 
 	sqlite3_close(DB);
-
 	return answer;
 }
 
@@ -97,7 +96,6 @@ void LanguagesManager::setCurrentLanguage(wstring localLanguage)
 		}
 	}
 	sqlite3_close(DB);
-
 	return;
 }
 
@@ -140,7 +138,7 @@ wstring* LanguagesManager::getCurrentLanguage()
 
 bool LanguagesManager::setDBname()
 {
-	DBname = getFileDir() + L"\\/" + L"sqlite.db";
+	DBname = getFileDir() + L"\\/" + L"LanguagesDatabase.db";
 	if (DBname[0] == '?')
 		DBname = DBname.substr(1, DBname.length() - 1);
 	ifstream f(DBname);
@@ -162,16 +160,15 @@ wstring LanguagesManager::convertToUTF8(const string& str)
 wstring LanguagesManager::getFileDir()
 {
 	wstring *outFile =new wstring(L"");
-	if (isNeeded(L"Year Project.dll", outFile))
+	if (isNeeded(L"Signal Destructor.dll", outFile))
 	{
 		return outFile->substr(0, outFile->find_last_of(L"\\/"));
 	}
 	else
 	{
-		isNeeded(L"Year Project.vst3", outFile);
+		isNeeded(L"Signal Destructor.vst3", outFile);
 		return outFile->substr(0, outFile->find_last_of(L"\\/"));
 	}
-
 	return L"";
 }
 
@@ -181,6 +178,5 @@ bool LanguagesManager::isNeeded(wstring fileName, wstring* outFile)
 	WCHAR* path = new WCHAR[MAX_PATH];
 	GetModuleFileNameW(hm, path, MAX_PATH); // get the full path
 	*outFile =wstring(path);
-
 	return outFile->substr(outFile->find_last_of(L"\\/")+1) == fileName;
 }

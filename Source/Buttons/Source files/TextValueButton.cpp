@@ -1,8 +1,4 @@
 #include "TextValueButton.h"
-#include <thread>
-#include <chrono>
-
-using namespace std;
 
 TextValueButton::TextValueButton(String firstName, String* secondName, String firstText, String secondText)
 {
@@ -17,6 +13,7 @@ TextValueButton::TextValueButton(String firstName, String* secondName, String fi
 
 TextValueButton::~TextValueButton()
 {
+	delete secondName;
 }
 
 void TextValueButton::setActive(bool active)

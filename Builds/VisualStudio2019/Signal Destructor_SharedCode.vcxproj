@@ -38,11 +38,11 @@
     <TargetExt>.lib</TargetExt>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(Platform)\$(Configuration)\Shared Code\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\Shared Code\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Year Project</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Signal Destructor</TargetName>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(Platform)\$(Configuration)\Shared Code\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\Shared Code\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Year Project</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Signal Destructor</TargetName>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -56,8 +56,8 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\JUCE\modules\juce_audio_processors\format_types\VST3_SDK;D:\VST_SDK_2.4-master;..\..\JuceLibraryCode;C:\Program Files (x86)\JUCE\modules;C:\Program Files (x86)\Maximilian etc\libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;JUCER_VS2019_78A5026=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=1;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JUCE_SHARED_CODE=1;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\JUCE\modules\juce_audio_processors\format_types\VST3_SDK;D:\VST_SDK_2.4-master;..\..\JuceLibraryCode;C:\Program Files (x86)\JUCE\modules;C:\Program Files (x86)\Maximilian etc\libs;C:\Users\alexl\source\repos\Year-Project2\Source\Buttons\Headers files;C:\Users\alexl\source\repos\Year-Project2\Source\EffectsCreators\Headers files;C:\Users\alexl\source\repos\Year-Project2\Source\Languages\Headers files;C:\Users\alexl\source\repos\Year-Project2\Source\Plugin\Headers files;C:\Users\alexl\source\repos\Year-Project2\Source\Sliders\Headers files;C:\Users\alexl\source\repos\Year-Project2\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;JUCER_VS2019_78A5026=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=1;JucePlugin_Build_VST3=1;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JUCE_SHARED_CODE=1;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader />
@@ -73,17 +73,17 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <OutputFile>$(OutDir)\Year Project.lib</OutputFile>
+      <OutputFile>$(OutDir)\Signal Destructor.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>libcmt.lib; msvcrt.lib;;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(IntDir)\Year Project.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(IntDir)\Signal Destructor.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <LargeAddressAware>true</LargeAddressAware>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(IntDir)\Year Project.bsc</OutputFile>
+      <OutputFile>$(IntDir)\Signal Destructor.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -96,8 +96,8 @@
     </Midl>
     <ClCompile>
       <Optimization>Full</Optimization>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\JUCE\modules\juce_audio_processors\format_types\VST3_SDK;D:\VST_SDK_2.4-master;..\..\JuceLibraryCode;C:\Program Files (x86)\JUCE\modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;JUCER_VS2019_78A5026=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=1;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JUCE_SHARED_CODE=1;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\JUCE\modules\juce_audio_processors\format_types\VST3_SDK;D:\VST_SDK_2.4-master;..\..\JuceLibraryCode;C:\Program Files (x86)\JUCE\modules;C:\Program Files (x86)\Maximilian etc\libs;C:\Users\alexl\source\repos\Year-Project2\Source\Buttons\Headers files;C:\Users\alexl\source\repos\Year-Project2\Source\EffectsCreators\Headers files;C:\Users\alexl\source\repos\Year-Project2\Source\Languages\Headers files;C:\Users\alexl\source\repos\Year-Project2\Source\Plugin\Headers files;C:\Users\alexl\source\repos\Year-Project2\Source\Sliders\Headers files;C:\Users\alexl\source\repos\Year-Project2\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;JUCER_VS2019_78A5026=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=1;JucePlugin_Build_VST3=1;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JUCE_SHARED_CODE=1;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader />
@@ -113,11 +113,11 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <OutputFile>$(OutDir)\Year Project.lib</OutputFile>
+      <OutputFile>$(OutDir)\Signal Destructor.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(IntDir)\Year Project.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(IntDir)\Signal Destructor.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -125,21 +125,22 @@
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(IntDir)\Year Project.bsc</OutputFile>
+      <OutputFile>$(IntDir)\Signal Destructor.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\TextValueButton.cpp" />
-    <ClCompile Include="..\..\Source\LanguagesManager.cpp" />
-    <ClCompile Include="..\..\Source\SliderPanel.cpp" />
-    <ClCompile Include="..\..\Source\LabeledSlider.cpp" />
-    <ClCompile Include="..\..\Source\EffectCreator.cpp" />
-    <ClCompile Include="..\..\Source\HumCreator.cpp" />
-    <ClCompile Include="..\..\Source\InterruptsCreator.cpp" />
-    <ClCompile Include="..\..\Source\NoiseCreator.cpp" />
-    <ClCompile Include="..\..\Source\SnapCreator.cpp" />
-    <ClCompile Include="..\..\Source\PluginProcessor.cpp" />
-    <ClCompile Include="..\..\Source\PluginEditor.cpp" />
+    <ClCompile Include="..\..\Source\Configuration.cpp" />
+    <ClCompile Include="..\..\Source\Plugin\Source files\PluginEditor.cpp" />
+    <ClCompile Include="..\..\Source\Plugin\Source files\PluginProcessor.cpp" />
+    <ClCompile Include="..\..\Source\Buttons\Source files\TextValueButton.cpp" />
+    <ClCompile Include="..\..\Source\Languages\Source files\LanguagesManager.cpp" />
+    <ClCompile Include="..\..\Source\Sliders\Source files\SliderPanel.cpp" />
+    <ClCompile Include="..\..\Source\Sliders\Source files\LabeledSlider.cpp" />
+    <ClCompile Include="..\..\Source\EffectsCreators\Source files\InterruptsCreator.cpp" />
+    <ClCompile Include="..\..\Source\EffectsCreators\Source files\NoiseCreator.cpp" />
+    <ClCompile Include="..\..\Source\EffectsCreators\Source files\SnapCreator.cpp" />
+    <ClCompile Include="..\..\Source\EffectsCreators\Source files\EffectCreator.cpp" />
+    <ClCompile Include="..\..\Source\EffectsCreators\Source files\HumCreator.cpp" />
     <ClCompile Include="..\..\..\..\..\..\..\Program Files (x86)\SQLite3\sqlite3.c" />
     <ClCompile Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
@@ -2045,17 +2046,18 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_opengl.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\TextValueButton.h" />
-    <ClInclude Include="..\..\Source\LanguagesManager.h" />
-    <ClInclude Include="..\..\Source\SliderPanel.h" />
-    <ClInclude Include="..\..\Source\LabeledSlider.h" />
-    <ClInclude Include="..\..\Source\EffectCreator.h" />
-    <ClInclude Include="..\..\Source\HumCreator.h" />
-    <ClInclude Include="..\..\Source\InterruptsCreator.h" />
-    <ClInclude Include="..\..\Source\NoiseCreator.h" />
-    <ClInclude Include="..\..\Source\SnapCreator.h" />
-    <ClInclude Include="..\..\Source\PluginProcessor.h" />
-    <ClInclude Include="..\..\Source\PluginEditor.h" />
+    <ClInclude Include="..\..\Source\Configuration.h" />
+    <ClInclude Include="..\..\Source\Plugin\Headers files\PluginEditor.h" />
+    <ClInclude Include="..\..\Source\Plugin\Headers files\PluginProcessor.h" />
+    <ClInclude Include="..\..\Source\Buttons\Headers files\TextValueButton.h" />
+    <ClInclude Include="..\..\Source\Languages\Headers files\LanguagesManager.h" />
+    <ClInclude Include="..\..\Source\Sliders\Headers files\LabeledSlider.h" />
+    <ClInclude Include="..\..\Source\Sliders\Headers files\SliderPanel.h" />
+    <ClInclude Include="..\..\Source\EffectsCreators\Headers files\HumCreator.h" />
+    <ClInclude Include="..\..\Source\EffectsCreators\Headers files\InterruptsCreator.h" />
+    <ClInclude Include="..\..\Source\EffectsCreators\Headers files\NoiseCreator.h" />
+    <ClInclude Include="..\..\Source\EffectsCreators\Headers files\SnapCreator.h" />
+    <ClInclude Include="..\..\Source\EffectsCreators\Headers files\EffectCreator.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_basics\buffers\Новая папка\juce_AudioSampleBuffer.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.h" />
@@ -2849,16 +2851,7 @@
     <None Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_core\native\java\README.txt" />
     <None Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_graphics\image_formats\jpglib\changes to libjpeg for JUCE.txt" />
     <None Include="..\..\..\..\..\..\..\Program Files (x86)\JUCE\modules\juce_graphics\image_formats\pnglib\libpng_readme.txt" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-    <Import Project="packages\sqlite3_c_plus_plus.1.0.3\build\native\sqlite3_c_plus_plus.targets" Condition="Exists('packages\sqlite3_c_plus_plus.1.0.3\build\native\sqlite3_c_plus_plus.targets')" />
-  </ImportGroup>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('packages\sqlite3_c_plus_plus.1.0.3\build\native\sqlite3_c_plus_plus.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sqlite3_c_plus_plus.1.0.3\build\native\sqlite3_c_plus_plus.targets'))" />
-  </Target>
+  <ImportGroup Label="ExtensionTargets" />
 </Project>

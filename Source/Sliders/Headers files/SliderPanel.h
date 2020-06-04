@@ -5,9 +5,7 @@
 
 using namespace std;
 
-class SliderPanel :
-	public Component,
-	public Value::Listener
+class SliderPanel : public Component, public Value::Listener
 {
 public:
 	SliderPanel();
@@ -54,6 +52,8 @@ public:
 
 	void setActive(Value active);
 
+	void valueChanged(Value& value) override;
+
 private:
 	Label* title;
 
@@ -72,7 +72,4 @@ private:
 	vector<pair<Component*, ChildPosition>> cornersComponents;
 	
 	float cornersHeightFactor = -1;
-
-	// Óíàñëåäîâàíî ÷åðåç Listener
-	virtual void valueChanged(Value& value) override;
 };

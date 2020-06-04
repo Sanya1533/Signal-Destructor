@@ -1,19 +1,16 @@
 #include "PluginEditor.h"
 #include "SliderPanel.h"
 #include "LabeledSlider.h"
-#include "LanguagesManager.h"
+#include "Languagesmanager.h"
 #include "InterruptsCreator.h"
 #include "NoiseCreator.h"
 #include "SnapCreator.h"
 #include "HumCreator.h"
 #include "TextValueButton.h"
 #include <JuceHeader.h>
-#include <fstream>
-
-using namespace std;
 
 //==============================================================================
-YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor(YearprojectAudioProcessor& p)
+SignalDestructorAudioProcessorEditor::SignalDestructorAudioProcessorEditor(SignalDestructorAudioProcessor& p)
 	: AudioProcessorEditor(&p), processor(p)
 {
 	Value value= Value(true);
@@ -193,7 +190,7 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor(YearprojectAudi
 	wstring* str = LanguagesManager::getCurrentLanguage();
 	for (int i = 0; i < languages->getNumItems(); i++)
 	{
-		if (*str == languages->getItemText(i).toWideCharPointer())
+		if (str==nullptr||*str == languages->getItemText(i).toWideCharPointer())
 		{
 			languages->setSelectedItemIndex(i, dontSendNotification);
 			comboBoxChanged(languages);
@@ -212,17 +209,17 @@ YearprojectAudioProcessorEditor::YearprojectAudioProcessorEditor(YearprojectAudi
 	setSize(900, 600);	
 }
 
-YearprojectAudioProcessorEditor::~YearprojectAudioProcessorEditor()
+SignalDestructorAudioProcessorEditor::~SignalDestructorAudioProcessorEditor()
 {
 }
 
 //==============================================================================
-void YearprojectAudioProcessorEditor::paint(Graphics& g)
+void SignalDestructorAudioProcessorEditor::paint(Graphics& g)
 {
 	g.fillAll(getLookAndFeel().findColour(ResizableWindow::backgroundColourId));
 }
 
-void YearprojectAudioProcessorEditor::resized()
+void SignalDestructorAudioProcessorEditor::resized()
 {
 	int heihgt = getHeight() * 24 / 25;
 	languages->setBounds(0, 0, getWidth(), getHeight() / 25);
@@ -232,8 +229,9 @@ void YearprojectAudioProcessorEditor::resized()
 	}
 }
 
-void YearprojectAudioProcessorEditor::comboBoxChanged(ComboBox* changedComboBox)
+void SignalDestructorAudioProcessorEditor::comboBoxChanged(ComboBox* changedComboBox)
 {
+try{
 	if (changedComboBox == languages)
 	{
 		String lang;
@@ -292,8 +290,12 @@ void YearprojectAudioProcessorEditor::comboBoxChanged(ComboBox* changedComboBox)
 		}
 	}
 }
+catch(std::exception& ex)
+{
+}
+}
 
-LabeledSlider* YearprojectAudioProcessorEditor::getParametredSlider(String text, String* name, double minValue, double maxValue, double interval, LabeledSlider::LabelPosition labelPosition, Slider::TextEntryBoxPosition boxPosition, Slider::SliderStyle style, double labelPercentage)
+LabeledSlider* SignalDestructorAudioProcessorEditor::getParametredSlider(String text, String* name, double minValue, double maxValue, double interval, LabeledSlider::LabelPosition labelPosition, Slider::TextEntryBoxPosition boxPosition, Slider::SliderStyle style, double labelPercentage)
 {
 	LabeledSlider* labeledSlider = new LabeledSlider(new Slider(style, boxPosition), new Label(text, text), labelPosition, labelPercentage);
 	labeledSlider->setRange(&minValue, &maxValue, &interval);
@@ -302,7 +304,7 @@ LabeledSlider* YearprojectAudioProcessorEditor::getParametredSlider(String text,
 	return labeledSlider;
 }
 
-TextValueButton* YearprojectAudioProcessorEditor::getParameteredButton(String text, String firstName, String* secondName, String* firstText, String* secondText)
+TextValueButton* SignalDestructorAudioProcessorEditor::getParameteredButton(String text, String firstName, String* secondName, String* firstText, String* secondText)
 {
 	TextValueButton* button = new TextValueButton(firstName, secondName, firstText != nullptr ? *firstText : firstName,
 		secondText != nullptr ? *secondText : secondName == nullptr?"": *secondName);
@@ -312,7 +314,7 @@ TextValueButton* YearprojectAudioProcessorEditor::getParameteredButton(String te
 	return button;
 }
 
-TextButton* YearprojectAudioProcessorEditor::getParameteredButton(String name, String* text)
+TextButton* SignalDestructorAudioProcessorEditor::getParameteredButton(String name, String* text)
 {
 	TextButton* button = new TextButton(name);
 	button->setBounds(0, 0, 100, 20);
@@ -322,7 +324,7 @@ TextButton* YearprojectAudioProcessorEditor::getParameteredButton(String name, S
 	return button;
 }
 
-void YearprojectAudioProcessorEditor::setListenersToTextEditors()
+void SignalDestructorAudioProcessorEditor::setListenersToTextEditors()
 {
 	for (auto panel : panels)
 	{
@@ -348,7 +350,7 @@ void YearprojectAudioProcessorEditor::setListenersToTextEditors()
 	}
 }
 
-void YearprojectAudioProcessorEditor::buttonClicked(Button* button)
+void SignalDestructorAudioProcessorEditor::buttonClicked(Button* button)
 {
 	if (auto textButton = dynamic_cast<TextButton*>(button))
 	{
@@ -365,7 +367,7 @@ void YearprojectAudioProcessorEditor::buttonClicked(Button* button)
 	}
 }
 
-bool YearprojectAudioProcessorEditor::keyPressed(const KeyPress& key, Component* originatingComponent)
+bool SignalDestructorAudioProcessorEditor::keyPressed(const KeyPress& key, Component* originatingComponent)
 {
 	if (auto editor=dynamic_cast<TextEditor*>(originatingComponent))
 	{ 
@@ -421,7 +423,7 @@ bool YearprojectAudioProcessorEditor::keyPressed(const KeyPress& key, Component*
 	return false;
 }
 
-String YearprojectAudioProcessorEditor::modifyText(string text)
+String SignalDestructorAudioProcessorEditor::modifyText(string text)
 {
 	string newText;
 	bool separator = false;

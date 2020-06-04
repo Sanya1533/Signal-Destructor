@@ -3,12 +3,12 @@
 #include "EffectCreator.h"
 #include "TextValueButton.h"
 
-class YearprojectAudioProcessor : public AudioProcessor
+class SignalDestructorAudioProcessor : public AudioProcessor
 {
 public:
     //==============================================================================
-    YearprojectAudioProcessor();
-    ~YearprojectAudioProcessor();
+    SignalDestructorAudioProcessor();
+    ~SignalDestructorAudioProcessor();
 
     //==============================================================================
     void prepareToPlay(double sampleRate, int samplesPerBlock) override;
@@ -60,5 +60,5 @@ private:
 
     float useEffects(float signal);
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(YearprojectAudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SignalDestructorAudioProcessor)
 };

@@ -59,7 +59,7 @@ private:
 
     float labelPercentage = 0.15;
 
-    LabelPosition labelPosition;// = LabelPosition::NoLabel;
+    LabelPosition labelPosition;
 
     bool isSliderRotary();
 };
