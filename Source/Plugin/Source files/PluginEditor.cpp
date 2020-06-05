@@ -95,8 +95,8 @@ SignalDestructorAudioProcessorEditor::SignalDestructorAudioProcessorEditor(Signa
 	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::DURATION));
 	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::VOLUME, nullptr, 0, 100, 0.01));
 	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::RANDOM_FACTOR, nullptr, 0, 100, 1));
-	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::DENSITY, nullptr, 0, 44099, 1));
-	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::CLIPPING_FACTOR, nullptr, 0, 300, 0.1));
+	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::DENSITY, nullptr, 0, 120, 0.1));
+	snapSliderPanel->addComponent(getParametredSlider(LanguagesManager::Properties::CLIPPING_FACTOR, nullptr, 0, 20, 0.1));
 
 	snapSliderPanel->addComponent(getParameteredButton(LanguagesManager::Properties::ACTIVE, LanguagesManager::Properties::MUTE, new String(LanguagesManager::Properties::UNMUTE), new String(LanguagesManager::Properties::TURN_OFF), new String(LanguagesManager::Properties::TURN_ON)), SliderPanel::ChildPosition::upperRightCorner);
 	snapSliderPanel->addComponent(getParameteredButton(LanguagesManager::Properties::DEFAULT, new String(LanguagesManager::Properties::ZEROIZE)), SliderPanel::ChildPosition::upperRightCorner);

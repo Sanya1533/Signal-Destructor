@@ -29,8 +29,8 @@ SignalDestructorAudioProcessor::SignalDestructorAudioProcessor()
 	addParameter(Prop::CRACKLING + "->" + Prop::DURATION, 0, 1, 0.001, 0);
 	addParameter(Prop::CRACKLING + "->" + Prop::VOLUME, 0, 100, 0.01, 0);
 	addParameter(Prop::CRACKLING + "->" + Prop::RANDOM_FACTOR, 0, 100, 1, 0);
-	addParameter(Prop::CRACKLING + "->" + Prop::DENSITY, 0, 44099, 1, 0);
-	addParameter(Prop::CRACKLING + "->" + Prop::CLIPPING_FACTOR, 0, 300, 0.1, 0);
+	addParameter(Prop::CRACKLING + "->" + Prop::DENSITY, 0, 120, 0.1, 0);
+	addParameter(Prop::CRACKLING + "->" + Prop::CLIPPING_FACTOR, 0, 20, 0.1, 0);
 	addParameter(Prop::BUZZING + "->" + Prop::FREQUENCY, 0, 1, 0.001, 0);
 	addParameter(Prop::BUZZING + "->" + Prop::DURATION, 0, 1, 0.001, 0);
 	addParameter(Prop::BUZZING + "->" + Prop::VOLUME, 0, 100, 0.01, 0);
