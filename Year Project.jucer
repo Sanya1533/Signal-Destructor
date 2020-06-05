@@ -5,6 +5,8 @@
               headerPath="C:\Program Files (x86)\Maximilian etc\libs&#10;C:\Users\alexl\source\repos\Year-Project2\Source\Buttons\Headers files&#10;C:\Users\alexl\source\repos\Year-Project2\Source\EffectsCreators\Headers files&#10;C:\Users\alexl\source\repos\Year-Project2\Source\Languages\Headers files&#10;C:\Users\alexl\source\repos\Year-Project2\Source\Plugin\Headers files&#10;C:\Users\alexl\source\repos\Year-Project2\Source\Sliders\Headers files&#10;C:\Users\alexl\source\repos\Year-Project2\Source">
   <MAINGROUP id="KNabTP" name="Signal Destructor">
     <FILE id="OmbpoI" name="Configuration.h" compile="0" resource="0" file="Source/Configuration.h"/>
+    <FILE id="FnIPX7" name="Configuration.cpp" compile="1" resource="0"
+          file="Source/Configuration.cpp"/>
     <GROUP id="{F635CDF5-9324-D3C1-B5FA-583CD4C4905C}" name="Plugin">
       <GROUP id="{04678002-2C40-DCFC-BB6C-9B6960980BF9}" name="Source files">
         <FILE id="ZeN4P2" name="PluginEditor.cpp" compile="1" resource="0"
